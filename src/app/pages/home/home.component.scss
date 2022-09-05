@@ -1,0 +1,14 @@
+.home-background {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: url('https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390921/leadership_clarity/home_background_vsbc9z.jpg')
+    center / cover no-repeat;
+    background-position: 50% 62%;
+    height: 65vh;
+    
+    h1 {
+        margin-top: 1rem;
+        font-weight: 400;
+    }
+}
