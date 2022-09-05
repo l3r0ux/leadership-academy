@@ -6,11 +6,21 @@
         </div>
         <div class="nav-links">
             <nav>
-                <span [routerLink]="['/leadership-academy']">Leadership Academy</span>
-                <span [routerLink]="['/the-forum']">The Forum</span>
-                <span [routerLink]="['/pauline-leadership-training']">Pauline Leadership Training</span>
-                <span [routerLink]="['/']" routerLinkActive="active-link">Home</span>
-                <span [routerLink]="['/admin']">Admin</span>
+                <span [routerLink]="['/']" routerLinkActive="active-link">
+                    Home
+                </span>
+                <span [routerLink]="['/admin']" routerLinkActive="active-link">
+                    Admin Panel
+                </span>
+                <span [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
+                    Leadership Academy
+                </span>
+                <span [routerLink]="['/the-forum']" routerLinkActive="active-link">
+                    The Forum
+                </span>
+                <span [routerLink]="['/pauline-leadership-training']" routerLinkActive="active-link">
+                    Pauline Leadership Training
+                </span>
             </nav>
             <div class="btn">Logout</div>
             <div class="btn">Login</div>

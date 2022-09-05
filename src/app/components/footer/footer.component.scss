@@ -1,0 +1,40 @@
+.footer {
+    width: 100%;
+    margin-top: 4rem;
+    padding: 0.4rem;
+    background-color: #EBEBEB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .img-container {
+        display: flex;
+        flex-direction: column;
+
+        .logo-img {
+            width: 7.5rem;
+            object-fit: cover;
+            margin: 0.5rem;
+            border-radius: 0.2rem;
+
+            &:first-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+    }
+
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            padding: 0.4rem;
+
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+
+}
