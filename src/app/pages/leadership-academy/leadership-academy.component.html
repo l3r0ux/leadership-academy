@@ -4,14 +4,16 @@
   <div class="inner-container">
     <div *ngFor="let conference of conferences">
       <h3>{{ conference.country }}</h3>
-      <h4>{{ conference.date.toLocaleDateString('en-US') }}</h4>
-      <h4>Videos</h4>
-      <video *ngFor="let video of conference.videoURLs" src="{{ video }}" controls></video>
-      <a *ngFor="let material of conference.teachingMaterialURLs"
-        href="{{ material }}"
-        download>
-        {{ material }}
-      </a>
+      <div class="details">
+        <h4>{{ conference.date.toLocaleDateString('en-US') }}</h4>
+        <h4>Videos</h4>
+        <video *ngFor="let video of conference.videoURLs" src="{{ video }}" controls></video>
+        <a *ngFor="let material of conference.teachingMaterialURLs"
+          href="{{ material }}"
+          download>
+          {{ material }}
+        </a>
+      </div>
     </div>
   </div>
 </div>
