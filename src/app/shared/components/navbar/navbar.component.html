@@ -6,7 +6,7 @@
         </div>
         <div class="nav-links">
             <nav>
-                <span [routerLink]="['/']" routerLinkActive="active-link">
+                <span [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                     Home
                 </span>
                 <span [routerLink]="['/admin']" routerLinkActive="active-link">
