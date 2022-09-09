@@ -1,7 +1,8 @@
 export interface Session {
+    isLive: boolean,
     name: string;
     date: Date;
-    videoURLs: Array<string>;
-    teachingMaterialURLs: Array<string>;
+    videos: Array<{ title: string, URL: string }>;
+    teachingMaterials: Array<{ title: string, URL: string }>;
     galleryURLs: Array<string>;
 }
