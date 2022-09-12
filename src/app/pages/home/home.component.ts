@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   trainingTiles: Array<any> = [
     {
-      text: 'Leadership Academy',
+      text: 'FEBC Intl. Leadership Academy',
       imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390922/leadership_clarity/the_forum_ahcljj.jpg'
     },
     {

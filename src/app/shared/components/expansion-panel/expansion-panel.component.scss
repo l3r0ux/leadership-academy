@@ -1,0 +1,34 @@
+.expansion-panel {
+    user-select: none;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .header {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.4rem;
+        background: #D9D9D9;
+
+        svg {
+            transform: rotate(90deg);
+        }
+    }
+
+    .body {
+        background-color: #F1F1F1;
+        transition: all 300ms ease;
+        height: 0;
+
+         .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.4rem 1rem;
+         }
+    }
+}

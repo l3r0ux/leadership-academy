@@ -12,6 +12,10 @@
         padding-left: 1.5rem;
     }
 
+    h4 {
+        margin-bottom: 0.5rem;
+    }
+
     .inner-container {
         max-width: 63rem;
         margin: 0 auto;
@@ -27,6 +31,10 @@
 
         h4 {
             padding-bottom: 0.4rem;
+        }
+
+        ::ng-deep .expansion-panel {
+            max-width: 25rem;
         }
     }
 }

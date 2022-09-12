@@ -5,14 +5,11 @@
     <div *ngFor="let conference of conferences">
       <h3>{{ conference.country }}</h3>
       <div class="details">
-        <h4>{{ conference.date.toLocaleDateString('en-US') }}</h4>
+        <h3>{{ conference.date.toLocaleDateString('en-US') }}</h3>
         <h4>Videos</h4>
         <app-video-carousel [conference]="conference"></app-video-carousel>
-        <a *ngFor="let material of conference.teachingMaterials"
-          href="{{ material.URL }}"
-          download>
-          {{ material.title }}
-        </a>
+        <h4>Downloads</h4>
+        <app-expansion-panel class="expansion-panel-outer" [data]="conference.teachingMaterials" [header]="'Teaching material'"></app-expansion-panel>
       </div>
     </div>
   </div>
