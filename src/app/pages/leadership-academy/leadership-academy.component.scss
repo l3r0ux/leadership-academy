@@ -1,7 +1,7 @@
 .main-container {
     max-width: 70rem;
     margin: 0 auto;
-    padding-top: 1.5rem;
+    padding: 1.5rem;
 
     h1 {
         padding-bottom: 1rem;
@@ -9,7 +9,6 @@
 
     h2 {
         padding-bottom: 0.8rem;
-        padding-left: 1.5rem;
     }
 
     h4 {
@@ -17,24 +16,67 @@
     }
 
     .inner-container {
-        max-width: 63rem;
-        margin: 0 auto;
+        width: 100%;
+        padding: 0 1.5rem;
 
         .details {
+            h3 {
+                margin-bottom: 1.2rem;
+            }
+
             max-width: 60rem;
-            margin: 0 auto;
         }
 
         h3 {
-            padding-bottom: 0.6rem;
+            margin-bottom: 0.6rem;
         }
 
         h4 {
-            padding-bottom: 0.4rem;
+            &:last-of-type {
+                margin-top: 2rem;
+            }
+
+            margin-bottom: 0.4rem;
         }
 
         ::ng-deep .expansion-panel {
             max-width: 25rem;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+
+            .image-container {
+                position: relative;
+
+                .download-icon {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 0.6rem;
+                    padding: 0.2rem;
+                    width: 2rem;
+                    height: 2rem;
+                    z-index: 1;
+                    border-radius: 50%;
+                    background-color: #ebebeb96;
+                    cursor: pointer;
+                }
+
+                img {
+                    margin: 0.1rem;
+                    object-fit: cover;
+                    border-radius: 0.4rem;
+                    max-width: 15rem;
+                    max-height: 15rem;
+                }
+            }
+
         }
     }
 }

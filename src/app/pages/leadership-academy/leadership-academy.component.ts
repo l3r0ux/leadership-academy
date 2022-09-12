@@ -14,5 +14,4 @@ export class LeadershipAcademyComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
