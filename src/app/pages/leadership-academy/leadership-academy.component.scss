@@ -66,6 +66,14 @@
                     border-radius: 50%;
                     background-color: #ebebeb96;
                     cursor: pointer;
+
+                    svg {
+                        &:hover {
+                            fill: #CD2037;
+                        }
+
+                        transition: fill 300ms ease;
+                    }
                 }
 
                 img {
