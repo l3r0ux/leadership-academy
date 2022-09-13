@@ -1,31 +1,6 @@
 <div class="main-container">
-    <h1>Pauline Leadership Academy</h1>
-    <h2>Sessions</h2>
-    <div class="inner-container">
-      <div *ngFor="let session of sessions">
-        <h3>{{ session.name }} - {{ session.date.toLocaleDateString('en-US') }}</h3>
-        <div class="details">
-          <h4>Videos</h4>
-          <app-video-carousel [videos]="session.videos"></app-video-carousel>
-          <h4>Downloads</h4>
-          <app-expansion-panel class="expansion-panel-outer" [data]="session.teachingMaterials" [header]="'Teaching material'"></app-expansion-panel>
-          <h4>Gallery</h4>
-          <div class="gallery-container">
-            <span class="image-container" *ngFor="let URL of session.galleryURLs">
-              <a class="download-icon" target="_blank" href="{{ URL }}">
-                <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
-                  <g>
-                      <path d="M245,0c-9.5,0-17.2,7.7-17.2,17.2v331.2L169,289.6c-6.7-6.7-17.6-6.7-24.3,0s-6.7,17.6,0,24.3l88.1,88.1 c3.3,3.3,7.7,5,12.1,5c4.4,0,8.8-1.7,12.1-5l88.1-88.1c6.7-6.7,6.7-17.6,0-24.3c-6.7-6.7-17.6-6.7-24.3,0L262,348.4V17.1 C262.1,7.6,254.5,0,245,0z"></path>
-                      <path d="M462.1,472.9v-99.7c0-9.5-7.7-17.2-17.2-17.2s-17.2,7.7-17.2,17.2v82.6H62.2v-82.6c0-9.5-7.7-17.2-17.1-17.2 s-17.2,7.7-17.2,17.2v99.7c0,9.5,7.7,17.1,17.2,17.1h399.8C454.4,490,462.1,482.4,462.1,472.9z"></path>
-                  </g>
-                </svg>
-              </a>
-              <img src="{{ URL }}">
-            </span>
-          </div>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h1>Pauline Leadership Academy</h1>
+  <h2>Sessions</h2>
+  <app-session [sessions]="sessions"></app-session>
+</div>
   
