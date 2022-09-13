@@ -27,7 +27,7 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     if (this.panelBody.nativeElement.classList.contains('visible')) {
       this.panelBody.nativeElement.style.height = `${this.panelBody.nativeElement.scrollHeight}px`
     } else {
-      this.panelBody.nativeElement.style.height = ''
+      this.panelBody.nativeElement.style.height = 0
     }
   }
 }
