@@ -2,9 +2,9 @@
   <h1>FEBC Intl. Leadership Academy</h1>
   <h2>Conferences</h2>
   <div class="inner-container">
-    <div *ngFor="let conference of conferences">
-      <h3>{{ conference.country }}</h3>
-      <div class="details">
+    <div *ngFor="let country of conferences">
+      <h3>{{ country.country }}</h3>
+      <div class="details" *ngFor="let conference of country.conferences">
         <h3>{{ conference.date.toLocaleDateString('en-US') }}</h3>
         <h4>Videos</h4>
         <app-video-carousel [conference]="conference"></app-video-carousel>
@@ -24,6 +24,7 @@
             <img src="{{ URL }}">
           </span>
         </div>
+        <hr>
       </div>
     </div>
   </div>

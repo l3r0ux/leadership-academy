@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Conference } from '../../models/conference';
+import { Session } from '../../models/conference';
 
 @Component({
   selector: 'app-video-carousel',
@@ -7,7 +7,7 @@ import { Conference } from '../../models/conference';
   styleUrls: ['./video-carousel.component.scss']
 })
 export class VideoCarouselComponent implements OnInit {
-  @Input() conference!: Conference;
+  @Input() conference!: Session;
   @ViewChild('carousel') carousel!: ElementRef;
   @ViewChild('video') video!: ElementRef;
 

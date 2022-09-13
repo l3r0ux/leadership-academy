@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TrainingTileComponent } from './pages/home/components/training-tile/training-tile.component';
 import { LeadershipAcademyComponent } from './pages/leadership-academy/leadership-academy.component';
+import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-leadership.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { LeadershipAcademyComponent } from './pages/leadership-academy/leadershi
     HomeComponent,
     TrainingTileComponent,
     LeadershipAcademyComponent,
+    PaulineLeadershipComponent,
   ],
   imports: [
     BrowserModule,
