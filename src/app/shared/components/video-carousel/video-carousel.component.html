@@ -10,7 +10,7 @@
         </svg>
     </div>
     <div #carousel class="carousel">
-        <div class="video-container" *ngFor="let video of conference.videos">
+        <div class="video-container" *ngFor="let video of videos">
             <h4 class="title">{{ video.title }}</h4>
             <video #video src="{{ video.URL }}" controls></video>
         </div>

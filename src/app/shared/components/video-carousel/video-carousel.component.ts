@@ -7,7 +7,7 @@ import { Session } from '../../models/conference';
   styleUrls: ['./video-carousel.component.scss']
 })
 export class VideoCarouselComponent implements OnInit {
-  @Input() conference!: Session;
+  @Input() videos!: Array<{ title: string, URL: string }>;
   @ViewChild('carousel') carousel!: ElementRef;
   @ViewChild('video') video!: ElementRef;
 

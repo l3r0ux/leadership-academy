@@ -7,7 +7,7 @@
       <div class="details" *ngFor="let conference of country.conferences">
         <h3>{{ conference.date.toLocaleDateString('en-US') }}</h3>
         <h4>Videos</h4>
-        <app-video-carousel [conference]="conference"></app-video-carousel>
+        <app-video-carousel [videos]="conference.videos"></app-video-carousel>
         <h4>Downloads</h4>
         <app-expansion-panel class="expansion-panel-outer" [data]="conference.teachingMaterials" [header]="'Teaching material'"></app-expansion-panel>
         <h4>Gallery</h4>
