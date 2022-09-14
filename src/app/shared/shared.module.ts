@@ -7,6 +7,8 @@ import { VideoCarouselComponent } from './components/video-carousel/video-carous
 import { ExpansionPanelComponent } from './components/expansion-panel/expansion-panel.component';
 import { ConferenceComponent } from './components/conference/conference.component';
 import { SessionComponent } from './components/session/session.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 const exports = [
   FooterComponent,
@@ -14,7 +16,9 @@ const exports = [
   VideoCarouselComponent,
   ExpansionPanelComponent,
   ConferenceComponent,
-  SessionComponent
+  SessionComponent,
+  ModalComponent,
+  PasswordResetComponent
 ]
 
 @NgModule({

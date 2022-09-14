@@ -21,15 +21,12 @@
                 <span [routerLink]="['/admin']" routerLinkActive="active-link">
                     Admin Panel
                 </span>
-                <span [routerLink]="['/apply']" routerLinkActive="active-link">
-                    Apply
-                </span>
             </nav>
             <div class="btn">Logout</div>
             <div class="btn">Login</div>
             <div class="user-profile" (click)="openDetails()">
                 <h3>L</h3>
-                <div #details class="details">
+                <div #details class="details" (click)="modalService.toggleModal('Reset password');">
                     <span>Reset password</span>
                 </div>
             </div>
