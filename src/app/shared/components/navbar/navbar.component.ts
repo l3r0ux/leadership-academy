@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  @ViewChild('details') details!: ElementRef
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  openDetails(): void {
+    this.details.nativeElement.classList.toggle('visible')
+  }
 }
