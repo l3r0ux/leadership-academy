@@ -2,15 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
-  selector: 'app-password-reset',
-  templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class PasswordResetComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
   }
 
+  login(): void {
+    console.log('LOG IN')
+  }
 }

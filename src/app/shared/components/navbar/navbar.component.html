@@ -22,11 +22,11 @@
                     Admin Panel
                 </span>
             </nav>
-            <div class="btn">Logout</div>
-            <div class="btn">Login</div>
+            <button class="btn">Logout</button>
+            <button class="btn" (click)="modalService.openModal('Login')">Login</button>
             <div class="user-profile" (click)="openDetails()">
                 <h3>L</h3>
-                <div #details class="details" (click)="modalService.toggleModal('Reset password');">
+                <div #details class="details" (click)="modalService.openModal('Reset password request')">
                     <span>Reset password</span>
                 </div>
             </div>

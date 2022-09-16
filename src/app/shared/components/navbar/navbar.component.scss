@@ -44,16 +44,6 @@
 
             .btn {
                 margin: 0 0.8rem;
-                border: 2px solid #CD2037;
-                border-radius: 0.4rem;
-                padding: 0.4rem 1.2rem;
-                color: #CD2037;
-                cursor: pointer;
-                transition: box-shadow 300ms ease;
-
-                &:hover {
-                    box-shadow: 0 0 10px #cd203769;
-                }
             }
 
             .user-profile {

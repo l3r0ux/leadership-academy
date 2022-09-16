@@ -5,12 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class ModalService {
   modalVisible: boolean = false
-  title!: string
+  title: string = ''
 
   constructor() { }
 
-  toggleModal(title: string): void {
-    this.modalVisible = !this.modalVisible
+  openModal(title: string): void {
+    this.modalVisible = true
     this.title = title
+  }
+
+  closeModal():void {
+    this.modalVisible = false
+    this.title = ''
   }
 }

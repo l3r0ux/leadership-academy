@@ -9,6 +9,9 @@ import { ConferenceComponent } from './components/conference/conference.componen
 import { SessionComponent } from './components/session/session.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
+import { LoginComponent } from './components/login/login.component';
+import { ApplyComponent } from './components/apply/apply.component';
 
 const exports = [
   FooterComponent,
@@ -18,7 +21,10 @@ const exports = [
   ConferenceComponent,
   SessionComponent,
   ModalComponent,
-  PasswordResetComponent
+  PasswordResetComponent,
+  PasswordResetRequestComponent,
+  LoginComponent,
+  ApplyComponent
 ]
 
 @NgModule({

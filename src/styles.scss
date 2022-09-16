@@ -14,3 +14,61 @@ body {
 .active-link {
     color: #CD2037;
 }
+
+.btn {
+    font-size: 1rem;
+    border: 2px solid #CD2037;
+    border-radius: 0.4rem;
+    padding: 0.4rem 1.2rem;
+    color: #CD2037;
+    cursor: pointer;
+    transition: box-shadow 300ms ease;
+
+    &:hover {
+        box-shadow: 0 0 10px #cd203769;
+    }
+}
+
+.text-input {
+    &:focus {
+        border: 2px solid #CD2037;
+    }
+    &:last-of-type {
+        margin-bottom: 0.8rem;
+    }
+
+    transition: border 100ms ease;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    outline: none;
+    border: 2px solid #434343;
+    border-radius: 0.2rem;
+    line-height: 32px;
+    padding: 0 0.4rem;
+    background-color: #D9D9D9;
+}
+
+.modal {
+    margin-top: 4.5rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    box-shadow: 5px 5px 15px rgba(100, 100, 100, 0.5);
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #DCDCDC;
+        padding: 0.6rem;
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    .body {
+        padding: 1rem;
+    }
+}
