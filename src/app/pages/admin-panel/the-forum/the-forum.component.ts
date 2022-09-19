@@ -1,14 +1,15 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Conference, Session } from 'src/app/shared/models/conference';
 import { conferences, sessions } from 'src/app/shared/dummyData';
 
 @Component({
-  selector: 'app-admin-panel',
-  templateUrl: './admin-panel.component.html',
-  styleUrls: ['./admin-panel.component.scss']
+  selector: 'app-the-forum',
+  templateUrl: './the-forum.component.html',
+  styleUrls: ['./the-forum.component.scss']
 })
-export class AdminPanelComponent implements OnInit, AfterViewInit {
+export class TheForumAdminComponent implements OnInit {
   @ViewChild('underline') underline!: ElementRef
+  @ViewChild('conferencesTab') conferencesTab!: ElementRef
   tabSelected: string = 'forum'
   conferences: Array<Conference> = conferences
   sessions: Array<Session> = sessions
@@ -19,7 +20,7 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setTabUnderline(this.tabSelected)
+    this.conferencesTab.nativeElement.click();
   }
 
   selectTab(type: string): void {

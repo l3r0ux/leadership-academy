@@ -5,13 +5,20 @@ import { HomeComponent } from './pages/home/home.component';
 import { LeadershipAcademyComponent } from './pages/leadership-academy/leadership-academy.component';
 import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-leadership.component';
 import { TheForumComponent } from './pages/the-forum/the-forum.component';
+import { TheForumAdminComponent } from './pages/admin-panel/the-forum/the-forum.component';
+import { LeadershipAcademyAdminComponent } from './pages/admin-panel/leadership-academy/leadership-academy.component';
+import { PaulineLeadershipAdminComponent } from './pages/admin-panel/pauline-leadership/pauline-leadership.component';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent },
   { path: 'leadership-academy', component:  LeadershipAcademyComponent },
   { path: 'pauline-leadership', component:  PaulineLeadershipComponent },
   { path: 'the-forum', component:  TheForumComponent },
-  { path: 'admin', component:  AdminPanelComponent },
+  { path: 'admin', component:  AdminPanelComponent, children: [
+    { path: 'the-forum', component:  TheForumAdminComponent },
+    { path: 'leadership-academy', component:  LeadershipAcademyAdminComponent },
+    { path: 'pauline-leadership', component:  PaulineLeadershipAdminComponent },
+  ] },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ import { LeadershipAcademyComponent } from './pages/leadership-academy/leadershi
 import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-leadership.component';
 import { TheForumComponent } from './pages/the-forum/the-forum.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
+import { ApplicationsComponent } from './pages/admin-panel/applications/applications.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
     PaulineLeadershipComponent,
     TheForumComponent,
     AdminPanelComponent,
+    ApplicationsComponent,
   ],
   imports: [
     BrowserModule,
