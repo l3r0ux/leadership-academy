@@ -10,7 +10,7 @@ import { conferences, sessions } from 'src/app/shared/dummyData';
 export class TheForumAdminComponent implements OnInit {
   @ViewChild('underline') underline!: ElementRef
   @ViewChild('conferencesTab') conferencesTab!: ElementRef
-  tabSelected: string = 'forum'
+  tabSelected: string = 'conferences'
   conferences: Array<Conference> = conferences
   sessions: Array<Session> = sessions
 
@@ -20,7 +20,7 @@ export class TheForumAdminComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.conferencesTab.nativeElement.click();
+    this.setTabUnderline(this.tabSelected)
   }
 
   selectTab(type: string): void {

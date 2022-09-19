@@ -1,7 +1,7 @@
 <div>
     <div class="tabs-container">
         <div class="tabs">
-            <h3 #conferencesTab (click)="selectTab('conferences')" [class.active-link]="tabSelected === 'conferences'" class="conferences">Conferences</h3>
+            <h3 (click)="selectTab('conferences')" [class.active-link]="tabSelected === 'conferences'" class="conferences">Conferences</h3>
             <h3 (click)="selectTab('sessions')" [class.active-link]="tabSelected === 'sessions'" class="sessions">Sessions</h3>
         </div>
         <hr #underline>
