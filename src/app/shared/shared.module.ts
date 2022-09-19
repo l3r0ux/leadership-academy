@@ -12,8 +12,10 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { PasswordResetRequestComponent } from './components/password-reset-request/password-reset-request.component';
 import { LoginComponent } from './components/login/login.component';
 import { ApplyComponent } from './components/apply/apply.component';
+import { TabsComponent } from './components/tabs/tabs.component';
 
-const exports = [
+const components = [
+  TabsComponent,
   FooterComponent,
   NavbarComponent,
   VideoCarouselComponent,
@@ -24,15 +26,15 @@ const exports = [
   PasswordResetComponent,
   PasswordResetRequestComponent,
   LoginComponent,
-  ApplyComponent
+  ApplyComponent,
 ]
 
 @NgModule({
-  declarations: exports,
+  declarations: components,
   imports: [
     CommonModule,
     AppRoutingModule
   ],
-  exports: exports
+  exports: components
 })
 export class SharedModule { }

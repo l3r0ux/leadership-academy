@@ -12,6 +12,9 @@ import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-l
 import { TheForumComponent } from './pages/the-forum/the-forum.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { ApplicationsComponent } from './pages/admin-panel/applications/applications.component';
+import { TheForumAdminComponent } from './pages/admin-panel/the-forum/the-forum.component';
+import { LeadershipAcademyAdminComponent } from './pages/admin-panel/leadership-academy/leadership-academy.component';
+import { PaulineLeadershipAdminComponent } from './pages/admin-panel/pauline-leadership/pauline-leadership.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { ApplicationsComponent } from './pages/admin-panel/applications/applicat
     TheForumComponent,
     AdminPanelComponent,
     ApplicationsComponent,
+    TheForumAdminComponent,
+    LeadershipAcademyAdminComponent,
+    PaulineLeadershipAdminComponent
   ],
   imports: [
     BrowserModule,

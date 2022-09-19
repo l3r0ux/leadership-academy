@@ -1,12 +1,6 @@
 <div class="main-container">
     <h1>The Forum</h1>
-    <div class="tabs-container">
-        <div class="tabs">
-            <h2 (click)="selectTab('conferences')" [class.active-link]="tabSelected === 'conferences'" class="conferences">Conferences</h2>
-            <h2 (click)="selectTab('sessions')" [class.active-link]="tabSelected === 'sessions'" class="sessions">Sessions</h2>
-        </div>
-        <hr #underline>
-    </div>
-    <app-conference *ngIf="tabSelected === 'conferences'" [conferences]="conferences"></app-conference>
-    <app-session *ngIf="tabSelected === 'sessions'" [sessions]="sessions"></app-session>
+    <app-tabs (tabChanged)="setTab($event)" [tabs]="tabs"></app-tabs>
+    <app-conference *ngIf="tabSelected.selector === 'conferences'" [conferences]="conferences"></app-conference>
+    <app-session *ngIf="tabSelected.selector === 'sessions'" [sessions]="sessions"></app-session>
 </div>

@@ -1,13 +1,6 @@
 <div class="main-container">
     <h1>Admin Panel</h1>
-    <div class="tabs-container">
-        <div class="tabs">
-            <h3 [routerLink]="['the-forum']" (click)="selectTab('forum')" [class.active-link]="tabSelected === 'forum'" class="forum">The Forum</h3>
-            <h3 [routerLink]="['leadership-academy']" (click)="selectTab('academy')" [class.active-link]="tabSelected === 'academy'" class="academy">FEBC Intl. Leadership Academy</h3>
-            <h3 [routerLink]="['pauline-leadership']" (click)="selectTab('pauline' )" [class.active-link]="tabSelected === 'pauline'" class="pauline">Pauline Leadership Training</h3>
-        </div>
-        <hr #underline>
-    </div>
+    <app-tabs [tabs]="tabs"></app-tabs>
     <div class="inner-container">
         <router-outlet></router-outlet>
     </div>

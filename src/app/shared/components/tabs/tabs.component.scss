@@ -1,0 +1,24 @@
+.tabs-container {
+    margin-bottom: 1rem;
+    position: relative;
+
+    .tabs {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    h3 {
+        transition: all 300ms ease;
+        margin: 0.5rem;
+        cursor: pointer;
+    }
+
+    hr {
+        position: absolute;
+        border: 1px solid #CD2037;
+        background-color: #CD2037;
+        transform: translateX(-50%);
+        transition: all 300ms ease;
+    }
+}
