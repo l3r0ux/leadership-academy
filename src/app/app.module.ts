@@ -10,6 +10,7 @@ import { TrainingTileComponent } from './pages/home/components/training-tile/tra
 import { LeadershipAcademyComponent } from './pages/leadership-academy/leadership-academy.component';
 import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-leadership.component';
 import { TheForumComponent } from './pages/the-forum/the-forum.component';
+import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TheForumComponent } from './pages/the-forum/the-forum.component';
     LeadershipAcademyComponent,
     PaulineLeadershipComponent,
     TheForumComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,

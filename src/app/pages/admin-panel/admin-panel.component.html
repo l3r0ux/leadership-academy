@@ -1,0 +1,21 @@
+<div class="main-container">
+    <h1>Admin Panel</h1>
+    <div class="tabs-container">
+        <div class="tabs">
+            <h2 (click)="selectTab('forum', true)" [class.active-link]="programTabSelected === 'forum'" class="forum">The Forum</h2>
+            <h2 (click)="selectTab('academy', true)" [class.active-link]="programTabSelected === 'academy'" class="academy">FEBC Intl. Leadership Academy</h2>
+            <h2 (click)="selectTab('pauline', true )" [class.active-link]="programTabSelected === 'pauline'" class="pauline">Pauline Leadership Training</h2>
+        </div>
+        <hr #programUnderline>
+    </div>
+    <div class="inner-container">
+        <!-- TODO: this must go in its own "The forum" component, same with academy and pauline, have router outlet here -->
+        <div class="tabs-container">
+            <div class="tabs">
+                <h2 (click)="selectTab('conferences', false)" [class.active-link]="typeTabSelected === 'conferences'" class="conferences">Conferences</h2>
+                <h2 (click)="selectTab('sessions', false)" [class.active-link]="typeTabSelected === 'sessions'" class="sessions">Sessions</h2>
+            </div>
+            <hr #typeUnderline>
+        </div>
+    </div>
+</div>
