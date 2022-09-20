@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Application } from '../../models/application';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -6,7 +7,8 @@ import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '
   styleUrls: ['./expansion-panel.component.scss']
 })
 export class ExpansionPanelComponent implements OnInit, AfterViewInit {
-  @Input() data!: Array<{ title: string, URL: string }>
+  @Input() teachingMaterial!: Array<{ title: string, URL: string }>
+  @Input() application!: Application
   @Input() header!: string
   @ViewChild('panelBody') panelBody!: ElementRef
   @ViewChild('chevron') chevron!: ElementRef

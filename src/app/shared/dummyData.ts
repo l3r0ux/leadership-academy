@@ -1,3 +1,4 @@
+import { Application } from "./models/application";
 import { Conference } from "./models/conference";
 import { Session } from "./models/session";
 
@@ -258,4 +259,55 @@ export const sessions: Array<Session> = [
             'https://res.cloudinary.com/djkyfcfl1/image/upload/v1662487468/leadership_clarity/jason-goodman-Oalh2MojUuk-unsplash_gu9ppm.jpg'
         ]
     },
+]
+
+export const applications: Array<Application> = [
+    {
+        email: 'lerouxvermeulen@gmail.com',
+        program: 'FEBC Intl. Leadership Academy',
+        firstName: 'Le Roux',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'private'
+    },
+    {
+        email: 'dominiquevermeulen@gmail.com',
+        program: 'The Forum',
+        firstName: 'Dominique',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'private'
+    },
+    {
+        email: 'jurievermeulen@gmail.com',
+        program: 'Pauline Leadership Training',
+        firstName: 'Jurie',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'organization'
+    },
+    {
+        email: 'lerouxvermeulen@gmail.com',
+        program: 'FEBC Intl. Leadership Academy',
+        firstName: 'Le Roux',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'private'
+    },
+    {
+        email: 'dominiquevermeulen@gmail.com',
+        program: 'The Forum',
+        firstName: 'Dominique',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'private'
+    },
+    {
+        email: 'jurievermeulen@gmail.com',
+        program: 'Pauline Leadership Training',
+        firstName: 'Jurie',
+        lastName: 'Vermeulen',
+        country: 'South Africa',
+        affiliation: 'organization'
+    }
 ]

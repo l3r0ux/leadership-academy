@@ -13,6 +13,7 @@ import { PasswordResetRequestComponent } from './components/password-reset-reque
 import { LoginComponent } from './components/login/login.component';
 import { ApplyComponent } from './components/apply/apply.component';
 import { TabsComponent } from './components/tabs/tabs.component';
+import { ApplicationComponent } from './components/admin/application/application.component';
 
 const components = [
   TabsComponent,
@@ -27,6 +28,7 @@ const components = [
   PasswordResetRequestComponent,
   LoginComponent,
   ApplyComponent,
+  ApplicationComponent
 ]
 
 @NgModule({

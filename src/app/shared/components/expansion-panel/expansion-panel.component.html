@@ -1,21 +1,55 @@
 <div class="expansion-panel">
     <div (click)="toggleExpansion()" class="header">
         <h4>{{ header }}</h4>
-        <svg #chevron width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
-            <path fill-rule="evenodd" d="M8.72 18.78a.75.75 0 001.06 0l6.25-6.25a.75.75 0 000-1.06L9.78 5.22a.75.75 0 00-1.06 1.06L14.44 12l-5.72 5.72a.75.75 0 000 1.06z"></path>
-        </svg>
+        <div class="icons-container">
+            <div class="application-controls" *ngIf="application">
+                <svg class="accept" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24">
+                    <path d="M21 6.285l-11.16 12.733-6.84-6.018 1.319-1.49 5.341 4.686 9.865-11.196 1.475 1.285z"></path>
+                </svg>
+                <svg class="reject" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+                  <path d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"></path>
+                </svg>
+            </div>
+            <svg #chevron width="24px" height="24px" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+                <path fill-rule="evenodd" d="M8.72 18.78a.75.75 0 001.06 0l6.25-6.25a.75.75 0 000-1.06L9.78 5.22a.75.75 0 00-1.06 1.06L14.44 12l-5.72 5.72a.75.75 0 000 1.06z"></path>
+            </svg>
+        </div>
     </div>
     <div #panelBody class="body">
-        <div class="item" *ngFor="let property of data">
-            <span>{{ property.title }}</span>
-            <a href="{{ property.URL }}" target="_blank">
-                <svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
-                    <g>
-                        <path d="M245,0c-9.5,0-17.2,7.7-17.2,17.2v331.2L169,289.6c-6.7-6.7-17.6-6.7-24.3,0s-6.7,17.6,0,24.3l88.1,88.1 c3.3,3.3,7.7,5,12.1,5c4.4,0,8.8-1.7,12.1-5l88.1-88.1c6.7-6.7,6.7-17.6,0-24.3c-6.7-6.7-17.6-6.7-24.3,0L262,348.4V17.1 C262.1,7.6,254.5,0,245,0z"></path>
-                        <path d="M462.1,472.9v-99.7c0-9.5-7.7-17.2-17.2-17.2s-17.2,7.7-17.2,17.2v82.6H62.2v-82.6c0-9.5-7.7-17.2-17.1-17.2 s-17.2,7.7-17.2,17.2v99.7c0,9.5,7.7,17.1,17.2,17.1h399.8C454.4,490,462.1,482.4,462.1,472.9z"></path>
-                    </g>
-                </svg>
-            </a>
-        </div>
+        <ng-container *ngIf="teachingMaterial">
+            <div class="item" *ngFor="let property of teachingMaterial">
+                <span>{{ property.title }}</span>
+                <a href="{{ property.URL }}" target="_blank">
+                    <svg width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
+                        <g>
+                            <path d="M245,0c-9.5,0-17.2,7.7-17.2,17.2v331.2L169,289.6c-6.7-6.7-17.6-6.7-24.3,0s-6.7,17.6,0,24.3l88.1,88.1 c3.3,3.3,7.7,5,12.1,5c4.4,0,8.8-1.7,12.1-5l88.1-88.1c6.7-6.7,6.7-17.6,0-24.3c-6.7-6.7-17.6-6.7-24.3,0L262,348.4V17.1 C262.1,7.6,254.5,0,245,0z"></path>
+                            <path d="M462.1,472.9v-99.7c0-9.5-7.7-17.2-17.2-17.2s-17.2,7.7-17.2,17.2v82.6H62.2v-82.6c0-9.5-7.7-17.2-17.1-17.2 s-17.2,7.7-17.2,17.2v99.7c0,9.5,7.7,17.1,17.2,17.1h399.8C454.4,490,462.1,482.4,462.1,472.9z"></path>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="application">
+            <div class="item">
+                <span>Program</span>
+                <span>{{ application.program }}</span>
+            </div>
+            <div class="item">
+                <span>First name</span>
+                <span>{{ application.firstName }}</span>
+            </div>
+            <div class="item">
+                <span>Last name</span>
+                <span>{{ application.lastName }}</span>
+            </div>
+            <div class="item">
+                <span>Country</span>
+                <span>{{ application.country }}</span>
+            </div>
+            <div class="item">
+                <span>Affiliation</span>
+                <span>{{ application.affiliation }}</span>
+            </div>
+        </ng-container>
     </div>
 </div>

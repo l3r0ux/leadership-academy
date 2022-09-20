@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { applications } from 'src/app/shared/dummyData';
+import { Application } from 'src/app/shared/models/application';
 
 @Component({
   selector: 'app-admin-panel',
@@ -23,6 +25,7 @@ export class AdminPanelComponent implements OnInit {
       routerLink: 'pauline-leadership'
     }
   ]
+  applications: Array<Application> = applications;
 
   constructor() { }
 
