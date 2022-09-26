@@ -1,3 +1,6 @@
-<app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
+<div class="header">
+    <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
+    <button class="btn">Add resource</button>
+</div>
 <app-conferences *ngIf="tabSelected.selector === 'conferences'"></app-conferences>
 <app-sessions *ngIf="tabSelected.selector === 'sessions'"></app-sessions>

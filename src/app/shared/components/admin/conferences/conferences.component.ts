@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { conferences, sessions } from 'src/app/shared/dummyData';
+import { conferences } from 'src/app/shared/dummyData';
 import { Conference } from 'src/app/shared/models/conference';
 
 @Component({
@@ -8,7 +8,7 @@ import { Conference } from 'src/app/shared/models/conference';
   styleUrls: ['./conferences.component.scss']
 })
 export class ConferencesAdminComponent implements OnInit {
-  conferences!: Array<Conference>
+  conferences: Array<Conference> = conferences
 
   constructor() { }
 

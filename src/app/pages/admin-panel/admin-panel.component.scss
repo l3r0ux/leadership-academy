@@ -10,18 +10,17 @@
     .inner-container {
         padding: 1rem 2rem;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
 
         .resource-container {
             flex: 2;
-            align-self: flex-start;
-            padding-right: 1.5rem;
+            padding-right: 10rem;
         }
 
         .application-container {
             flex: 1;
 
-            h3 {
+            h2 {
                 margin-bottom: 1rem;
             }
 

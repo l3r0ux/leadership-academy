@@ -7,9 +7,10 @@ import { Application } from '../../models/application';
   styleUrls: ['./expansion-panel.component.scss']
 })
 export class ExpansionPanelComponent implements OnInit, AfterViewInit {
-  @Input() teachingMaterial!: Array<{ title: string, URL: string }>
+  @Input() data!: Array<{ title: string, URL: string }>
   @Input() application!: Application
   @Input() header!: string
+  @Input() isAdmin: boolean = false
   @ViewChild('panelBody') panelBody!: ElementRef
   @ViewChild('chevron') chevron!: ElementRef
 

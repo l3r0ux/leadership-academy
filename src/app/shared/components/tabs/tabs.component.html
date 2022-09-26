@@ -1,13 +1,13 @@
 <div class="tabs-container">
   <div class="tabs">
-    <h3 *ngFor="let tab of tabs"
+    <h2 *ngFor="let tab of tabs"
       (click)="selectTab(tab)"
       [class.active-link]="tabSelected === tab"
       class="{{ tab.selector }}"
       [routerLink]="[tab.routerLink]"
     >
       {{ tab.title }}
-    </h3>
+    </h2>
   </div>
   <hr #underline>
 </div>

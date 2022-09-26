@@ -6,7 +6,7 @@
       <h4>Videos</h4>
       <app-video-carousel [videos]="conference.videos"></app-video-carousel>
       <h4>Downloads</h4>
-      <app-expansion-panel class="expansion-panel-outer" [teachingMaterial]="conference.teachingMaterials" [header]="'Teaching material'"></app-expansion-panel>
+      <app-expansion-panel class="expansion-panel-outer" [data]="conference.teachingMaterials" [header]="'Teaching material'"></app-expansion-panel>
       <h4>Gallery</h4>
       <div class="gallery-container">
         <span class="image-container" *ngFor="let URL of conference.galleryURLs">
