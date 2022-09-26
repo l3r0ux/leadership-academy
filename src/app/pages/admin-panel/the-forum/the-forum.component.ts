@@ -35,6 +35,5 @@ export class TheForumAdminComponent implements OnInit {
 
   setTab(tab: any): void {
     this.tabSelected = tab
-    console.log(this.tabSelected)
   }
 }
