@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ApplyComponent } from './components/apply/apply.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ApplicationComponent } from './components/admin/application/application.component';
+import { SessionsAdminComponent } from './components/admin/sessions/sessions.component';
+import { ConferencesAdminComponent } from './components/admin/conferences/conferences.component';
 
 const components = [
   TabsComponent,
@@ -28,7 +30,9 @@ const components = [
   PasswordResetRequestComponent,
   LoginComponent,
   ApplyComponent,
-  ApplicationComponent
+  ApplicationComponent,
+  SessionsAdminComponent,
+  ConferencesAdminComponent
 ]
 
 @NgModule({

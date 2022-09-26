@@ -1,1 +1,3 @@
-<app-tabs [tabs]="tabs"></app-tabs>
+<app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
+<app-conferences *ngIf="tabSelected.selector === 'conferences'"></app-conferences>
+<app-sessions *ngIf="tabSelected.selector === 'sessions'"></app-sessions>

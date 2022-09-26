@@ -8,6 +8,11 @@ import { conferences, sessions } from 'src/app/shared/dummyData';
   styleUrls: ['./the-forum.component.scss']
 })
 export class TheForumAdminComponent implements OnInit {
+  tabSelected: any = {
+    title: 'Conferences',
+    selector: 'conferences',
+    routerLink: undefined
+  }
   conferences: Array<Conference> = conferences
   sessions: Array<Session> = sessions
   tabs: Array<any> = [
@@ -26,5 +31,10 @@ export class TheForumAdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setTab(tab: any): void {
+    this.tabSelected = tab
+    console.log(this.tabSelected)
   }
 }
