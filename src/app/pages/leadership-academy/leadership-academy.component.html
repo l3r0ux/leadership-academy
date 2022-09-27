@@ -1,5 +1,6 @@
 <div class="main-container">
   <h1>FEBC Intl. Leadership Academy</h1>
-  <h2>Conferences</h2>
-  <app-conference [conferences]="conferences"></app-conference>
+  <app-tabs (tabChanged)="setTab($event)" [tabs]="tabs"></app-tabs>
+  <app-conference *ngIf="tabSelected.selector === 'conferences'" [conferences]="conferences"></app-conference>
+  <app-session *ngIf="tabSelected.selector === 'sessions'" [sessions]="sessions"></app-session>
 </div>
