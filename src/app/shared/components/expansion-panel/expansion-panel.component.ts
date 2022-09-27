@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Application } from '../../models/application';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-expansion-panel',
@@ -14,7 +15,7 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
   @ViewChild('panelBody') panelBody!: ElementRef
   @ViewChild('chevron') chevron!: ElementRef
 
-  constructor() { }
+  constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +33,28 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     } else {
       this.panelBody.nativeElement.style.height = 0
     }
+  }
+
+  openAddResource(event: any): void {
+    event.stopPropagation()
+
+    switch(this.header.toLocaleLowerCase()) {
+      case 'videos':
+        this.modalService.openModal('Add video')
+        break;
+      case 'teaching material':
+        this.modalService.openModal('Add teaching material')
+        break;
+    }
+  }
+
+  openAcceptModal(event: any, application: Application): void {
+    event.stopPropagation()
+    this.modalService.openModal('Accept application', application)
+  }
+
+  openRejectModal(event: any, application: Application): void {
+    event.stopPropagation()
+    this.modalService.openModal('Reject application', application)
   }
 }

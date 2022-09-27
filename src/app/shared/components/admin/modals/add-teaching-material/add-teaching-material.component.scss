@@ -1,0 +1,14 @@
+.add-teaching-material-container {
+    form {
+        display: flex;
+        flex-direction: column;
+    
+        input[type=file] {
+            margin-bottom: 1rem;
+        }
+
+        .add-btn {
+            width: 100%;
+        }
+    }
+}

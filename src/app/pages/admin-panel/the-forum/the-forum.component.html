@@ -1,6 +1,6 @@
 <div class="header">
     <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
-    <button class="btn">Add resource</button>
+    <button class="btn" (click)="openAddResource()">{{ displayAddText() }}</button>
 </div>
 <app-conferences *ngIf="tabSelected.selector === 'conferences'"></app-conferences>
 <app-sessions *ngIf="tabSelected.selector === 'sessions'"></app-sessions>

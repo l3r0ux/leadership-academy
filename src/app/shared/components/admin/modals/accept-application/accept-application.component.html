@@ -6,12 +6,12 @@
         </svg>
     </div>
     <div class="body">
-      <div class="add-video-container">
-        <form>
-          <input type="text" placeholder="Title" class="text-input" name="title">
-          <input type="file" name="video">
-          <button class="btn add-btn" type="submit">Save</button>
-        </form>
+      <div class="accept-application-container">
+        <h3>Are you sure you want to accept this application?</h3>
+        <div class="actions">
+            <button class="btn cancel-btn" (click)="modalService.closeModal()">No</button>
+            <button class="btn confirm-btn" (click)="acceptApplication()">Yes</button>
+        </div>
       </div>
     </div>
   </div>

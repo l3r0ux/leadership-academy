@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { conferences } from 'src/app/shared/dummyData';
 import { Conference } from 'src/app/shared/models/conference';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
   selector: 'app-conferences',
@@ -10,7 +11,7 @@ import { Conference } from 'src/app/shared/models/conference';
 export class ConferencesAdminComponent implements OnInit {
   conferences: Array<Conference> = conferences
 
-  constructor() { }
+  constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
   }

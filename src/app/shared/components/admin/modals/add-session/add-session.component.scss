@@ -1,0 +1,10 @@
+.add-session-container {
+    form {
+        display: flex;
+        flex-direction: column;
+    
+        .add-btn {
+            width: 100%;
+        }
+    }
+}

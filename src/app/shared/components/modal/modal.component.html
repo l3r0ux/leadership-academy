@@ -12,5 +12,29 @@
         <div [@modalFadeIn] *ngSwitchCase="'apply'">
             <app-apply></app-apply>
         </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add conference'">
+            <app-add-conference></app-add-conference>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add session'">
+            <app-add-session></app-add-session>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add images'">
+            <app-add-images></app-add-images>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add teaching material'">
+            <app-add-teaching-material></app-add-teaching-material>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add video'">
+            <app-add-video></app-add-video>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'confirm delete'">
+            <app-delete-confirmation></app-delete-confirmation>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'accept application'">
+            <app-accept-application></app-accept-application>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'reject application'">
+            <app-reject-application></app-reject-application>
+        </div>
     </div>
 </div>

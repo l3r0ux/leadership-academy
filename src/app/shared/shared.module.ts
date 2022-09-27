@@ -11,7 +11,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { PasswordResetComponent } from './components/modals/password-reset/password-reset.component';
 import { PasswordResetRequestComponent } from './components/modals/password-reset-request/password-reset-request.component';
 import { LoginComponent } from './components/modals/login/login.component';
-import { ApplyComponent } from './components/modals/apply/apply.component';
+import { ApplyComponent } from './components/admin/modals/apply/apply.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ApplicationComponent } from './components/admin/application/application.component';
 import { SessionsAdminComponent } from './components/admin/sessions/sessions.component';
@@ -21,6 +21,9 @@ import { AddImagesComponent } from './components/admin/modals/add-images/add-ima
 import { AddSessionComponent } from './components/admin/modals/add-session/add-session.component';
 import { AddTeachingMaterialComponent } from './components/admin/modals/add-teaching-material/add-teaching-material.component';
 import { AddVideoComponent } from './components/admin/modals/add-video/add-video.component';
+import { DeleteConfirmationComponent } from './components/admin/modals/delete-confirmation/delete-confirmation.component';
+import { RejectApplicationComponent } from './components/admin/modals/reject-application/reject-application.component';
+import { AcceptApplicationComponent } from './components/admin/modals/accept-application/accept-application.component';
 
 const components = [
   TabsComponent,
@@ -43,6 +46,9 @@ const components = [
   AddSessionComponent,
   AddTeachingMaterialComponent,
   AddVideoComponent,
+  DeleteConfirmationComponent,
+  RejectApplicationComponent,
+  AcceptApplicationComponent
 ]
 
 @NgModule({
