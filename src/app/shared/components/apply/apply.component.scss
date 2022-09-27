@@ -1,5 +1,5 @@
 .apply-container {
-    h4 {
+    h3 {
         margin-bottom: 0.6rem;
     }
 
@@ -25,6 +25,10 @@
 
             input {
                 cursor: pointer;
+            }
+
+            .training-type {
+                font-weight: bold;
             }
         }
     }

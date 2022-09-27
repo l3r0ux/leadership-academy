@@ -51,9 +51,20 @@
         display: flex;
         align-items: center;
 
+        p {
+            flex: 1;
+        }
+        
         .image {
-            max-width: 40%;
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+
+            img {
+                object-fit: cover;
+                max-height: 18rem;
+            }
         }
     }
 }

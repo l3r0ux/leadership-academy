@@ -5,20 +5,20 @@
           <path d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"></path>
       </svg>
   </div>
-  <div class="body" [ngSwitch]="modalService.title.toLocaleLowerCase()">
+  <div class="body">
     <div class="apply-container">
-      <h4>Choose your program</h4>
+      <h3>Choose your program</h3>
       <form>
           <div class="radio-container">
-              <label for="forum">The Forum</label>
+              <label class="training-type" for="forum">The Forum</label>
               <input type="radio" id="forum" name="training-selected" value="forum">
           </div>
           <div class="radio-container">
-              <label for="leadership-academy">FEBC Intl. Leadership Academy</label>
+              <label class="training-type" for="leadership-academy">FEBC Intl. Leadership Academy</label>
               <input type="radio" id="leadership-academy" name="training-selected" value="leadership-academy">
           </div>
           <div class="radio-container">
-              <label for="pauline">Pauline Leadership Training</label>
+              <label class="training-type" for="pauline">Pauline Leadership Training</label>
               <input type="radio" id="pauline" name="training-selected" value="pauline">
           </div>
           <input class="text-input" type="text" name="first-name" placeholder="First name" required>

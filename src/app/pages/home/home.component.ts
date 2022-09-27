@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     },
     {
       text: 'Pauline Leadership Training',
-      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390920/leadership_clarity/examining_christian_leadership_cn0rru.jpg'
+      imageURL: 'assets/pauline-puzzle.jpg'
     }
   ]
 
