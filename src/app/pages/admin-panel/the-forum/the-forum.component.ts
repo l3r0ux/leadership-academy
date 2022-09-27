@@ -22,7 +22,7 @@ export class TheForumAdminComponent implements OnInit {
       routerLink: undefined
     },
     {
-      title: 'Sessions',
+      title: 'Virtual sessions',
       selector: 'sessions',
       routerLink: undefined
     }
