@@ -24,6 +24,7 @@ import { AddVideoComponent } from './components/admin/modals/add-video/add-video
 import { DeleteConfirmationComponent } from './components/admin/modals/delete-confirmation/delete-confirmation.component';
 import { RejectApplicationComponent } from './components/admin/modals/reject-application/reject-application.component';
 import { AcceptApplicationComponent } from './components/admin/modals/accept-application/accept-application.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   TabsComponent,
@@ -55,7 +56,8 @@ const components = [
   declarations: components,
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   exports: components
 })

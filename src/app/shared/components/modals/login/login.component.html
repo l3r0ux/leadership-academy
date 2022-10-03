@@ -7,10 +7,11 @@
   </div>
   <div class="body">
     <div class="login-container">
-      <form>
-        <input type="text" placeholder="Email" class="text-input" name="email">
-        <input type="password" placeholder="Password" class="text-input" name="password">
-        <button class="btn login-btn" type="submit" (click)="login()">Log in</button>
+      <!-- TODO: Implement validation errors -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input formControlName="email" type="text" placeholder="Email" class="text-input">
+        <input formControlName="password" type="password" placeholder="Password" class="text-input">
+        <button class="btn login-btn" type="submit">Log in</button>
         <div class="no-account">
           <h4>Don't have an account?</h4>
           <button class="btn" (click)="modalService.openModal('Apply')">Apply</button>

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -9,12 +10,23 @@ import { ModalService } from '../../services/modal.service';
 export class NavbarComponent implements OnInit {
   @ViewChild('details') details!: ElementRef
 
-  constructor(public modalService: ModalService) { }
+  constructor(
+    public modalService: ModalService,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
 
   openDetails(): void {
     this.details.nativeElement.classList.toggle('visible')
+  }
+
+  async logout(): Promise<void> {
+    await this.authService.logout();
+  }
+
+  isEnrolled(program: string): boolean {
+    return !this.authService.currentUser?.programsEnrolled.includes(program)
   }
 }
