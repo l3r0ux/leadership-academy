@@ -100,6 +100,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "leadership-academy:build:production",
+            "firebaseProject": "leadership-academy-9cf40",
+            "firebaseHostingSite": "leadership-academy-9cf40"
+          }
         }
       }
     }

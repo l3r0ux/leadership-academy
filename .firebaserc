@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "leadership-academy-9cf40": {
+      "hosting": {
+        "leadership-academy": [
+          "leadership-academy-9cf40"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "leadership-academy-9cf40"
+  }
+}
