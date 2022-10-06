@@ -1,0 +1,40 @@
+<div class="modal">
+  <div class="header">
+      <h3>{{ modalService.title }}</h3>
+      <svg (click)="modalService.closeModal()" #close xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+          <path d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"></path>
+      </svg>
+  </div>
+  <div class="body">
+    <div class="apply-container">
+      <h3>Choose your program</h3>
+      <form>
+          <div class="radio-container">
+              <label class="training-type" for="forum">The Forum</label>
+              <input type="radio" id="forum" name="training-selected" value="forum">
+          </div>
+          <div class="radio-container">
+              <label class="training-type" for="leadership-academy">FEBC Intl. Leadership Academy</label>
+              <input type="radio" id="leadership-academy" name="training-selected" value="leadership-academy">
+          </div>
+          <div class="radio-container">
+              <label class="training-type" for="pauline">Pauline Leadership Training</label>
+              <input type="radio" id="pauline" name="training-selected" value="pauline">
+          </div>
+          <input class="text-input" type="text" name="first-name" placeholder="First name" required>
+          <input class="text-input" type="text" name="last-name" placeholder="Last name" required>
+          <input class="text-input" type="text" name="email-address" placeholder="Email address" required>
+          <input class="text-input" type="text" name="country" placeholder="Country" required>
+          <div class="radio-container">
+              <label for="private">Private</label>
+              <input type="radio" id="private" name="private-or-org" value="private">
+          </div>
+          <div class="radio-container">
+              <label for="organization">Organization</label>
+              <input type="radio" id="organization" name="private-or-org" value="organization">
+          </div>
+          <button class="btn" type="submit">Submit</button>
+      </form>
+    </div>  
+  </div>
+</div>

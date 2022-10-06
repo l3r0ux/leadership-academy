@@ -35,6 +35,7 @@ export class PasswordResetRequestComponent implements OnInit {
       this.modalService.closeModal();
     } catch (error) {
       console.log(error)
+      // TODO: open something went wrong modal
     }
     this.loading = false
   }
