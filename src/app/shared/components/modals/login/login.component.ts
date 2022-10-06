@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login(): Promise<void> {
-    this.loginForm.controls['email'].markAsTouched()
-    this.loginForm.controls['password'].markAsTouched()
+    this.loginForm.markAllAsTouched()
     if (!this.loginForm.valid) return
 
     const { email, password } = this.loginForm.value
@@ -37,8 +36,10 @@ export class LoginComponent implements OnInit {
       this.modalService.closeModal()
     } catch (error: any) {
       console.error(error.code)
-      if (error.code.includes('wrong-password') || error.code.includes('user-not-found'))
+      if (error.code.includes('wrong-password') || error.code.includes('user-not-found')) {
         this.loginForm.controls['password'].setErrors({ incorrectPassword: true })
+      }
+      // TODO: open something went wrong modal
     }
     this.loading = false
   }

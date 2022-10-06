@@ -10,10 +10,9 @@ import { ExpansionPanelComponent } from './components/expansion-panel/expansion-
 import { ConferenceComponent } from './components/conference/conference.component';
 import { SessionComponent } from './components/session/session.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { PasswordResetComponent } from './components/modals/password-reset/password-reset.component';
 import { PasswordResetRequestComponent } from './components/modals/password-reset-request/password-reset-request.component';
 import { LoginComponent } from './components/modals/login/login.component';
-import { ApplyComponent } from './components/admin/modals/apply/apply.component';
+import { ApplyComponent } from './components/modals/apply/apply.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { ApplicationComponent } from './components/admin/application/application.component';
 import { SessionsAdminComponent } from './components/admin/sessions/sessions.component';
@@ -27,6 +26,7 @@ import { DeleteConfirmationComponent } from './components/admin/modals/delete-co
 import { RejectApplicationComponent } from './components/admin/modals/reject-application/reject-application.component';
 import { AcceptApplicationComponent } from './components/admin/modals/accept-application/accept-application.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
+import { ErrorComponent } from './components/modals/error/error.component';
 
 const components = [
   TabsComponent,
@@ -37,7 +37,6 @@ const components = [
   ConferenceComponent,
   SessionComponent,
   ModalComponent,
-  PasswordResetComponent,
   PasswordResetRequestComponent,
   LoginComponent,
   ApplyComponent,
@@ -52,7 +51,8 @@ const components = [
   DeleteConfirmationComponent,
   RejectApplicationComponent,
   AcceptApplicationComponent,
-  LoadingSpinnerComponent
+  LoadingSpinnerComponent,
+  ErrorComponent
 ]
 
 @NgModule({

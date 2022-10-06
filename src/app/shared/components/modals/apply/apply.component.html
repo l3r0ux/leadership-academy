@@ -8,30 +8,76 @@
   <div class="body">
     <div class="apply-container">
       <h3>Choose your program</h3>
-      <form>
+      <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
           <div class="radio-container">
               <label class="training-type" for="forum">The Forum</label>
-              <input type="radio" id="forum" name="training-selected" value="forum">
+              <input type="radio" id="forum" value="forum" formControlName="trainingType">
           </div>
           <div class="radio-container">
               <label class="training-type" for="leadership-academy">FEBC Intl. Leadership Academy</label>
-              <input type="radio" id="leadership-academy" name="training-selected" value="leadership-academy">
+              <input type="radio" id="leadership-academy" value="leadership-academy" formControlName="trainingType">
           </div>
           <div class="radio-container">
               <label class="training-type" for="pauline">Pauline Leadership Training</label>
-              <input type="radio" id="pauline" name="training-selected" value="pauline">
+              <input type="radio" id="pauline" value="pauline" formControlName="trainingType">
           </div>
-          <input class="text-input" type="text" name="first-name" placeholder="First name" required>
-          <input class="text-input" type="text" name="last-name" placeholder="Last name" required>
-          <input class="text-input" type="text" name="email-address" placeholder="Email address" required>
-          <input class="text-input" type="text" name="country" placeholder="Country" required>
+          <div class="input-container">
+            <input formControlName="firstName" class="text-input" type="text" placeholder="First name">
+            <ng-container *ngIf="applyForm.get('firstName')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="applyForm.get('firstName')?.hasError('required')"
+              >
+                First name required
+              </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="lastName" class="text-input" type="text" placeholder="Last name">
+            <ng-container *ngIf="applyForm.get('lastName')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="applyForm.get('lastName')?.hasError('required')"
+              >
+                Last name required
+              </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="email" class="text-input" type="text" placeholder="Email address">
+            <ng-container *ngIf="applyForm.get('email')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="applyForm.get('email')?.hasError('required')"
+              >
+                Email required
+              </span>
+              <span
+                class="validation-error"
+                *ngIf="applyForm.get('email')?.hasError('email')"
+              >
+                Email invalid
+              </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="country" class="text-input" type="text" placeholder="Country">
+            <ng-container *ngIf="applyForm.get('country')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="applyForm.get('country')?.hasError('required')"
+              >
+                Country required
+              </span>
+            </ng-container>
+          </div>
           <div class="radio-container">
               <label for="private">Private</label>
-              <input type="radio" id="private" name="private-or-org" value="private">
+              <input type="radio" id="private" value="private" formControlName="private-or-org">
           </div>
           <div class="radio-container">
               <label for="organization">Organization</label>
-              <input type="radio" id="organization" name="private-or-org" value="organization">
+              <input type="radio" id="organization" value="organization" formControlName="private-or-org">
           </div>
           <button class="btn" type="submit">Submit</button>
       </form>

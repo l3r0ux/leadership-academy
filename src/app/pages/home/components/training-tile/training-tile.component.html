@@ -1,5 +1,5 @@
-<div class="training-tile" (click)="navigate()">
-    <div class="image" #image style.background-image="url('{{tile.imageURL}}')">
+<div class="training-tile" (click)="navigate(tile)">
+    <div class="image" #image style.background-image="url('{{ tile.imageURL }}')">
     <div class="text">
         <span>{{ tile.text }}</span>
         <svg class="svg-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">

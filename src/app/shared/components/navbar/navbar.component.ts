@@ -30,6 +30,6 @@ export class NavbarComponent implements OnInit {
   }
 
   isEnrolled(program: string): boolean {
-    return !this.authService.currentUser?.programsEnrolled.includes(program)
+    return this.authService.currentUser?.programsEnrolled.includes(program)
   }
 }

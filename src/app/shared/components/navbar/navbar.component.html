@@ -9,13 +9,13 @@
                 <span [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                     Home
                 </span>
-                <span [ngClass]="{ 'disabled': isEnrolled('leadership-academy') }" [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('leadership-academy')" [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
                     FEBC Intl. Leadership Academy
                 </span>
-                <span [ngClass]="{ 'disabled': isEnrolled('the-forum') }" [routerLink]="['/the-forum']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('the-forum')" [routerLink]="['/the-forum']" routerLinkActive="active-link">
                     The Forum
                 </span>
-                <span [ngClass]="{ 'disabled': isEnrolled('pauline-leadership') }" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('pauline-leadership')" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
                     Pauline Leadership Training
                 </span>
                 <span *ngIf="authService.isLoggedIn && authService.currentUser?.isAdmin" [routerLink]="['/admin/the-forum']" routerLinkActive="active-link">
