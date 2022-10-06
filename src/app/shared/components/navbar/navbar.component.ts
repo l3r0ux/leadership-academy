@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ModalService } from '../../services/modal.service';
 
@@ -12,7 +13,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public modalService: ModalService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +26,7 @@ export class NavbarComponent implements OnInit {
 
   async logout(): Promise<void> {
     await this.authService.logout();
+    this.router.navigate(['/'])
   }
 
   isEnrolled(program: string): boolean {
