@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from '../app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { VideoCarouselComponent } from './components/video-carousel/video-carousel.component';
@@ -24,7 +26,7 @@ import { AddVideoComponent } from './components/admin/modals/add-video/add-video
 import { DeleteConfirmationComponent } from './components/admin/modals/delete-confirmation/delete-confirmation.component';
 import { RejectApplicationComponent } from './components/admin/modals/reject-application/reject-application.component';
 import { AcceptApplicationComponent } from './components/admin/modals/accept-application/accept-application.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 const components = [
   TabsComponent,
@@ -49,7 +51,8 @@ const components = [
   AddVideoComponent,
   DeleteConfirmationComponent,
   RejectApplicationComponent,
-  AcceptApplicationComponent
+  AcceptApplicationComponent,
+  LoadingSpinnerComponent
 ]
 
 @NgModule({

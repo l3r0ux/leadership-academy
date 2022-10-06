@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  loading = false;
   
-
   constructor(
     public modalService: ModalService,
     private authService: AuthService,
@@ -24,16 +24,22 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  // TODO: Show loading spinners and handle errors with dialog potentially
   async login(): Promise<void> {
+    this.loginForm.controls['email'].markAsTouched()
+    this.loginForm.controls['password'].markAsTouched()
+    if (!this.loginForm.valid) return
+
     const { email, password } = this.loginForm.value
 
+    this.loading = true
     try {
       await this.authService.login(email, password)
       this.modalService.closeModal()
-    } catch (error) {
-      console.error(error)
-      this.modalService.closeModal()
+    } catch (error: any) {
+      console.error(error.code)
+      if (error.code.includes('wrong-password') || error.code.includes('user-not-found'))
+        this.loginForm.controls['password'].setErrors({ incorrectPassword: true })
     }
+    this.loading = false
   }
 }

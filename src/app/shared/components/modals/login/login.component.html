@@ -7,11 +7,45 @@
   </div>
   <div class="body">
     <div class="login-container">
-      <!-- TODO: Implement validation errors -->
       <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <input formControlName="email" type="text" placeholder="Email" class="text-input">
-        <input formControlName="password" type="password" placeholder="Password" class="text-input">
-        <button class="btn login-btn" type="submit">Log in</button>
+        <div class="input-container">
+          <input formControlName="email" type="text" placeholder="Email" class="text-input">
+          <ng-container *ngIf="loginForm.get('email')?.touched">
+            <span
+              class="validation-error"
+              *ngIf="loginForm.get('email')?.hasError('required')"
+            >
+              Email required
+            </span>
+            <span
+              class="validation-error"
+              *ngIf="loginForm.get('email')?.hasError('email')"
+            >
+              Email invalid
+            </span>
+          </ng-container>
+        </div>
+        <div class="input-container">
+          <input formControlName="password" type="password" placeholder="Password" class="text-input">
+          <ng-container *ngIf="loginForm.get('password')?.touched">
+            <span
+              class="validation-error"
+              *ngIf="loginForm.get('password')?.hasError('required')"
+            >
+              Password required
+            </span>
+            <span
+              class="validation-error"
+              *ngIf="loginForm.get('password')?.hasError('incorrectPassword')"
+            >
+              Incorrect password or email
+            </span>
+          </ng-container>
+        </div>
+        <button class="btn login-btn" type="submit">
+          <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+          <span *ngIf="!loading">Log in</span>
+        </button>
         <div class="no-account">
           <h4>Don't have an account?</h4>
           <button class="btn" (click)="modalService.openModal('Apply')">Apply</button>

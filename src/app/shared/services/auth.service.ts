@@ -28,6 +28,10 @@ export class AuthService {
     })
   }
 
+  async requestPasswordReset(email: string): Promise<void> {
+    return await this.auth.sendPasswordResetEmail(email)
+  }
+
   async login(email: string, password: string): Promise<any> {
     return await this.auth.signInWithEmailAndPassword(email, password)
   }

@@ -4,16 +4,19 @@
         flex-direction: column;
     
         .login-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             margin-bottom: 0.8rem;
+        }
+
+        .no-account {
+            margin-bottom: 0.4rem;
         }
     
         .no-account,
         .password-reset {
-            &:first-of-type {
-                margin-bottom: 0.4rem;
-            }
-    
             display: flex;
             align-items: center;
             justify-content: space-between;
