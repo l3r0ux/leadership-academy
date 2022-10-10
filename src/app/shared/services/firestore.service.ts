@@ -12,4 +12,8 @@ export class FirestoreService {
     const user = await this.afs.collection('users').doc(userId).ref.get()
     return user.data()
   }
+
+  async apply(application: any): Promise<any> {
+    return await this.afs.collection('applications').add(application)
+  }
 }

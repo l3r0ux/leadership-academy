@@ -1,8 +1,5 @@
 <div *ngIf="modalService.modalVisible" #overlay class="overlay" (click)="closeModal($event)" [@overlayFadeInOut]>
     <div [ngSwitch]="modalService.title.toLocaleLowerCase()">
-        <div [@modalFadeIn] *ngSwitchCase="'reset password'">
-            <app-password-reset></app-password-reset>
-        </div>
         <div [@modalFadeIn] *ngSwitchCase="'request password reset'">
             <app-password-reset-request></app-password-reset-request>
         </div>
@@ -35,6 +32,12 @@
         </div>
         <div [@modalFadeIn] *ngSwitchCase="'reject application'">
             <app-reject-application></app-reject-application>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'application successful'">
+            <app-application-success></app-application-success>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'application failed'">
+            <app-application-failed></app-application-failed>
         </div>
     </div>
 </div>

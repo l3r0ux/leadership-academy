@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
@@ -9,8 +10,12 @@ import { ModalService } from 'src/app/shared/services/modal.service';
 })
 export class ApplyComponent implements OnInit {
   applyForm!: FormGroup
+  loading = false
 
-  constructor(public modalService: ModalService) { }
+  constructor(
+    public modalService: ModalService,
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
     this.applyForm = new FormGroup({
@@ -23,10 +28,19 @@ export class ApplyComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
-    console.log('Submitted')
-    console.log(this.applyForm)
+  async onSubmit(): Promise<void> {
     this.applyForm.markAllAsTouched();
     if (!this.applyForm.valid) return
+    this.loading = true
+
+    try {
+      await this.firestoreService.apply(this.applyForm.value)
+      this.modalService.openModal('Application successful')
+    } catch (error) {
+      console.log(error)
+      this.modalService.openModal('Application failed')
+    }
+
+    this.loading = false
   }
 }

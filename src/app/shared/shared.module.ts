@@ -27,6 +27,8 @@ import { RejectApplicationComponent } from './components/admin/modals/reject-app
 import { AcceptApplicationComponent } from './components/admin/modals/accept-application/accept-application.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ErrorComponent } from './components/modals/error/error.component';
+import { ApplicationSuccessComponent } from './components/modals/application-success/application-success.component';
+import { ApplicationFailedComponent } from './components/modals/application-failed/application-failed.component';
 
 const components = [
   TabsComponent,
@@ -52,7 +54,9 @@ const components = [
   RejectApplicationComponent,
   AcceptApplicationComponent,
   LoadingSpinnerComponent,
-  ErrorComponent
+  ErrorComponent,
+  ApplicationSuccessComponent,
+  ApplicationFailedComponent
 ]
 
 @NgModule({
