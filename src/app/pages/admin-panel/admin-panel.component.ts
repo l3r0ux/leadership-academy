@@ -38,7 +38,9 @@ export class AdminPanelComponent implements OnInit {
       const applications: Array<Application> = [];
 
       res.docs.forEach((doc: any) => {
-        applications.push(doc.data())
+        const application = doc.data()
+        application.id = doc.id
+        applications.push(application)
       })
 
       this.applications = [...applications]

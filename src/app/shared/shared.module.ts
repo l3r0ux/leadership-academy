@@ -14,7 +14,6 @@ import { PasswordResetRequestComponent } from './components/modals/password-rese
 import { LoginComponent } from './components/modals/login/login.component';
 import { ApplyComponent } from './components/modals/apply/apply.component';
 import { TabsComponent } from './components/tabs/tabs.component';
-import { ApplicationComponent } from './components/admin/application/application.component';
 import { SessionsAdminComponent } from './components/admin/sessions/sessions.component';
 import { ConferencesAdminComponent } from './components/admin/conferences/conferences.component';
 import { AddConferenceComponent } from './components/admin/modals/add-conference/add-conference.component';
@@ -42,7 +41,6 @@ const components = [
   PasswordResetRequestComponent,
   LoginComponent,
   ApplyComponent,
-  ApplicationComponent,
   SessionsAdminComponent,
   ConferencesAdminComponent,
   AddConferenceComponent,

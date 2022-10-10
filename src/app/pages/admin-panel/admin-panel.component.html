@@ -11,8 +11,8 @@
                 <input type="text" class="text-input" placeholder="Search by email...">
                 <button class="btn">Search</button>
             </div>
+            <app-expansion-panel *ngFor="let application of applications" [application]="application" [header]="application.email"></app-expansion-panel>
             <app-loading-spinner *ngIf="loadingApplications"></app-loading-spinner>
-            <app-application *ngFor="let application of applications" [application]="application"></app-application>
         </div>
     </div>
 </div>
