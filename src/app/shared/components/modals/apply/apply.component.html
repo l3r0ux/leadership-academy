@@ -11,15 +11,15 @@
       <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
           <div class="radio-container">
               <label class="training-type" for="forum">The Forum</label>
-              <input type="radio" id="forum" value="forum" formControlName="trainingType">
+              <input type="radio" id="forum" value="The Forum" formControlName="program">
           </div>
           <div class="radio-container">
               <label class="training-type" for="leadership-academy">FEBC Intl. Leadership Academy</label>
-              <input type="radio" id="leadership-academy" value="leadership-academy" formControlName="trainingType">
+              <input type="radio" id="leadership-academy" value="FEBC Intl. Leadership Academy" formControlName="program">
           </div>
           <div class="radio-container">
               <label class="training-type" for="pauline">Pauline Leadership Training</label>
-              <input type="radio" id="pauline" value="pauline" formControlName="trainingType">
+              <input type="radio" id="pauline" value="Pauline Leadership Training" formControlName="program">
           </div>
           <div class="input-container">
             <input formControlName="firstName" class="text-input" type="text" placeholder="First name">
@@ -73,11 +73,11 @@
           </div>
           <div class="radio-container">
               <label for="private">Private</label>
-              <input type="radio" id="private" value="private" formControlName="private-or-org">
+              <input type="radio" id="private" value="Private" formControlName="affiliation">
           </div>
           <div class="radio-container">
               <label for="organization">Organization</label>
-              <input type="radio" id="organization" value="organization" formControlName="private-or-org">
+              <input type="radio" id="organization" value="Organization" formControlName="affiliation">
           </div>
           <button class="btn" type="submit">
             <app-loading-spinner *ngIf="loading"></app-loading-spinner>

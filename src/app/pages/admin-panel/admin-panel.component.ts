@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { applications } from 'src/app/shared/dummyData';
+import { QuerySnapshot } from 'firebase/firestore';
 import { Application } from 'src/app/shared/models/application';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -25,10 +26,23 @@ export class AdminPanelComponent implements OnInit {
       routerLink: 'pauline-leadership'
     }
   ]
-  applications: Array<Application> = applications;
+  applications!: Array<Application>;
+  loadingApplications = false
 
-  constructor() { }
+  constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
+    this.loadingApplications = true
+
+    this.firestoreService.getApplications().subscribe((res: QuerySnapshot) => {
+      const applications: Array<Application> = [];
+
+      res.docs.forEach((doc: any) => {
+        applications.push(doc.data())
+      })
+
+      this.applications = [...applications]
+      this.loadingApplications = false
+    })
   }
 }

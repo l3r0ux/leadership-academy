@@ -19,12 +19,12 @@ export class ApplyComponent implements OnInit {
 
   ngOnInit(): void {
     this.applyForm = new FormGroup({
-      'trainingType': new FormControl('forum'),
+      'program': new FormControl('The Forum'),
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'country': new FormControl(null, [Validators.required]),
-      'private-or-org': new FormControl('private'),
+      'affiliation': new FormControl('Private'),
     })
   }
 

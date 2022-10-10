@@ -13,15 +13,22 @@
         align-items: flex-start;
 
         .resource-container {
-            flex: 2;
-            padding-right: 10rem;
+            width: 70%;
+            padding-right: 8rem;
         }
 
         .application-container {
-            flex: 1;
+            width: 30%;
 
             h2 {
                 margin-bottom: 1rem;
+            }
+
+            app-loading-spinner {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 3rem;
             }
 
             .search-container {
