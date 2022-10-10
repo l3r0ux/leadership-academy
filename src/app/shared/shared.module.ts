@@ -28,6 +28,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ErrorComponent } from './components/modals/error/error.component';
 import { ApplicationSuccessComponent } from './components/modals/application-success/application-success.component';
 import { ApplicationFailedComponent } from './components/modals/application-failed/application-failed.component';
+import { SignUpComponent } from './components/modals/sign-up/sign-up.component';
+import { SignUpSuccessComponent } from './components/modals/sign-up-success/sign-up-success.component';
+import { SignUpFailComponent } from './components/modals/sign-up-fail/sign-up-fail.component';
 
 const components = [
   TabsComponent,
@@ -54,7 +57,10 @@ const components = [
   LoadingSpinnerComponent,
   ErrorComponent,
   ApplicationSuccessComponent,
-  ApplicationFailedComponent
+  ApplicationFailedComponent,
+  SignUpComponent,
+  SignUpSuccessComponent,
+  SignUpFailComponent
 ]
 
 @NgModule({

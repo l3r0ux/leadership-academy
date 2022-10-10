@@ -21,8 +21,10 @@ export class TrainingTileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isEnrolled(program: string): boolean {
-    return this.authService.currentUser?.programsEnrolled.includes(program)
+  isEnrolled(route: string | undefined): any {
+    for (let program of this.authService.currentUser?.programsEnrolled) {
+      if (program.toLowerCase().includes(route?.replace('-', ' '))) return true
+    }
   }
 
   navigate(tile: any): void {

@@ -44,23 +44,6 @@
             </ng-container>
           </div>
           <div class="input-container">
-            <input formControlName="email" class="text-input" type="text" placeholder="Email address">
-            <ng-container *ngIf="applyForm.get('email')?.touched">
-              <span
-                class="validation-error"
-                *ngIf="applyForm.get('email')?.hasError('required')"
-              >
-                Email required
-              </span>
-              <span
-                class="validation-error"
-                *ngIf="applyForm.get('email')?.hasError('email')"
-              >
-                Email invalid
-              </span>
-            </ng-container>
-          </div>
-          <div class="input-container">
             <input formControlName="country" class="text-input" type="text" placeholder="Country">
             <ng-container *ngIf="applyForm.get('country')?.touched">
               <span

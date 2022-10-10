@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
@@ -14,7 +15,8 @@ export class ApplyComponent implements OnInit {
 
   constructor(
     public modalService: ModalService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -22,7 +24,6 @@ export class ApplyComponent implements OnInit {
       'program': new FormControl('The Forum'),
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
       'country': new FormControl(null, [Validators.required]),
       'affiliation': new FormControl('Private'),
     })
@@ -34,7 +35,11 @@ export class ApplyComponent implements OnInit {
     this.loading = true
 
     try {
-      await this.firestoreService.apply(this.applyForm.value)
+      const formValue = this.applyForm.value
+      formValue.email = this.authService.currentUser.email
+      formValue.userId = this.authService.currentUser.userId
+
+      await this.firestoreService.apply(formValue)
       this.modalService.openModal('Application successful')
     } catch (error) {
       console.log(error)

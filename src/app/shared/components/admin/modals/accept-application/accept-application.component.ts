@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
@@ -8,12 +9,24 @@ import { ModalService } from 'src/app/shared/services/modal.service';
 })
 export class AcceptApplicationComponent implements OnInit {
 
-  constructor(public modalService: ModalService) { }
+  constructor(
+    public modalService: ModalService,
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  acceptApplication(): void {
-    console.log(this.modalService.clickedData)
+  async acceptApplication(): Promise<void> {
+    try {
+      await this.firestoreService.acceptApplication(this.modalService.clickedData)
+      await this.firestoreService.removeApplication(this.modalService.clickedData)
+      this.modalService.closeModal()
+      // TODO: show confirmation snackbar
+    } catch (error) {
+      console.log(error)
+      this.modalService.closeModal()
+      // TODO: show error snackbar
+    }
   }
 }

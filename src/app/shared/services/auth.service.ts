@@ -46,4 +46,19 @@ export class AuthService {
       this.currentUser = await this.firestoreService.getUserDoc(currentUser.uid)
     }
   }
+
+  async createUser(email: string, password: string): Promise<any> {
+    try {
+      const userCredential = await this.auth.createUserWithEmailAndPassword(email, password)
+      await this.createUserDoc(email, userCredential.user!.uid)
+      await this.setCurrentUser();
+
+    } catch (error) {
+      return { error }
+    }
+  }
+
+  private async createUserDoc(email: string, password: string): Promise<any> {
+    return await this.firestoreService.createUserDoc(email, password)
+  }
 }

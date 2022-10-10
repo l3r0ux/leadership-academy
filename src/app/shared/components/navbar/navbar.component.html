@@ -9,14 +9,17 @@
                 <span [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
                     Home
                 </span>
-                <span *ngIf="isEnrolled('leadership-academy')" [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('FEBC Intl. Leadership Academy')" [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
                     FEBC Intl. Leadership Academy
                 </span>
-                <span *ngIf="isEnrolled('the-forum')" [routerLink]="['/the-forum']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('The Forum')" [routerLink]="['/the-forum']" routerLinkActive="active-link">
                     The Forum
                 </span>
-                <span *ngIf="isEnrolled('pauline-leadership')" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
+                <span *ngIf="isEnrolled('Pauline Leadership Training')" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
                     Pauline Leadership Training
+                </span>
+                <span *ngIf="authService.isLoggedIn" (click)="modalService.openModal('Apply')">
+                    Apply
                 </span>
                 <span *ngIf="authService.isLoggedIn && authService.currentUser?.isAdmin" [routerLink]="['/admin/the-forum']" routerLinkActive="active-link">
                     Admin Panel

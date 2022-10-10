@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { QuerySnapshot } from 'firebase/firestore';
 import { Application } from 'src/app/shared/models/application';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
@@ -34,16 +33,9 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
     this.loadingApplications = true
 
-    this.firestoreService.getApplications().subscribe((res: QuerySnapshot) => {
-      const applications: Array<Application> = [];
+    this.firestoreService.getApplications().subscribe((res: any) => {
+      this.applications = [...res]
 
-      res.docs.forEach((doc: any) => {
-        const application = doc.data()
-        application.id = doc.id
-        applications.push(application)
-      })
-
-      this.applications = [...applications]
       this.loadingApplications = false
     })
   }

@@ -20,6 +20,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            h4 {
+                width: 65%;
+            }
+
+            button {
+                width: 35%;
+            }
         }
     }
 }

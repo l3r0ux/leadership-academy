@@ -25,7 +25,9 @@ export class AuthGuard implements CanActivate {
       }
   }
   
-  isEnrolled(program: string | undefined): boolean {
-    return this.authService.currentUser?.programsEnrolled.indexOf(program) !== -1
+  isEnrolled(route: string | undefined): any {
+    for (let program of this.authService.currentUser?.programsEnrolled) {
+      if (program.toLowerCase().includes(route?.replace('-', ' '))) return true
+    }
   }
 }

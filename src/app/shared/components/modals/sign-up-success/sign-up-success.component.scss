@@ -1,0 +1,15 @@
+.body {
+    display: flex;
+    flex-direction: column;
+
+    h3,
+    span {
+        margin-bottom: 0.6rem;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
