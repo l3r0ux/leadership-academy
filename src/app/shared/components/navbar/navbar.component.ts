@@ -25,8 +25,9 @@ export class NavbarComponent implements OnInit {
   }
 
   async logout(): Promise<void> {
-    await this.authService.logout();
+    await this.authService.logout()
     this.router.navigate(['/'])
+    this.authService.currentUser = null
   }
 
   isEnrolled(program: string): boolean {

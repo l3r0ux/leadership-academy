@@ -18,7 +18,7 @@
                 <span *ngIf="isEnrolled('Pauline Leadership Training')" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
                     Pauline Leadership Training
                 </span>
-                <span *ngIf="authService.isLoggedIn" (click)="modalService.openModal('Apply')">
+                <span *ngIf="authService.isLoggedIn && authService.currentUser?.programsEnrolled.length !== 3" (click)="modalService.openModal('Apply')">
                     Apply
                 </span>
                 <span *ngIf="authService.isLoggedIn && authService.currentUser?.isAdmin" [routerLink]="['/admin/the-forum']" routerLinkActive="active-link">

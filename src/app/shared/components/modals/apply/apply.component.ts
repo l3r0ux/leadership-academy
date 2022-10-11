@@ -39,8 +39,12 @@ export class ApplyComponent implements OnInit {
       formValue.email = this.authService.currentUser.email
       formValue.userId = this.authService.currentUser.userId
 
-      await this.firestoreService.apply(formValue)
-      this.modalService.openModal('Application successful')
+      if (this.authService.currentUser.programsEnrolled.includes(formValue.program)) {
+        this.applyForm.controls['program'].setErrors({ alreadyEnrolled: true })
+      } else {
+        await this.firestoreService.apply(formValue)
+        this.modalService.openModal('Application successful')
+      }
     } catch (error) {
       console.log(error)
       this.modalService.openModal('Application failed')

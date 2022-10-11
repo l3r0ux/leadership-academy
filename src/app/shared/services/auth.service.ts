@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Subscription } from 'rxjs';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -8,6 +9,7 @@ import { FirestoreService } from './firestore.service';
 export class AuthService {
   isLoggedIn: boolean = false;
   currentUser: any = null;
+  getUserSubscription!: Subscription
 
   constructor(
     private auth: AngularFireAuth,
@@ -37,13 +39,18 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    return await this.auth.signOut();
+    this.getUserSubscription.unsubscribe()
+    return await this.auth.signOut()
   }
 
   async setCurrentUser(): Promise<any> {
     const currentUser = await this.auth.currentUser
     if (currentUser) {
-      this.currentUser = await this.firestoreService.getUserDoc(currentUser.uid)
+      if (!this.getUserSubscription || this.getUserSubscription.closed) {
+        this.getUserSubscription = this.firestoreService.getUserDoc(currentUser.uid).subscribe((user) => {
+          this.currentUser = user
+        })
+      }
     }
   }
 

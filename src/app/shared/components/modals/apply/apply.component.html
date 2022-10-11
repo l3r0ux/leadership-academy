@@ -20,6 +20,14 @@
           <div class="radio-container">
               <label class="training-type" for="pauline">Pauline Leadership Training</label>
               <input type="radio" id="pauline" value="Pauline Leadership Training" formControlName="program">
+              <ng-container *ngIf="applyForm.get('country')?.touched">
+                <span
+                      class="validation-error already-enrolled"
+                      *ngIf="applyForm.get('program')?.hasError('alreadyEnrolled')"
+                    >
+                      You are already enrolled for this program
+                </span>
+              </ng-container>
           </div>
           <div class="input-container">
             <input formControlName="firstName" class="text-input" type="text" placeholder="First name">

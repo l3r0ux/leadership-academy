@@ -13,11 +13,8 @@ export class FirestoreService {
     private afs: AngularFirestore,
   ) { }
 
-  async getUserDoc(userId: string): Promise<any> {
-    const userSnapShot = await this.afs.collection('users').doc(userId).ref.get()
-    const user: any = userSnapShot.data();
-    user.userId = userSnapShot.id
-    return user
+  getUserDoc(userId: string): Observable<any> {
+    return this.afs.collection('users').doc(userId).valueChanges({ idField: 'userId' })
   }
 
   async apply(application: any): Promise<any> {
@@ -38,10 +35,6 @@ export class FirestoreService {
 
   async acceptApplication(application: any) {
     return await this.afs.collection('users').doc(application.userId).update({ programsEnrolled: arrayUnion(application.program) })
-  }
-
-  async rejectApplication(application: Application) {
-
   }
 
   async removeApplication(application: any) {
