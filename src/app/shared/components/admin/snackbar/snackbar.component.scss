@@ -1,0 +1,33 @@
+.snackbar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    bottom: -3rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 5px #979797;
+    transition: bottom 300ms ease;
+
+    span {
+        margin-right: 1rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .accept {
+        transform: rotate(0);
+        fill: green;
+    }
+    .reject {
+        fill: red;
+    }
+}
+
+.visible {
+    bottom: 3rem !important;
+}
