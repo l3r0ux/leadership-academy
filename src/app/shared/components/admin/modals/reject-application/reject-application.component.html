@@ -10,7 +10,10 @@
         <h3>Are you sure you want to reject this application?</h3>
         <div class="actions">
             <button class="btn cancel-btn" (click)="modalService.closeModal()">No</button>
-            <button class="btn confirm-btn" (click)="rejectApplication()">Yes</button>
+            <button class="btn confirm-btn" (click)="rejectApplication()">
+              <span *ngIf="!loading">Yes</span>
+              <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+            </button>
         </div>
       </div>
     </div>

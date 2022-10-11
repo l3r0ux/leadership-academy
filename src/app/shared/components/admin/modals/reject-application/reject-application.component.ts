@@ -9,6 +9,7 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
   styleUrls: ['./reject-application.component.scss']
 })
 export class RejectApplicationComponent implements OnInit {
+  loading = false
 
   constructor(
     public modalService: ModalService,
@@ -19,7 +20,8 @@ export class RejectApplicationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async rejectApplication(): Promise<void> {    
+  async rejectApplication(): Promise<void> {
+    this.loading = true
     try {
       await this.firestoreService.removeApplication(this.modalService.clickedData)
       this.modalService.closeModal()
@@ -29,5 +31,6 @@ export class RejectApplicationComponent implements OnInit {
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'An error occurred', success: false })
     }
+    this.loading = false
   }
 }

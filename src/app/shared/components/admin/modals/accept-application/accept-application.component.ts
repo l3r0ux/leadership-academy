@@ -9,6 +9,7 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
   styleUrls: ['./accept-application.component.scss']
 })
 export class AcceptApplicationComponent implements OnInit {
+  loading = false
 
   constructor(
     public modalService: ModalService,
@@ -20,6 +21,7 @@ export class AcceptApplicationComponent implements OnInit {
   }
 
   async acceptApplication(): Promise<void> {
+    this.loading = true
     try {
       await this.firestoreService.acceptApplication(this.modalService.clickedData)
       await this.firestoreService.removeApplication(this.modalService.clickedData)
@@ -30,5 +32,6 @@ export class AcceptApplicationComponent implements OnInit {
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'An error occurred', success: false })
     }
+    this.loading = false
   }
 }
