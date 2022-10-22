@@ -7,10 +7,42 @@
     </div>
     <div class="body">
       <div class="add-video-container">
-        <form>
-          <input type="text" placeholder="Title" class="text-input" name="title">
-          <input type="file" name="video">
-          <button class="btn add-btn" type="submit">Save</button>
+        <form [formGroup]="addVideoForm" (ngSubmit)="onSubmit()">
+
+          <div class="input-container">
+            <input formControlName="title" type="text" placeholder="Title" class="text-input">
+            <ng-container *ngIf="addVideoForm.get('title')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addVideoForm.get('title')?.hasError('required')"
+              >
+                Title required
+              </span>
+            </ng-container>
+          </div>
+
+          <div class="input-container">
+            <input formControlName="video" type="file" placeholder="Video" class="text-input" (change)="setVideo($event)">
+            <ng-container *ngIf="addVideoForm.get('video')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addVideoForm.get('video')?.hasError('required')"
+              >
+                Video required
+              </span>
+              <span
+                class="validation-error"
+                *ngIf="addVideoForm.get('video')?.hasError('exists')"
+              >
+                Video with this name already exists
+              </span>
+            </ng-container>
+          </div>
+
+          <button class="btn add-btn" type="submit">
+            <span *ngIf="loading">{{ uploadPercent | async | number: '1.0-0' }}%</span>
+            <span *ngIf="!loading">Save</span>
+          </button>
         </form>
       </div>
     </div>

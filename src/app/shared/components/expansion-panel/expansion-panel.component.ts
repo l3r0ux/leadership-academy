@@ -12,6 +12,8 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
   @Input() application!: Application
   @Input() header!: string
   @Input() isAdmin: boolean = false
+  @Input() country: any
+  @Input() conference: any
   @ViewChild('panelBody') panelBody!: ElementRef
   @ViewChild('chevron') chevron!: ElementRef
 
@@ -40,10 +42,10 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
 
     switch(this.header.toLocaleLowerCase()) {
       case 'videos':
-        this.modalService.openModal('Add video')
+        this.modalService.openModal('Add video', { country: this.country, conference: this.conference })
         break;
       case 'teaching material':
-        this.modalService.openModal('Add teaching material')
+        this.modalService.openModal('Add teaching material', { country: this.country, conference: this.conference })
         break;
     }
   }

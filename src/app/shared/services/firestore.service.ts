@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { arrayUnion } from 'firebase/firestore';
+import { Router } from '@angular/router';
+import { arrayUnion, doc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Conference } from '../models/conference';
 
@@ -11,6 +12,7 @@ export class FirestoreService {
 
   constructor(
     private afs: AngularFirestore,
+    private router: Router
   ) { }
 
   // Users
@@ -90,5 +92,15 @@ export class FirestoreService {
     .collection('leadership-academy-countries')
     .doc(country.id)
     .update({ conferences: country.conferences })
+  }
+
+  // Files
+  async setObj(data: any): Promise<any> {
+    if (this.router.url.includes('leadership-academy')) {
+      return await this.afs
+      .collection('leadership-academy-countries')
+      .doc(data.id)
+      .set(data)
+    }
   }
 }

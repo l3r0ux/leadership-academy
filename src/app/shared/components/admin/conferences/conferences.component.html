@@ -26,10 +26,22 @@
             </div>
         </div>
         <div class="expansion-panel">
-            <app-expansion-panel class="expansion-panel-outer" [data]="conference.videos" [header]="'Videos'" [isAdmin]="true"></app-expansion-panel>
+            <app-expansion-panel class="expansion-panel-outer"
+                [data]="conference.videos"
+                [header]="'Videos'"
+                [isAdmin]="true"
+                [country]="country"
+                [conference]="conference"
+            ></app-expansion-panel>
         </div>
         <div class="expansion-panel">
-            <app-expansion-panel class="expansion-panel-outer" [data]="conference.teachingMaterials" [header]="'Teaching material'" [isAdmin]="true"></app-expansion-panel>
+            <app-expansion-panel class="expansion-panel-outer"
+                [data]="conference.teachingMaterials"
+                [header]="'Teaching material'"
+                [isAdmin]="true"
+                [country]="country"
+                [conference]="conference"
+            ></app-expansion-panel>
         </div>
         <div class="gallery-heading">
             <h4>Gallery</h4>
