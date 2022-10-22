@@ -77,7 +77,7 @@ export class FirestoreService {
     return await this.afs
       .collection(collection)
       .doc(data.id)
-      .update({ conferences: data.conferences })
+      .set(data)
   }
 
   // TODO: must delete all nested files in storage as well
