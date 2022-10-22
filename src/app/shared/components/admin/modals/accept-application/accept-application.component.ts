@@ -23,12 +23,12 @@ export class AcceptApplicationComponent implements OnInit {
   async acceptApplication(): Promise<void> {
     this.loading = true
     try {
-      await this.firestoreService.acceptApplication(this.modalService.clickedData)
-      await this.firestoreService.removeApplication(this.modalService.clickedData)
+      await this.firestoreService.acceptApplication(this.modalService.data)
+      await this.firestoreService.removeApplication(this.modalService.data)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'Application successfully accepted', success: true })
     } catch (error) {
-      console.log(error)
+      console.error(error)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'An error occurred', success: false })
     }

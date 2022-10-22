@@ -2,5 +2,8 @@
     <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
     <button class="btn" (click)="openAddResource()">{{ displayAddText() }}</button>
 </div>
-<app-conferences *ngIf="tabSelected.selector === 'conferences'"></app-conferences>
+<div class="loading-spinner" *ngIf="loading">
+    <app-loading-spinner ></app-loading-spinner>
+</div>
+<app-conferences *ngIf="tabSelected.selector === 'conferences'" [countries]="countries"></app-conferences>
 <app-sessions *ngIf="tabSelected.selector === 'sessions'"></app-sessions>

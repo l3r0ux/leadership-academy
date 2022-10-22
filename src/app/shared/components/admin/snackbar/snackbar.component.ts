@@ -15,9 +15,6 @@ export class SnackbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.snackbarService.snackbarSubject.subscribe((res) => {
-      console.log('snackbar subject nexted')
-      console.log(res)
-
       this.text = res.text
       this.success = res.success
       this.snackbar.nativeElement.classList.add('visible')

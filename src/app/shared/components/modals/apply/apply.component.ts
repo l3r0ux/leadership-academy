@@ -46,7 +46,7 @@ export class ApplyComponent implements OnInit {
         this.modalService.openModal('Application successful')
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
       this.modalService.openModal('Application failed')
     }
 

@@ -23,11 +23,11 @@ export class RejectApplicationComponent implements OnInit {
   async rejectApplication(): Promise<void> {
     this.loading = true
     try {
-      await this.firestoreService.removeApplication(this.modalService.clickedData)
+      await this.firestoreService.removeApplication(this.modalService.data)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'Application successfully rejected', success: true })
     } catch (error) {
-      console.log(error)
+      console.error(error)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'An error occurred', success: false })
     }

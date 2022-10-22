@@ -1,4 +1,5 @@
 export interface Session {
+    id?: string,
     isLive: boolean,
     name: string;
     date: Date;

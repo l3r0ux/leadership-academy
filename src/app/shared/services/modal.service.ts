@@ -6,19 +6,19 @@ import { Injectable } from '@angular/core';
 export class ModalService {
   modalVisible: boolean = false
   title: string = ''
-  clickedData: any = null
+  data: any = null
 
   constructor() { }
 
-  openModal(title: string, clickedData: any = null): void {
+  openModal(title: string, data: any = null): void {
     this.modalVisible = true
     this.title = title
-    this.clickedData = clickedData
+    this.data = data
   }
 
   closeModal():void {
     this.modalVisible = false
     this.title = ''
-    this.clickedData = null
+    this.data = null
   }
 }

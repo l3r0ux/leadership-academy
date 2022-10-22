@@ -7,15 +7,15 @@
     </div>
     <div class="body">
       <div class="add-conferences-container">
-        <form [formGroup]="addConferenceForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="addCountryForm" (ngSubmit)="onSubmit()">
           <div class="input-container">
-            <input formControlName="date" type="date" class="text-input">
-            <ng-container *ngIf="addConferenceForm.get('date')?.touched">
+            <input formControlName="country" type="text" placeholder="Country" class="text-input">
+            <ng-container *ngIf="addCountryForm.get('country')?.touched">
               <span
                 class="validation-error"
-                *ngIf="addConferenceForm.get('date')?.hasError('required')"
+                *ngIf="addCountryForm.get('country')?.hasError('required')"
               >
-                Date required
+                Country required
               </span>
             </ng-container>
           </div>

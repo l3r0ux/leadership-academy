@@ -18,8 +18,8 @@
         <div [@modalFadeIn] *ngSwitchCase="'apply'">
             <app-apply></app-apply>
         </div>
-        <div [@modalFadeIn] *ngSwitchCase="'add conference'">
-            <app-add-conference></app-add-conference>
+        <div [@modalFadeIn] *ngSwitchCase="'add country'">
+            <app-add-country></app-add-country>
         </div>
         <div [@modalFadeIn] *ngSwitchCase="'add session'">
             <app-add-session></app-add-session>
@@ -47,6 +47,9 @@
         </div>
         <div [@modalFadeIn] *ngSwitchCase="'application failed'">
             <app-application-failed></app-application-failed>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'add conference'">
+            <app-add-conference></app-add-conference>
         </div>
     </div>
 </div>

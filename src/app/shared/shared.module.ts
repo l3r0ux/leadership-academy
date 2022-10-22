@@ -32,6 +32,7 @@ import { SignUpComponent } from './components/modals/sign-up/sign-up.component';
 import { SignUpSuccessComponent } from './components/modals/sign-up-success/sign-up-success.component';
 import { SignUpFailComponent } from './components/modals/sign-up-fail/sign-up-fail.component';
 import { SnackbarComponent } from './components/admin/snackbar/snackbar.component';
+import { AddCountryComponent } from './components/admin/modals/add-country/add-country.component';
 
 const components = [
   TabsComponent,
@@ -62,7 +63,8 @@ const components = [
   SignUpComponent,
   SignUpSuccessComponent,
   SignUpFailComponent,
-  SnackbarComponent
+  SnackbarComponent,
+  AddCountryComponent
 ]
 
 @NgModule({

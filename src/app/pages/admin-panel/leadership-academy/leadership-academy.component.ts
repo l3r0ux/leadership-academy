@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Conference, Session } from 'src/app/shared/models/conference';
-import { conferences, sessions } from 'src/app/shared/dummyData';
+import { Session } from 'src/app/shared/models/conference';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
@@ -14,8 +14,11 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     selector: 'conferences',
     routerLink: undefined
   }
-  conferences: Array<Conference> = conferences
-  sessions: Array<Session> = sessions
+  countries: Array<any> = []
+  sessions: Array<Session> = []
+
+  loading = false
+
   tabs: Array<any> = [
     {
       title: 'Conferences',
@@ -29,9 +32,17 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     }
   ]
 
-  constructor(private modalService: ModalService) { }
+  constructor(
+    private modalService: ModalService,
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
+    this.loading = true
+    this.firestoreService.getLeadershipAcademyCountries().subscribe((countries: any) => {
+      this.countries = countries
+      this.loading = false
+    })
   }
 
   setTab(tab: any): void {
@@ -41,7 +52,7 @@ export class LeadershipAcademyAdminComponent implements OnInit {
   displayAddText(): string {
     switch(this.tabSelected.selector) {
       case 'conferences':
-        return 'Add conference'
+        return 'Add country'
       case 'sessions':
         return 'Add session'
       default:
@@ -52,7 +63,7 @@ export class LeadershipAcademyAdminComponent implements OnInit {
   openAddResource(): void {
     switch(this.tabSelected.selector) {
       case 'conferences':
-        this.modalService.openModal('Add conference')
+        this.modalService.openModal('Add country', this.countries)
         break
       case 'sessions':
         this.modalService.openModal('Add session')

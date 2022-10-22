@@ -42,7 +42,7 @@ export class SignUpComponent implements OnInit {
         this.signUpForm.controls['password'].setErrors({ emailAlreadyInUse: true })
       } else {
         this.modalService.openModal('Sign up failed');
-        console.log(error)
+        console.error(error)
       }
     }
     this.loading = false

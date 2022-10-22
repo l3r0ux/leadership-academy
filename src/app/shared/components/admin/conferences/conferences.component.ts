@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { conferences } from 'src/app/shared/dummyData';
+import { Component, Input, OnInit } from '@angular/core';
 import { Conference } from 'src/app/shared/models/conference';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
@@ -9,7 +8,7 @@ import { ModalService } from 'src/app/shared/services/modal.service';
   styleUrls: ['./conferences.component.scss']
 })
 export class ConferencesAdminComponent implements OnInit {
-  conferences: Array<Conference> = conferences
+  @Input() countries!: Array<any>
 
   constructor(public modalService: ModalService) { }
 

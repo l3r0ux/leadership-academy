@@ -41,7 +41,7 @@ export class TheForumAdminComponent implements OnInit {
   displayAddText(): string {
     switch(this.tabSelected.selector) {
       case 'conferences':
-        return 'Add conference'
+        return 'Add country'
       case 'sessions':
         return 'Add session'
       default:
@@ -52,7 +52,7 @@ export class TheForumAdminComponent implements OnInit {
   openAddResource(): void {
     switch(this.tabSelected.selector) {
       case 'conferences':
-        this.modalService.openModal('Add conference')
+        this.modalService.openModal('Add country')
         break
       case 'sessions':
         this.modalService.openModal('Add session')
