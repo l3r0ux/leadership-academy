@@ -33,7 +33,7 @@ export class DeleteConfirmationComponent implements OnInit {
       if (this.router.url.includes('leadership-academy')) {
         switch (resource) {
           case 'country':
-            await this.firestoreService.deleteLeadershipAcademyCountry(this.modalService.data.country)
+            await this.firestoreService.deleteData(this.modalService.data.country, 'leadership-academy-countries')
             break;
           case 'conference':
             this.deleteConference(country, conference,)
@@ -56,7 +56,7 @@ export class DeleteConfirmationComponent implements OnInit {
   async deleteConference(country: any, conference: any): Promise<void> {
     const conferenceIndex = country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date)
     country.conferences.splice(conferenceIndex, 1)
-    await this.firestoreService.deleteLeadershipAcademyConference(this.modalService.data.country)
+    await this.firestoreService.updateData(this.modalService.data.country, 'leadership-academy-countries')
   }
 
   async deleteVideo(country: any, conference: any, property: any): Promise<void> {

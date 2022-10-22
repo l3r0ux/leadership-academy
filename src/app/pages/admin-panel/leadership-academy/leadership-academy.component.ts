@@ -39,7 +39,7 @@ export class LeadershipAcademyAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true
-    this.firestoreService.getLeadershipAcademyCountries().subscribe((countries: any) => {
+    this.firestoreService.getData('leadership-academy-countries').subscribe((countries: any) => {
       this.countries = countries
       this.loading = false
     })

@@ -42,7 +42,7 @@ export class AddCountryComponent implements OnInit {
     this.loading = true
 
     try {
-      await this.firestoreService.addLeadershipAcademyCountry(country)
+      await this.firestoreService.addData(country, 'leadership-academy-countries')
       this.snackbarService.showSnackbar({ text: 'Country succesfully added!', success: true })
     } catch (error) {
       console.error(error)

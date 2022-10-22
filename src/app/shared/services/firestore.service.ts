@@ -60,38 +60,32 @@ export class FirestoreService {
       .add(application)
   }
 
-  // Leadership Academy conferences
-  async addLeadershipAcademyCountry(country: any) {
+  // Conferences and sessions adding/updating/deleting
+  async addData(data: any, collection: string) {
     return await this.afs
-      .collection('leadership-academy-countries')
-      .add(country)
+      .collection(collection)
+      .add(data)
   }
 
-  getLeadershipAcademyCountries(): Observable<any> {
+  getData(collection: string): Observable<any> {
     return this.afs
-      .collection('leadership-academy-countries')
+      .collection(collection)
       .valueChanges({ idField: 'id' })
   }
 
-  async addLeadershipAcademyConference(country: Conference) {
+  async updateData(data: any, collection: string) {
     return await this.afs
-      .collection('leadership-academy-countries')
-      .doc(country.id)
-      .update({ conferences: country.conferences })
+      .collection(collection)
+      .doc(data.id)
+      .update({ conferences: data.conferences })
   }
 
-  async deleteLeadershipAcademyCountry(country: any): Promise<void> {
+  // TODO: must delete all nested files in storage as well
+  async deleteData(data: any, collection: string): Promise<void> {
     return await this.afs
-      .collection('leadership-academy-countries')
-      .doc(country.id)
+      .collection(collection)
+      .doc(data.id)
       .delete();
-  }
-
-  async deleteLeadershipAcademyConference(country: any): Promise<void> {
-    return await this.afs
-    .collection('leadership-academy-countries')
-    .doc(country.id)
-    .update({ conferences: country.conferences })
   }
 
   // Files

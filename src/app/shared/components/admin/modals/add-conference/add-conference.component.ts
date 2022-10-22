@@ -43,7 +43,7 @@ export class AddConferenceComponent implements OnInit {
     })
 
     try {
-      await this.firestoreService.addLeadershipAcademyConference(country)
+      await this.firestoreService.updateData(country, 'leadership-academy-countries')
 
       this.snackbarService.showSnackbar({ text: 'Conference succesfully added!', success: true })
     } catch (error) {
