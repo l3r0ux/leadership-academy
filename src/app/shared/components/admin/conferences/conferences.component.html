@@ -21,7 +21,7 @@
                 </svg>
                 <div class="actions">
                     <span>Live</span>
-                    <input type="checkbox">
+                    <input [disabled]="loading" type="checkbox" [checked]="conference.isLive" (change)="toggleLive($event, country, conference)">
                 </div>
             </div>
         </div>

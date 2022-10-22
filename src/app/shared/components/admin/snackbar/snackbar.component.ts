@@ -10,6 +10,8 @@ export class SnackbarComponent implements OnInit {
   @ViewChild('snackbar') snackbar!: ElementRef
   text: string = ''
   success: boolean = false
+  mainTimeoutId: any
+  secondaryTimeoutId: any
 
   constructor(private snackbarService: SnackbarService) { }
 
@@ -18,14 +20,10 @@ export class SnackbarComponent implements OnInit {
       this.text = res.text
       this.success = res.success
       this.snackbar.nativeElement.classList.add('visible')
-      setTimeout(() => {
+      clearTimeout(this.mainTimeoutId)
+      this.mainTimeoutId = setTimeout(() => {
         this.snackbar.nativeElement.classList.remove('visible')
-
-        setTimeout(() => {
-          this.text = ''
-          this.success = false
-        }, 300)
-      }, 2000)
+      }, 4000)
     })
   }
 
