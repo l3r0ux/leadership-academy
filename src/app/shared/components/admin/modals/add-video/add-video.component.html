@@ -8,7 +8,6 @@
     <div class="body">
       <div class="add-video-container">
         <form [formGroup]="addVideoForm" (ngSubmit)="onSubmit()">
-
           <div class="input-container">
             <input formControlName="title" type="text" placeholder="Title" class="text-input">
             <ng-container *ngIf="addVideoForm.get('title')?.touched">
@@ -20,7 +19,6 @@
               </span>
             </ng-container>
           </div>
-
           <div class="input-container">
             <input formControlName="video" type="file" placeholder="Video" class="text-input" (change)="setVideo($event)">
             <ng-container *ngIf="addVideoForm.get('video')?.touched">
@@ -38,7 +36,6 @@
               </span>
             </ng-container>
           </div>
-
           <button class="btn add-btn" type="submit">
             <span *ngIf="loading">{{ uploadPercent | async | number: '1.0-0' }}%</span>
             <span *ngIf="!loading">Save</span>

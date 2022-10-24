@@ -22,9 +22,9 @@
     </div>
     <div #panelBody class="body">
         <ng-container *ngIf="data">
-            <div class="item" *ngFor="let property of data">
-                <span>{{ property.title }}</span>
-                <a *ngIf="!isAdmin" href="{{ property.URL }}" target="_blank">
+            <div class="item" *ngFor="let row of data">
+                <span>{{ row.title }}</span>
+                <a *ngIf="!isAdmin" href="{{ row.URL }}" target="_blank">
                     <svg class="download" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
                         <g>
                             <path d="M245,0c-9.5,0-17.2,7.7-17.2,17.2v331.2L169,289.6c-6.7-6.7-17.6-6.7-24.3,0s-6.7,17.6,0,24.3l88.1,88.1 c3.3,3.3,7.7,5,12.1,5c4.4,0,8.8-1.7,12.1-5l88.1-88.1c6.7-6.7,6.7-17.6,0-24.3c-6.7-6.7-17.6-6.7-24.3,0L262,348.4V17.1 C262.1,7.6,254.5,0,245,0z"></path>
@@ -32,7 +32,7 @@
                         </g>
                     </svg>
                 </a>
-                <svg *ngIf="isAdmin" (click)="modalService.openModal('Confirm delete', { country, conference, resource: 'video', property })" class="delete" fill="red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1024 1024">
+                <svg *ngIf="isAdmin" (click)="openDeleteConfirmation(row)" class="delete" fill="red" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 1024 1024">
                     <path d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/>
                 </svg>
             </div>

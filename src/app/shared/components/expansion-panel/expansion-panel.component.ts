@@ -26,6 +26,15 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     this.toggleExpansion()
   }
 
+  openDeleteConfirmation(data: any): void {
+    this.modalService.openModal('Confirm delete', {
+      country: this.country,
+      conference: this.conference,
+      resource: this.header.toLocaleLowerCase(),
+      data
+    })
+  }
+
   toggleExpansion(): void {
     this.panelBody.nativeElement.classList.toggle('visible')
     this.chevron.nativeElement.classList.toggle('expanded')

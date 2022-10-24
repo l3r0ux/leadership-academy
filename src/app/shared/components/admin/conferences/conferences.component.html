@@ -45,20 +45,20 @@
         </div>
         <div class="gallery-heading">
             <h4>Gallery</h4>
-            <div class="add" (click)="modalService.openModal('Add images')">
+            <div class="add" (click)="modalService.openModal('Add images', { country, conference, resource: 'images' })">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
                     <path d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"></path>
                 </svg>
             </div>
         </div>
         <div class="gallery-container">
-            <span class="image-container" *ngFor="let URL of conference.galleryURLs">
+            <span class="image-container" *ngFor="let url of conference.galleryURLs">
             <div class="icon-container">
-                <svg (click)="modalService.openModal('Confirm delete', URL)" fill="red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024" class="icon">
+                <svg (click)="modalService.openModal('Confirm delete', { country, conference, resource: 'image', data: { url } })" fill="red" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024" class="icon">
                     <path d="M360 184h-8c4.4 0 8-3.6 8-8v8h304v-8c0 4.4 3.6 8 8 8h-8v72h72v-80c0-35.3-28.7-64-64-64H352c-35.3 0-64 28.7-64 64v80h72v-72zm504 72H160c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h60.4l24.7 523c1.6 34.1 29.8 61 63.9 61h454c34.2 0 62.3-26.8 63.9-61l24.7-523H888c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM731.3 840H292.7l-24.2-512h487l-24.2 512z"/>
                 </svg>
             </div>
-            <img src="{{ URL }}">
+            <img src="{{ url }}">
             </span>
         </div>
         <hr *ngIf="conferenceIndex !== country.conferences.length - 1">

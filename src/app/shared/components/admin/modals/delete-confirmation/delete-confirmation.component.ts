@@ -24,8 +24,9 @@ export class DeleteConfirmationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async deleteResource() {
-    const { resource, country, conference, property } = this.modalService.data
+  async delete() {
+    const { resource, country, conference, data } = this.modalService.data
+    console.log(this.modalService.data)
 
     this.loading = true
 
@@ -33,13 +34,19 @@ export class DeleteConfirmationComponent implements OnInit {
       if (this.router.url.includes('leadership-academy')) {
         switch (resource) {
           case 'country':
-            await this.firestoreService.deleteData(this.modalService.data.country, 'leadership-academy-countries')
+            await this.deleteCountry(country)
             break;
           case 'conference':
-            this.deleteConference(country, conference,)
+            await this.deleteConference(country, conference)
             break;
-          case 'video':
-            await this.deleteVideo(country, conference, property)
+          case 'videos':
+            await this.deleteResource(country, conference, data, 'videos')
+            break;
+          case 'teaching material':
+            await this.deleteResource(country, conference, data, 'teaching material')
+            break;
+          case 'image':
+            await this.deleteResource(country, conference, data, 'image')
         }
       }
 
@@ -53,21 +60,59 @@ export class DeleteConfirmationComponent implements OnInit {
     this.modalService.closeModal()
   }
 
+  async deleteCountry(country: any): Promise<void> {
+    for(const conference of country.conferences) {
+      await this.deleteResources(conference)
+    }
+    await this.firestoreService.deleteData(country, 'leadership-academy-countries')
+  }
+  
   async deleteConference(country: any, conference: any): Promise<void> {
-    const conferenceIndex = country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date)
-    country.conferences.splice(conferenceIndex, 1)
-    await this.firestoreService.updateData(this.modalService.data.country, 'leadership-academy-countries')
+    const foundConference = country.conferences[country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date)]
+    await this.deleteResources(foundConference)
+    country.conferences.splice(country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date), 1)
+    await this.firestoreService.updateData(country, 'leadership-academy-countries')
   }
 
-  async deleteVideo(country: any, conference: any, property: any): Promise<void> {
+  async deleteResource(country: any, conference: any, data: any, resource: string): Promise<void> {
+    console.log(data)
     const foundConference = country.conferences[country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date)]
-  
-    const fileRef = this.storage.refFromURL(property.url);
+
+    const fileRef = this.storage.refFromURL(data.url);
     await fileRef.delete().toPromise()
-  
+
     if (foundConference) {
-      conference.videos.splice(foundConference.videos.findIndex(((video: any) => video.title === property.title)), 1)
+      switch(resource) {
+        case 'videos':
+          conference.videos.splice(foundConference.videos.findIndex(((video: any) => video.title === data.title)), 1)
+          break;
+        case 'teaching material':
+          conference.teachingMaterials.splice(foundConference.teachingMaterials.findIndex(((material: any) => material.title === data.title)), 1)
+          break;
+        case 'image':
+          conference.galleryURLs.splice(foundConference.galleryURLs.findIndex(((url: any) => url === data)), 1)
+          break;
+      }
     }
-    await this.firestoreService.setObj(country)
+    await this.firestoreService.updateData(country, 'leadership-academy-countries')
+  }
+
+  async deleteResources(foundConference: any): Promise<any> {
+    const resourcesToDelete = []
+
+    for (const image of foundConference.galleryURLs) {
+      resourcesToDelete.push(image)
+    }
+    for (const teachingMaterial of foundConference.teachingMaterials) {
+      resourcesToDelete.push(teachingMaterial.url)
+    }
+    for (const video of foundConference.videos) {
+      resourcesToDelete.push(video.url)
+    }
+
+    for (const resource of resourcesToDelete) {
+      const fileRef = this.storage.refFromURL(resource);
+      await fileRef.delete().toPromise()
+    }
   }
 }

@@ -7,9 +7,22 @@
     </div>
     <div class="body">
       <div class="add-images-container">
-        <form>
-          <input type="file" multiple placeholder="Upload images" name="images">
-          <button class="btn add-btn" type="submit">Save</button>
+        <form [formGroup]="addImagesForm" (ngSubmit)="onSubmit()">
+          <div class="input-container">
+            <input formControlName="images" type="file" multiple placeholder="Images" class="text-input" (change)="setImages($event)">
+            <ng-container *ngIf="addImagesForm.get('images')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addImagesForm.get('images')?.hasError('required')"
+              >
+                Atleast one image required
+              </span>
+            </ng-container>
+          </div>
+          <button class="btn add-btn" type="submit">
+            <span *ngIf="loading">File {{ fileCount }} uploading...</span>
+            <span *ngIf="!loading">Save</span>
+          </button>
         </form>
       </div>
     </div>

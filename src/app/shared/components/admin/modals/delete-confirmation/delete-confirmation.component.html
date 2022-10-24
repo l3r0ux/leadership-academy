@@ -12,7 +12,7 @@
           <button class="btn cancel-btn" (click)="modalService.closeModal()">
             Cancel
           </button>
-          <button class="btn confirm-btn" (click)="deleteResource()">
+          <button class="btn confirm-btn" (click)="delete()">
             <app-loading-spinner *ngIf="loading"></app-loading-spinner>
             <span *ngIf="!loading">Delete</span>
           </button>

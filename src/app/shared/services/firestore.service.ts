@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { arrayUnion, doc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { Conference } from '../models/conference';
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +44,8 @@ export class FirestoreService {
   async removeApplication(application: any) {
     return await this.afs
       .collection('applications')
-      .doc(application.applicationId).delete()
+      .doc(application.applicationId)
+      .delete()
   }
 
   getApplications(): Observable<any> {
@@ -80,21 +80,10 @@ export class FirestoreService {
       .set(data)
   }
 
-  // TODO: must delete all nested files in storage as well
   async deleteData(data: any, collection: string): Promise<void> {
     return await this.afs
       .collection(collection)
       .doc(data.id)
       .delete();
-  }
-
-  // Files
-  async setObj(data: any): Promise<any> {
-    if (this.router.url.includes('leadership-academy')) {
-      return await this.afs
-      .collection('leadership-academy-countries')
-      .doc(data.id)
-      .set(data)
-    }
   }
 }

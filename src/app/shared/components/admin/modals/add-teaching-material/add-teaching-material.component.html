@@ -7,10 +7,39 @@
     </div>
     <div class="body">
       <div class="add-teaching-material-container">
-        <form>
-          <input type="text" placeholder="Title" class="text-input" name="title">
-          <input type="file" name="teaching-material">
-          <button class="btn add-btn" type="submit">Save</button>
+        <form [formGroup]="addTeachingMaterialForm" (ngSubmit)="onSubmit()">
+          <div class="input-container">
+            <input formControlName="title" type="text" placeholder="Title" class="text-input">
+            <ng-container *ngIf="addTeachingMaterialForm.get('title')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addTeachingMaterialForm.get('title')?.hasError('required')"
+              >
+                Title required
+              </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="teachingMaterial" type="file" placeholder="teachingMaterial" class="text-input" (change)="setTeachingMaterial($event)">
+            <ng-container *ngIf="addTeachingMaterialForm.get('teachingMaterial')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addTeachingMaterialForm.get('teachingMaterial')?.hasError('required')"
+              >
+              Teaching material required
+              </span>
+              <span
+                class="validation-error"
+                *ngIf="addTeachingMaterialForm.get('teachingMaterial')?.hasError('exists')"
+              >
+              Teaching material with this name already exists
+              </span>
+            </ng-container>
+          </div>
+          <button class="btn add-btn" type="submit">
+            <span *ngIf="loading">{{ uploadPercent | async | number: '1.0-0' }}%</span>
+            <span *ngIf="!loading">Save</span>
+          </button>
         </form>
       </div>
     </div>
