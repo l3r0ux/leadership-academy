@@ -105,7 +105,6 @@ export class DeleteConfirmationComponent implements OnInit {
   }
 
   async deleteResource(country: any, conference: any, data: any, session: any, resource: string): Promise<void> {
-    console.warn(data)
     if (session) {
       await this.deleteSessionResource(session, data, resource)
     } else {
@@ -114,7 +113,6 @@ export class DeleteConfirmationComponent implements OnInit {
   }
 
   async deleteSessionResource(session: any, data: any, resource: string): Promise<void> {
-    console.warn(data)
     const fileRef = this.storage.refFromURL(data.url);
     await fileRef.delete().toPromise()
 
@@ -126,7 +124,7 @@ export class DeleteConfirmationComponent implements OnInit {
         session.teachingMaterials.splice(session.teachingMaterials.findIndex(((material: any) => material.title === data.title)), 1)
         break;
       case 'image':
-        session.galleryURLs.splice(session.galleryURLs.findIndex(((url: any) => url === data)), 1)
+        session.galleryURLs.splice(session.galleryURLs.findIndex(((url: any) => url === data.url)), 1)
         break;
     }
     if (this.router.url.includes('leadership-academy')) {
