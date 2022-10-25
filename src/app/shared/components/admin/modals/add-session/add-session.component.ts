@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -16,7 +17,8 @@ export class AddSessionComponent implements OnInit {
   constructor(
     public modalService: ModalService,
     private firestoreService: FirestoreService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,13 @@ export class AddSessionComponent implements OnInit {
     this.loading = true
 
     try {
-      await this.firestoreService.addData(session, 'leadership-academy-sessions')
+      if (this.router.url.includes('leadership-academy')) {
+        await this.firestoreService.addData(session, 'leadership-academy-sessions')
+      } else if (this.router.url.includes('the-forum')) {
+        await this.firestoreService.addData(session, 'the-forum-sessions')
+      } else if (this.router.url.includes('pauline')) {
+        await this.firestoreService.addData(session, 'pauline-leadership-sessions')
+      }
       this.snackbarService.showSnackbar({ text: 'Session succesfully added!', success: true })
     } catch (error) {
       console.error(error)

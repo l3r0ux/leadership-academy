@@ -35,27 +35,25 @@ export class DeleteConfirmationComponent implements OnInit {
     this.loading = true
 
     try {
-      if (this.router.url.includes('leadership-academy')) {
-        switch (resource) {
-          case 'session':
-            await this.deleteSession(sessions, session)
-            break;
-          case 'country':
-            await this.deleteCountry(country)
-            break;
-          case 'conference':
-            await this.deleteConference(country, conference)
-            break;
-          case 'videos':
-            await this.deleteResource(country, conference, data, session, 'videos')
-            break;
-          case 'teaching material':
-            await this.deleteResource(country, conference, data, session, 'teaching material')
-            break;
-          case 'image':
-            await this.deleteResource(country, conference, data, session, 'image')
-            break;
-        }
+      switch (resource) {
+        case 'session':
+          await this.deleteSession(sessions, session)
+          break;
+        case 'country':
+          await this.deleteCountry(country)
+          break;
+        case 'conference':
+          await this.deleteConference(country, conference)
+          break;
+        case 'videos':
+          await this.deleteResource(country, conference, data, session, 'videos')
+          break;
+        case 'teaching material':
+          await this.deleteResource(country, conference, data, session, 'teaching material')
+          break;
+        case 'image':
+          await this.deleteResource(country, conference, data, session, 'image')
+          break;
       }
 
       this.snackbarService.showSnackbar({ text: 'Resource successfully deleted!', success: true })
@@ -72,21 +70,39 @@ export class DeleteConfirmationComponent implements OnInit {
     const foundSession = sessions.filter((sessionI: any) => sessionI.name === session.name)
     await this.deleteResources({ foundSession: session })
     console.log(foundSession[0])
-    await this.firestoreService.deleteData(foundSession[0], 'leadership-academy-sessions')
+    if (this.router.url.includes('leadership-academy')) {
+      await this.firestoreService.deleteData(foundSession[0], 'leadership-academy-sessions')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.firestoreService.deleteData(foundSession[0], 'the-forum-sessions')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.firestoreService.deleteData(foundSession[0], 'pauline-leadership-sessions')
+    }
   }
 
   async deleteCountry(country: any): Promise<void> {
     for(const conference of country.conferences) {
       await this.deleteResources({ foundConference: conference })
     }
-    await this.firestoreService.deleteData(country, 'leadership-academy-countries')
+    if (this.router.url.includes('leadership-academy')) {
+      await this.firestoreService.deleteData(country, 'leadership-academy-countries')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.firestoreService.deleteData(country, 'the-forum-countries')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.firestoreService.deleteData(country, 'pauline-leadership-countries')
+    }
   }
   
   async deleteConference(country: any, conference: any): Promise<void> {
     const foundConference = country.conferences[country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date)]
     await this.deleteResources({ foundConference })
     country.conferences.splice(country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date), 1)
-    await this.firestoreService.updateData(country, 'leadership-academy-countries')
+    if (this.router.url.includes('leadership-academy')) {
+      await this.firestoreService.updateData(country, 'leadership-academy-countries')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.firestoreService.updateData(country, 'the-forum-countries')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.firestoreService.updateData(country, 'pauline-leadership-countries')
+    }
   }
 
   async deleteResource(country: any, conference: any, data: any, session: any, resource: string): Promise<void> {
@@ -114,7 +130,13 @@ export class DeleteConfirmationComponent implements OnInit {
         session.galleryURLs.splice(session.galleryURLs.findIndex(((url: any) => url === data)), 1)
         break;
     }
-    await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+    if (this.router.url.includes('leadership-academy')) {
+      await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.firestoreService.updateData(session, 'the-forum-sessions')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
+    }
   }
 
   async deleteConferenceResource(country: any, conference: any, data: any, resource: string): Promise<void> {
@@ -136,7 +158,13 @@ export class DeleteConfirmationComponent implements OnInit {
           break;
       }
     }
-    await this.firestoreService.updateData(country, 'leadership-academy-countries')
+    if (this.router.url.includes('leadership-academy')) {
+      await this.firestoreService.updateData(country, 'leadership-academy-countries')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.firestoreService.updateData(country, 'the-forum-countries')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.firestoreService.updateData(country, 'pauline-leadership-countries')
+    }
   }
 
   async deleteResources({ foundConference, foundSession }: any = {}): Promise<any> {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { finalize, Observable } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -22,7 +23,8 @@ export class AddTeachingMaterialComponent implements OnInit {
     public modalService: ModalService,
     private storage: AngularFireStorage,
     private firestoreService: FirestoreService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +50,16 @@ export class AddTeachingMaterialComponent implements OnInit {
   addSessionMaterial(): void {
     const { title } = this.addTeachingMaterialForm.value
     const { session } = this.modalService.data
-    const filePath = `material-leadership-${title}-${session.date}`
+
+    let filePath = ''
+    if (this.router.url.includes('leadership-academy')) {
+      filePath = `material-leadership-${title}-${session.name}`
+    } else if (this.router.url.includes('the-forum')) {
+      filePath = `material-forum-${title}-${session.name}`
+    } else if (this.router.url.includes('pauline')) {
+      filePath = `material-pauline-${title}-${session.name}`
+    }
+
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, this.teachingMaterial);
 
@@ -60,7 +71,13 @@ export class AddTeachingMaterialComponent implements OnInit {
         this.downloadURL.forEach(async (url: any) => {
           if (url) {
             session.teachingMaterials.push({ title, url })
-            await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+            if (this.router.url.includes('leadership-academy')) {
+              await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+            } else if (this.router.url.includes('the-forum')) {
+              await this.firestoreService.updateData(session, 'the-forum-sessions')
+            } else if (this.router.url.includes('pauline')) {
+              await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
+            }
           }
         })
 
@@ -74,7 +91,16 @@ export class AddTeachingMaterialComponent implements OnInit {
   addConferenceMaterial(): void {
     const { title } = this.addTeachingMaterialForm.value
     const { country, conference } = this.modalService.data
-    const filePath = `material-leadership-${title}-${conference.date}`
+
+    let filePath = ''
+    if (this.router.url.includes('leadership-academy')) {
+      filePath = `material-leadership-${title}-${conference.date}`
+    } else if (this.router.url.includes('the-forum')) {
+      filePath = `material-forum-${title}-${conference.date}`
+    } else if (this.router.url.includes('pauline')) {
+      filePath = `material-pauline-${title}-${conference.date}`
+    }
+
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, this.teachingMaterial);
 
@@ -87,7 +113,13 @@ export class AddTeachingMaterialComponent implements OnInit {
           if (url) {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
             foundConference.teachingMaterials.push({ title, url })
-            await this.firestoreService.updateData(country, 'leadership-academy-countries')
+            if (this.router.url.includes('leadership-academy')) {
+              await this.firestoreService.updateData(country, 'leadership-academy-countries')
+            } else if (this.router.url.includes('the-forum')) {
+              await this.firestoreService.updateData(country, 'the-forum-countries')
+            } else if (this.router.url.includes('pauline')) {
+              await this.firestoreService.updateData(country, 'pauline-leadership-countries')
+            }
           }
         })
 

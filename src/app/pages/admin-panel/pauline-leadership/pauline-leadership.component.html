@@ -1,5 +1,8 @@
 <div class="header">
-    <h2>Virtual sessions</h2>
-    <button class="btn" (click)="modalService.openModal('Add session')">Add session</button>
+    <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
+    <button class="btn" (click)="openAddResource()">{{ displayAddText() }}</button>
 </div>
-<app-sessions></app-sessions>
+<div class="loading-spinner" *ngIf="loading">
+    <app-loading-spinner ></app-loading-spinner>
+</div>
+<app-sessions [sessions]="sessions"></app-sessions>

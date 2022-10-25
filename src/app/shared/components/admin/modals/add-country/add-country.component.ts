@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -16,7 +17,8 @@ export class AddCountryComponent implements OnInit {
   constructor(
     public modalService: ModalService,
     private firestoreService: FirestoreService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,13 @@ export class AddCountryComponent implements OnInit {
     this.loading = true
 
     try {
-      await this.firestoreService.addData(country, 'leadership-academy-countries')
+      if (this.router.url.includes('leadership-academy')) {
+        await this.firestoreService.addData(country, 'leadership-academy-countries')
+      } else if (this.router.url.includes('the-forum')) {
+        await this.firestoreService.addData(country, 'the-forum-countries')
+      } else if (this.router.url.includes('pauline-leadership')) {
+        await this.firestoreService.addData(country, 'pauline-leadership-countries')
+      }
       this.snackbarService.showSnackbar({ text: 'Country succesfully added!', success: true })
     } catch (error) {
       console.error(error)

@@ -18,7 +18,9 @@ export class TabsComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.setTabUnderline(this.tabSelected)
+    setTimeout(() => {
+      this.setTabUnderline(this.tabSelected)
+    })
   }
 
   selectTab(tab: string): void {
