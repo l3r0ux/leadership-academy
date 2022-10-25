@@ -45,7 +45,6 @@ export class AddImagesComponent implements OnInit {
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, image);
     
-      // TODO: fix calculated time of upload completion incorrect
       // TODO: Also maybe make modal not closable while loading/uploading?
       task.snapshotChanges().pipe(
         finalize(() => {
@@ -57,7 +56,7 @@ export class AddImagesComponent implements OnInit {
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
               this.fileCount++
 
-              if (this.fileCount >= this.images.length) {
+              if (this.fileCount > this.images.length) {
                 this.loading = false
                 this.snackbarService.showSnackbar({ text: 'Image(s) successfully uploaded!', success: true })
                 this.modalService.closeModal()
