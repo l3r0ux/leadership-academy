@@ -7,10 +7,39 @@
     </div>
     <div class="body">
       <div class="add-session-container">
-        <form>
-          <input type="text" placeholder="Session name" class="text-input" name="session-name">
-          <input type="date" placeholder="Date" class="text-input" name="date">
-          <button class="btn add-btn" type="submit">Save</button>
+        <form [formGroup]="addSessionForm" (ngSubmit)="onSubmit()">
+          <div class="input-container">
+            <input formControlName="name" type="text" placeholder="Session name" class="text-input">
+            <ng-container *ngIf="addSessionForm.get('name')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addSessionForm.get('name')?.hasError('required')"
+              >
+                Session name required
+              </span>
+              <span
+                class="validation-error"
+                *ngIf="addSessionForm.get('name')?.hasError('exists')"
+              >
+                Session with this name already exists
+              </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="date" type="date" placeholder="Date" class="text-input">
+            <ng-container *ngIf="addSessionForm.get('date')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="addSessionForm.get('date')?.hasError('required')"
+              >
+                Date required
+              </span>
+            </ng-container>
+          </div>
+          <button class="btn add-btn" type="submit">
+            <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+            <span *ngIf="!loading">Save</span>
+          </button>
         </form>
       </div>
     </div>

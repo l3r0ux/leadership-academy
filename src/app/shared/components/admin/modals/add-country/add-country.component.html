@@ -17,6 +17,12 @@
               >
                 Country required
               </span>
+              <span
+                class="validation-error"
+                *ngIf="addCountryForm.get('country')?.hasError('exists')"
+              >
+                Country already exists
+              </span>
             </ng-container>
           </div>
           <button class="btn add-btn" type="submit">

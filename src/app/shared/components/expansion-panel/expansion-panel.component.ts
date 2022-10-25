@@ -14,6 +14,7 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
   @Input() isAdmin: boolean = false
   @Input() country: any
   @Input() conference: any
+  @Input() session: any
   @ViewChild('panelBody') panelBody!: ElementRef
   @ViewChild('chevron') chevron!: ElementRef
 
@@ -30,6 +31,7 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     this.modalService.openModal('Confirm delete', {
       country: this.country,
       conference: this.conference,
+      session: this.session,
       resource: this.header.toLocaleLowerCase(),
       data
     })
@@ -51,10 +53,10 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
 
     switch(this.header.toLocaleLowerCase()) {
       case 'videos':
-        this.modalService.openModal('Add video', { country: this.country, conference: this.conference })
+        this.modalService.openModal('Add video', { country: this.country, conference: this.conference, session: this.session })
         break;
       case 'teaching material':
-        this.modalService.openModal('Add teaching material', { country: this.country, conference: this.conference })
+        this.modalService.openModal('Add teaching material', { country: this.country, conference: this.conference, session: this.session })
         break;
     }
   }

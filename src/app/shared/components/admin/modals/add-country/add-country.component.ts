@@ -29,14 +29,17 @@ export class AddCountryComponent implements OnInit {
     this.addCountryForm.markAllAsTouched()
     if (!this.addCountryForm.valid) return
 
-    let country = 
-      this.modalService.data[this.modalService.data.findIndex((country: any) => country.country === this.addCountryForm.value.country)]
+    let foundCountry = 
+    this.modalService.data[this.modalService.data.findIndex((country: any) => country.country === this.addCountryForm.value.country)]
 
-    if (!country) {
-      country = {
-        country: this.addCountryForm.value.country,
-        conferences: []
-      }
+    if (foundCountry) {
+      this.addCountryForm.controls['country'].setErrors({ exists: true })
+      return
+    }
+    
+    let country = {
+      country: this.addCountryForm.value.country,
+      conferences: []
     }
 
     this.loading = true

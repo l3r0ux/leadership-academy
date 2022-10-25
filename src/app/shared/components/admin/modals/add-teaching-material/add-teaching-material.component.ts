@@ -38,6 +38,40 @@ export class AddTeachingMaterialComponent implements OnInit {
     if (!this.addTeachingMaterialForm.valid) return
     this.loading = true
 
+    if (this.modalService.data.session) {
+      this.addSessionMaterial()
+    } else {
+      this.addConferenceMaterial()
+    }
+  }
+
+  addSessionMaterial(): void {
+    const { title } = this.addTeachingMaterialForm.value
+    const { session } = this.modalService.data
+    const filePath = `material-leadership-${title}-${session.date}`
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.teachingMaterial);
+
+    this.uploadPercent = task.percentageChanges()
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = fileRef.getDownloadURL()
+        this.downloadURL.forEach(async (url: any) => {
+          if (url) {
+            session.teachingMaterials.push({ title, url })
+            await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+          }
+        })
+
+        this.loading = false
+        this.snackbarService.showSnackbar({ text: 'Teaching material successfully uploaded!', success: true })
+        this.modalService.closeModal()
+      })
+    ).subscribe()
+  }
+
+  addConferenceMaterial(): void {
     const { title } = this.addTeachingMaterialForm.value
     const { country, conference } = this.modalService.data
     const filePath = `material-leadership-${title}-${conference.date}`

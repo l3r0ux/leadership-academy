@@ -37,6 +37,44 @@ export class AddImagesComponent implements OnInit {
     if (!this.addImagesForm.valid) return
     this.loading = true
 
+    if (this.modalService.data.session) {
+      this.addSessionImage()
+    } else {
+      this.addConferenceImage()
+    }
+  }
+
+  addSessionImage(): void {
+    this.fileCount = 1
+    const { session } = this.modalService.data
+
+    for (const image of this.images) {
+      const filePath = `image-leadership-${image.name}-${session.date}`
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, image);
+    
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL()
+          this.downloadURL.forEach(async (url: any) => {
+            if (url) {
+              session.galleryURLs.push(url)
+              await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+              this.fileCount++
+
+              if (this.fileCount > this.images.length) {
+                this.loading = false
+                this.snackbarService.showSnackbar({ text: 'Image(s) successfully uploaded!', success: true })
+                this.modalService.closeModal()
+              }
+            }
+          })
+        })
+      ).subscribe()
+    }
+  }
+
+  addConferenceImage(): void {
     this.fileCount = 1
     const { country, conference } = this.modalService.data
 
@@ -45,7 +83,6 @@ export class AddImagesComponent implements OnInit {
       const fileRef = this.storage.ref(filePath);
       const task = this.storage.upload(filePath, image);
     
-      // TODO: Also maybe make modal not closable while loading/uploading?
       task.snapshotChanges().pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL()

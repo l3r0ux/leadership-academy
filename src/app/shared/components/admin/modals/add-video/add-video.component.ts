@@ -38,6 +38,15 @@ export class AddVideoComponent implements OnInit {
     if (!this.addVideoForm.valid) return
     this.loading = true
 
+    if (this.modalService.data.session) {
+      this.addSessionVideo()
+    } else {
+      this.addConferenceVideo()
+    }
+      
+  }
+
+  addConferenceVideo(): void {
     const { title } = this.addVideoForm.value
     const { country, conference } = this.modalService.data
     const filePath = `video-leadership-${title}-${conference.date}`
@@ -54,6 +63,32 @@ export class AddVideoComponent implements OnInit {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
             foundConference.videos.push({ title, url })
             await this.firestoreService.updateData(country, 'leadership-academy-countries')
+          }
+        })
+
+        this.loading = false
+        this.snackbarService.showSnackbar({ text: 'Video successfully uploaded!', success: true })
+        this.modalService.closeModal()
+      })
+    ).subscribe()
+  }
+
+  addSessionVideo(): void {
+    const { title } = this.addVideoForm.value
+    const { session } = this.modalService.data
+    const filePath = `video-leadership-${title}-${session.name}`
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.video);
+
+    this.uploadPercent = task.percentageChanges()
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.downloadURL = fileRef.getDownloadURL()
+        this.downloadURL.forEach(async (url: any) => {
+          if (url) {
+            session.videos.push({ title, url })
+            await this.firestoreService.updateData(session, 'leadership-academy-sessions')
           }
         })
 

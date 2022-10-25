@@ -6,4 +6,4 @@
     <app-loading-spinner ></app-loading-spinner>
 </div>
 <app-conferences *ngIf="tabSelected.selector === 'conferences'" [countries]="countries"></app-conferences>
-<app-sessions *ngIf="tabSelected.selector === 'sessions'"></app-sessions>
+<app-sessions *ngIf="tabSelected.selector === 'sessions'" [sessions]="sessions"></app-sessions>
