@@ -10,8 +10,8 @@ import { ModalService } from '../../services/modal.service';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('details') details!: ElementRef
-  febaLogo = 'assets/FEBA-logo.jpg'
-  febcLogo = 'assets/FEBC-logo.jpg'
+  febaLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBA-logo_a8vtnj.jpg'
+  febcLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBC-logo_crwz0h.jpg'
 
   constructor(
     public modalService: ModalService,
