@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Conference } from 'src/app/shared/models/conference';
-import { conferences, sessions } from 'src/app/shared/dummyData';
-import { Session } from 'src/app/shared/models/session';
+import { Subscription } from 'rxjs';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({
   selector: 'app-leadership-academy',
@@ -9,8 +8,7 @@ import { Session } from 'src/app/shared/models/session';
   styleUrls: ['./leadership-academy.component.scss']
 })
 export class LeadershipAcademyComponent implements OnInit {
-  conferences: Array<Conference> = conferences;
-  sessions: Array<Session> = sessions;
+  loading = false
   tabSelected: any = {
     title: 'Conferences',
     selector: 'conferences',
@@ -28,13 +26,41 @@ export class LeadershipAcademyComponent implements OnInit {
       routerLink: undefined
     }
   ]
+  conferencesSub!: Subscription
+  sessionsSub!: Subscription
+  countries: Array<any> = []
+  sessions: Array<any> = []
 
-  constructor() { }
+  constructor(
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
+    this.loading = true
+    this.conferencesSub = this.firestoreService.getData('leadership-academy-countries').subscribe((countries: any) => {
+      this.countries = countries
+      this.loading = false
+    })
   }
 
   setTab(tab: any): void {
     this.tabSelected = tab
+    if (tab.selector === 'sessions') {
+      this.conferencesSub.unsubscribe()
+      this.sessions = []
+      this.loading = true
+      this.sessionsSub = this.firestoreService.getData('leadership-academy-sessions').subscribe((sessions: any) => {
+        this.sessions = sessions
+        this.loading = false
+      })
+    } else if (tab.selector === 'conferences') {
+      this.sessionsSub.unsubscribe()
+      this.countries = []
+      this.loading = true
+      this.conferencesSub = this.firestoreService.getData('leadership-academy-countries').subscribe((countries: any) => {
+        this.countries = countries
+        this.loading = false
+      })
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -14,19 +15,26 @@ export class SessionsAdminComponent implements OnInit {
   
   constructor(public modalService: ModalService,
     private firestoreService: FirestoreService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
   async toggleLive(event: any, session: any) {
-    const foundSession = this.sessions[this.sessions.findIndex((sessionI: any) => sessionI.date === session.date)]
+    const foundSession = this.sessions[this.sessions.findIndex((sessionI: any) => sessionI.name === session.name)]
     foundSession.isLive = event.target.checked
 
     this.loading = true
     try {
-      await this.firestoreService.updateData(foundSession, 'leadership-academy-sessions')
+      if (this.router.url.includes('leadership-academy')) {
+        await this.firestoreService.updateData(foundSession, 'leadership-academy-sessions')
+      } else if (this.router.url.includes('the-forum')) {
+        await this.firestoreService.updateData(foundSession, 'the-forum-sessions')
+      } else if (this.router.url.includes('pauline-leadership')) {
+        await this.firestoreService.updateData(foundSession, 'pauline-leadership-sessions')
+      }
       event.target.checked
       ? this.snackbarService.showSnackbar({ text: 'Conference is now live!', success: true })
       : this.snackbarService.showSnackbar({ text: 'Conference is now hidden!', success: true })

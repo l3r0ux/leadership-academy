@@ -1,6 +1,13 @@
 <div class="main-container">
   <h1>FEBC Intl. Leadership Academy</h1>
   <app-tabs (tabChanged)="setTab($event)" [tabs]="tabs"></app-tabs>
-  <app-conference *ngIf="tabSelected.selector === 'conferences'" [conferences]="conferences"></app-conference>
-  <app-session *ngIf="tabSelected.selector === 'sessions'" [sessions]="sessions"></app-session>
+  <div class="loading-spinner" *ngIf="loading">
+    <app-loading-spinner ></app-loading-spinner>
+  </div>
+  <ng-container *ngIf="tabSelected.selector === 'conferences'">
+    <app-conference [countries]="countries"></app-conference>
+  </ng-container>
+  <ng-container *ngIf="tabSelected.selector === 'sessions'">
+    <app-session [sessions]="sessions"></app-session>
+  </ng-container>
 </div>

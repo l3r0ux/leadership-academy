@@ -1,6 +1,9 @@
 <div class="main-container">
   <h1>Pauline Leadership Academy</h1>
-  <h2>Virtual sessions</h2>
+  <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
+  <div class="loading-spinner" *ngIf="loading">
+    <app-loading-spinner ></app-loading-spinner>
+  </div>
   <app-session [sessions]="sessions"></app-session>
 </div>
   

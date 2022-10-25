@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Session } from '../../models/conference';
 
 @Component({
   selector: 'app-video-carousel',
@@ -7,7 +6,7 @@ import { Session } from '../../models/conference';
   styleUrls: ['./video-carousel.component.scss']
 })
 export class VideoCarouselComponent implements OnInit {
-  @Input() videos!: Array<{ title: string, URL: string }>;
+  @Input() videos!: Array<any>;
   @ViewChild('carousel') carousel!: ElementRef;
   @ViewChild('video') video!: ElementRef;
 

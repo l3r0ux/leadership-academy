@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Session } from 'src/app/shared/models/session';
-import { sessions } from 'src/app/shared/dummyData';
+import { Subscription } from 'rxjs';
+import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({
   selector: 'app-pauline-leadership',
@@ -8,11 +9,37 @@ import { sessions } from 'src/app/shared/dummyData';
   styleUrls: ['./pauline-leadership.component.scss']
 })
 export class PaulineLeadershipComponent implements OnInit {
-  sessions: Array<Session> = sessions;
+  tabSelected: any = {
+    title: 'Virtual sessions',
+    selector: 'sessions',
+    routerLink: undefined
+  }
+  sessionsSub!: Subscription
+  sessions: Array<Session> = []
 
-  constructor() { }
+  loading = false
+
+  tabs: Array<any> = [
+    {
+      title: 'Virtual sessions',
+      selector: 'sessions',
+      routerLink: undefined
+    }
+  ]
+
+  constructor(
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
+    this.loading = true
+    this.sessionsSub = this.firestoreService.getData('pauline-leadership-sessions').subscribe((sessions: any) => {
+      this.sessions = sessions
+      this.loading = false
+    })
   }
 
+  setTab(tab: any): void {
+    this.tabSelected = tab
+  }
 }

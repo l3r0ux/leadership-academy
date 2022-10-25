@@ -7,7 +7,7 @@ import { Conference } from '../../models/conference';
   styleUrls: ['./conference.component.scss']
 })
 export class ConferenceComponent implements OnInit {
-  @Input() conferences!: Array<Conference>
+  @Input() countries!: Array<Conference>
 
   constructor() { }
 

@@ -69,7 +69,6 @@ export class DeleteConfirmationComponent implements OnInit {
   async deleteSession(sessions: any, session: any): Promise<void> {
     const foundSession = sessions.filter((sessionI: any) => sessionI.name === session.name)
     await this.deleteResources({ foundSession: session })
-    console.log(foundSession[0])
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.deleteData(foundSession[0], 'leadership-academy-sessions')
     } else if (this.router.url.includes('the-forum')) {
