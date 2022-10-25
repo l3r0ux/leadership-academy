@@ -6,24 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  backgroundImageURL = 'assets/space.jpg'
   trainingTiles: Array<any> = [
     {
       program: 'leadership-academy',
       link: '/leadership-academy',
       text: 'FEBC Intl. Leadership Academy',
-      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390922/leadership_clarity/the_forum_ahcljj.jpg'
+      imageURL: 'assets/leadership-academy.jpg'
     },
     {
       program: 'the-forum',
       link: '/the-forum',
       text: 'The Forum',
-      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390920/leadership_clarity/leadership_academy_qweeju.jpg'
+      imageURL: 'assets/the-forum.jpg'
     },
     {
       program: 'pauline-leadership',
       link: '/pauline-leadership',
       text: 'Pauline Leadership Training',
-      imageURL: 'assets/pauline-puzzle.jpg'
+      imageURL: 'assets/pauline-puzzle-tile.jpg'
     }
   ]
 

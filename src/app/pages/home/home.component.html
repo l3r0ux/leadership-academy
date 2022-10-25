@@ -1,5 +1,5 @@
 <div>
-    <section class="home-background">
+    <section class="home-background" style.background-image="url('{{ backgroundImageURL }}')">
         <h1>Leadership Clarity Program</h1>
         <div class="training-tile-container">
             <app-training-tile *ngFor="let tile of trainingTiles" [tile]="tile"></app-training-tile>

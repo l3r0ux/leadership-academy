@@ -3,8 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background: url('https://res.cloudinary.com/djkyfcfl1/image/upload/v1662390921/leadership_clarity/home_background_vsbc9z.jpg')
-        center / cover no-repeat;
+    background: center / cover no-repeat;
     background-position: 50% 55%;
     height: 55vh;
     
@@ -12,6 +11,8 @@
         margin-top: 2rem;
         font-weight: 600;
         font-size: 2rem;
+        color: #EBEBEB;
+        filter: drop-shadow(2px 4px 6px black);
     }
 
     .training-tile-container {
