@@ -24,7 +24,7 @@ export class ConferencesAdminComponent implements OnInit {
   }
 
   async toggleLive(event: any, country: any, conference: any) {
-    const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.name === conference.name)]
+    const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
     foundConference.isLive = event.target.checked
 
     this.loading = true

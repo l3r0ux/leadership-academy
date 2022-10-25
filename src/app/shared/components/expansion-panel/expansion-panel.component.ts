@@ -8,7 +8,7 @@ import { ModalService } from '../../services/modal.service';
   styleUrls: ['./expansion-panel.component.scss']
 })
 export class ExpansionPanelComponent implements OnInit, AfterViewInit {
-  @Input() data!: Array<{ title: string, URL: string }>
+  @Input() data!: Array<any>
   @Input() application!: Application
   @Input() header!: string
   @Input() isAdmin: boolean = false
