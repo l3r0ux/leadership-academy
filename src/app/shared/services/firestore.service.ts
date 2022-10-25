@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
-import { arrayUnion, doc } from 'firebase/firestore';
+import { arrayUnion } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +9,7 @@ import { Observable } from 'rxjs';
 export class FirestoreService {
 
   constructor(
-    private afs: AngularFirestore,
-    private router: Router
+    private afs: AngularFirestore
   ) { }
 
   // Users
