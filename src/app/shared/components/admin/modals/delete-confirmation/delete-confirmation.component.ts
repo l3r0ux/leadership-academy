@@ -71,10 +71,13 @@ export class DeleteConfirmationComponent implements OnInit {
     await this.deleteResources({ foundSession: session })
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.deleteData(foundSession[0], 'leadership-academy-sessions')
+      this.modalService.leadershipSessionDeletedSubject.next(foundSession[0])
     } else if (this.router.url.includes('the-forum')) {
       await this.firestoreService.deleteData(foundSession[0], 'the-forum-sessions')
+      this.modalService.forumSessionDeletedSubject.next(foundSession[0])
     } else if (this.router.url.includes('pauline-leadership')) {
       await this.firestoreService.deleteData(foundSession[0], 'pauline-leadership-sessions')
+      this.modalService.paulineSessionDeletedSubject.next(foundSession[0])
     }
   }
 
@@ -84,8 +87,10 @@ export class DeleteConfirmationComponent implements OnInit {
     }
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.deleteData(country, 'leadership-academy-countries')
+      this.modalService.leadershipCountryDeletedSubject.next(country)
     } else if (this.router.url.includes('the-forum')) {
       await this.firestoreService.deleteData(country, 'the-forum-countries')
+      this.modalService.forumCountryDeletedSubject.next(country)
     } else if (this.router.url.includes('pauline-leadership')) {
       await this.firestoreService.deleteData(country, 'pauline-leadership-countries')
     }
@@ -97,8 +102,10 @@ export class DeleteConfirmationComponent implements OnInit {
     country.conferences.splice(country.conferences.findIndex((existingConference: any) => existingConference.date === conference.date), 1)
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.updateData(country, 'leadership-academy-countries')
+      this.modalService.leadershipCountryUpdatedSubject.next(country)
     } else if (this.router.url.includes('the-forum')) {
       await this.firestoreService.updateData(country, 'the-forum-countries')
+      this.modalService.forumCountryUpdatedSubject.next(country)
     } else if (this.router.url.includes('pauline-leadership')) {
       await this.firestoreService.updateData(country, 'pauline-leadership-countries')
     }
@@ -129,10 +136,13 @@ export class DeleteConfirmationComponent implements OnInit {
     }
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+      this.modalService.leadershipSessionUpdatedSubject.next(session)
     } else if (this.router.url.includes('the-forum')) {
       await this.firestoreService.updateData(session, 'the-forum-sessions')
+      this.modalService.forumSessionUpdatedSubject.next(session)
     } else if (this.router.url.includes('pauline-leadership')) {
       await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
+      this.modalService.paulineSessionUpdatedSubject.next(session)
     }
   }
 
@@ -157,8 +167,10 @@ export class DeleteConfirmationComponent implements OnInit {
     }
     if (this.router.url.includes('leadership-academy')) {
       await this.firestoreService.updateData(country, 'leadership-academy-countries')
+      this.modalService.leadershipCountryUpdatedSubject.next(country)
     } else if (this.router.url.includes('the-forum')) {
       await this.firestoreService.updateData(country, 'the-forum-countries')
+      this.modalService.forumCountryUpdatedSubject.next(country)
     } else if (this.router.url.includes('pauline-leadership')) {
       await this.firestoreService.updateData(country, 'pauline-leadership-countries')
     }

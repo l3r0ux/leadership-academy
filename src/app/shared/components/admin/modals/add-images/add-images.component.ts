@@ -71,10 +71,13 @@ export class AddImagesComponent implements OnInit {
               session.galleryURLs.push(url)
               if (this.router.url.includes('leadership-academy')) {
                 await this.firestoreService.updateData(session, 'leadership-academy-sessions')
+                this.modalService.leadershipSessionUpdatedSubject.next(session)
               } else if (this.router.url.includes('the-forum')) {
                 await this.firestoreService.updateData(session, 'the-forum-sessions')
+                this.modalService.forumSessionUpdatedSubject.next(session)
               } else if (this.router.url.includes('pauline')) {
                 await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
+                this.modalService.paulineSessionUpdatedSubject.next(session)
               }
               this.fileCount++
 
@@ -116,8 +119,10 @@ export class AddImagesComponent implements OnInit {
               foundConference.galleryURLs.push(url)
               if (this.router.url.includes('leadership-academy')) {
                 await this.firestoreService.updateData(country, 'leadership-academy-countries')
+                this.modalService.leadershipCountryUpdatedSubject.next(country)
               } else if (this.router.url.includes('the-forum')) {
                 await this.firestoreService.updateData(country, 'the-forum-countries')
+                this.modalService.forumCountryUpdatedSubject.next(country)
               } else if (this.router.url.includes('pauline')) {
                 await this.firestoreService.updateData(country, 'pauline-leadership-countries')
               }

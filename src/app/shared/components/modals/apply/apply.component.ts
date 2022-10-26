@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { uuidv4 } from '@firebase/util';
+import { Timestamp } from 'firebase/firestore';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -38,6 +40,8 @@ export class ApplyComponent implements OnInit {
       const formValue = this.applyForm.value
       formValue.email = this.authService.currentUser.email
       formValue.userId = this.authService.currentUser.userId
+      formValue.id = uuidv4()
+      formValue.createdAt = Timestamp.fromDate(new Date())
 
       if (this.authService.currentUser.programsEnrolled.includes(formValue.program)) {
         this.applyForm.controls['program'].setErrors({ alreadyEnrolled: true })

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Session } from 'src/app/shared/models/session';
-import { Subscription } from 'rxjs';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class PaulineLeadershipComponent implements OnInit {
     selector: 'sessions',
     routerLink: undefined
   }
-  sessionsSub!: Subscription
   sessions: Array<Session> = []
 
   loading = false
@@ -31,12 +29,10 @@ export class PaulineLeadershipComponent implements OnInit {
     private firestoreService: FirestoreService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loading = true
-    this.sessionsSub = this.firestoreService.getData('pauline-leadership-sessions').subscribe((sessions: any) => {
-      this.sessions = sessions
-      this.loading = false
-    })
+    this.sessions = await this.firestoreService.getData('pauline-leadership-sessions')
+    this.loading = false
   }
 
   setTab(tab: any): void {

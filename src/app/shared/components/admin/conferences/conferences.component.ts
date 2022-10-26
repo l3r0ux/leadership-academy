@@ -21,6 +21,27 @@ export class ConferencesAdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.modalService.leadershipCountryAddedSubject.subscribe((country: any) => {
+      this.countries.push(country)
+    })
+    this.modalService.leadershipCountryUpdatedSubject.subscribe((country: any) => {
+      let foundCountryIndex = this.countries.findIndex((countryI: any) => countryI.id === country.id)
+      this.countries[foundCountryIndex] = {...country}
+    })
+    this.modalService.leadershipCountryDeletedSubject.subscribe((country: any) => {
+      this.countries = this.countries.filter((countryI: any) => countryI.id !== country.id)
+    })
+
+    this.modalService.forumCountryAddedSubject.subscribe((country: any) => {
+      this.countries.push(country)
+    })
+    this.modalService.forumCountryUpdatedSubject.subscribe((country: any) => {
+      let foundCountryIndex = this.countries.findIndex((countryI: any) => countryI.id === country.id)
+      this.countries[foundCountryIndex] = {...country}
+    })
+    this.modalService.forumCountryDeletedSubject.subscribe((country: any) => {
+      this.countries = this.countries.filter((countryI: any) => countryI.id !== country.id)
+    })
   }
 
   async toggleLive(event: any, country: any, conference: any) {

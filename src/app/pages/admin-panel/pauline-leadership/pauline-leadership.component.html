@@ -5,4 +5,4 @@
 <div class="loading-spinner" *ngIf="loading">
     <app-loading-spinner ></app-loading-spinner>
 </div>
-<app-sessions [sessions]="sessions"></app-sessions>
+<app-sessions (moreLoaded)="addMoreLoaded($event)" [sessions]="sessions"></app-sessions>

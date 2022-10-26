@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { Session } from 'src/app/shared/models/conference';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -15,8 +14,6 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     selector: 'conferences',
     routerLink: undefined
   }
-  conferencesSub!: Subscription
-  sessionsSub!: Subscription
   countries: Array<any> = []
   sessions: Array<Session> = []
 
@@ -40,32 +37,24 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     private firestoreService: FirestoreService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loading = true
-    this.conferencesSub = this.firestoreService.getData('leadership-academy-countries').subscribe((countries: any) => {
-      this.countries = countries
-      this.loading = false
-    })
+    this.countries = await this.firestoreService.getData('leadership-academy-countries')
+    this.loading = false
   }
 
-  setTab(tab: any): void {
+  async setTab(tab: any): Promise<void> {
     this.tabSelected = tab
     if (tab.selector === 'sessions') {
-      this.conferencesSub.unsubscribe()
       this.sessions = []
       this.loading = true
-      this.sessionsSub = this.firestoreService.getData('leadership-academy-sessions').subscribe((sessions: any) => {
-        this.sessions = sessions
-        this.loading = false
-      })
+      this.sessions = await this.firestoreService.getData('leadership-academy-sessions')
+      this.loading = false
     } else if (tab.selector === 'conferences') {
-      this.sessionsSub.unsubscribe()
       this.countries = []
       this.loading = true
-      this.conferencesSub = this.firestoreService.getData('leadership-academy-countries').subscribe((countries: any) => {
-        this.countries = countries
-        this.loading = false
-      })
+      this.countries = await this.firestoreService.getData('leadership-academy-countries')
+      this.loading = false
     }
   }
 

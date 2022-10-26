@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Application } from 'src/app/shared/models/application';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
+import { ModalService } from 'src/app/shared/services/modal.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -28,15 +29,19 @@ export class AdminPanelComponent implements OnInit {
   applications!: Array<Application>;
   loadingApplications = false
 
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(
+    private firestoreService: FirestoreService,
+    private modalService: ModalService
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loadingApplications = true
 
-    this.firestoreService.getApplications().subscribe((res: any) => {
-      this.applications = [...res]
+    this.applications = await this.firestoreService.getApplications()
+    this.loadingApplications = false
 
-      this.loadingApplications = false
+    this.modalService.applicationDeletedSubject.subscribe((application: any) => {
+      this.applications = this.applications.filter((applicationI: any) => applicationI.id !== application.id)
     })
   }
 }

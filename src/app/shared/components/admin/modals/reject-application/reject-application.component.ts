@@ -24,6 +24,7 @@ export class RejectApplicationComponent implements OnInit {
     this.loading = true
     try {
       await this.firestoreService.removeApplication(this.modalService.data)
+      this.modalService.applicationDeletedSubject.next(this.modalService.data)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'Application successfully rejected', success: true })
     } catch (error) {

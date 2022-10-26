@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Session } from 'src/app/shared/models/conference';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
@@ -15,8 +13,7 @@ export class PaulineLeadershipAdminComponent implements OnInit {
     selector: 'sessions',
     routerLink: undefined
   }
-  sessionsSub!: Subscription
-  sessions: Array<Session> = []
+  sessions: Array<any> = []
 
   loading = false
 
@@ -33,12 +30,10 @@ export class PaulineLeadershipAdminComponent implements OnInit {
     private firestoreService: FirestoreService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loading = true
-    this.sessionsSub = this.firestoreService.getData('pauline-leadership-sessions').subscribe((sessions: any) => {
-      this.sessions = sessions
-      this.loading = false
-    })
+    this.sessions = await this.firestoreService.getData('pauline-leadership-sessions')
+    this.loading = false
   }
 
   setTab(tab: any): void {
@@ -60,5 +55,11 @@ export class PaulineLeadershipAdminComponent implements OnInit {
         this.modalService.openModal('Add session', this.sessions)
         break
     }
+  }
+
+  addMoreLoaded(sessions: Array<any>): void {
+    sessions.forEach((session: any) => {
+      this.sessions.push(session)
+    })
   }
 }

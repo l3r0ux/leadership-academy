@@ -25,6 +25,7 @@ export class AcceptApplicationComponent implements OnInit {
     try {
       await this.firestoreService.acceptApplication(this.modalService.data)
       await this.firestoreService.removeApplication(this.modalService.data)
+      this.modalService.applicationDeletedSubject.next(this.modalService.data)
       this.modalService.closeModal()
       this.snackbarService.showSnackbar({ text: 'Application successfully accepted', success: true })
     } catch (error) {

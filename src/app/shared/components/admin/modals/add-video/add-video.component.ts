@@ -74,8 +74,10 @@ export class AddVideoComponent implements OnInit {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
             foundConference.videos.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
+              this.modalService.leadershipCountryUpdatedSubject.next(country)
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
             } else if (this.router.url.includes('the-forum')) {
+              this.modalService.forumCountryUpdatedSubject.next(country)
               await this.firestoreService.updateData(country, 'the-forum-countries')
             } else if (this.router.url.includes('pauline')) {
               await this.firestoreService.updateData(country, 'pauline-leadership-countries')
@@ -115,10 +117,13 @@ export class AddVideoComponent implements OnInit {
           if (url) {
             session.videos.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
+              this.modalService.leadershipSessionUpdatedSubject.next(session)
               await this.firestoreService.updateData(session, 'leadership-academy-sessions')
             } else if (this.router.url.includes('the-forum')) {
+              this.modalService.forumSessionUpdatedSubject.next(session)
               await this.firestoreService.updateData(session, 'the-forum-sessions')
             } else if (this.router.url.includes('pauline')) {
+              this.modalService.paulineSessionUpdatedSubject.next(session)
               await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
             }
           }
