@@ -1,8 +1,17 @@
-<div class="navbar-container">
+<div class="navbar-container-desktop">
     <div class="navbar">
         <div class="logos-container">
             <img class="logo-img" [src]="febcLogo" alt="febc_logo">
             <img class="logo-img" [src]="febaLogo" alt="feba_sa_logo">
+        </div>
+        <div class="mobile-menu-toggle">
+            <svg (click)="toggleSideNav()" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" viewBox="0 0 384.97 384.97" xml:space="preserve" width="2rem">
+                <g id="menu">
+                    <path d="M12.03,84.212h360.909c6.641,0,12.03-5.39,12.03-12.03c0-6.641-5.39-12.03-12.03-12.03H12.03    C5.39,60.152,0,65.541,0,72.182C0,78.823,5.39,84.212,12.03,84.212z"/>
+                    <path d="M372.939,180.455H12.03c-6.641,0-12.03,5.39-12.03,12.03s5.39,12.03,12.03,12.03h360.909c6.641,0,12.03-5.39,12.03-12.03    S379.58,180.455,372.939,180.455z"/>
+                    <path d="M372.939,300.758H12.03c-6.641,0-12.03,5.39-12.03,12.03c0,6.641,5.39,12.03,12.03,12.03h360.909    c6.641,0,12.03-5.39,12.03-12.03C384.97,306.147,379.58,300.758,372.939,300.758z"/>
+                </g>
+            </svg>
         </div>
         <div class="nav-links">
             <nav>
@@ -32,4 +41,37 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="navbar-container-mobile" #mobileSidenav>
+    <div class="close">
+        <svg (click)="toggleSideNav()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24">
+            <path d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"></path>
+          </svg>
+    </div>
+    <nav class="nav-links">
+        <div *ngIf="authService.isLoggedIn" class="user-profile">
+            <h3>{{ authService.currentUser?.email.slice(0, 1).toUpperCase() }}</h3>
+        </div>
+        <span (click)="toggleSideNav()" [routerLink]="['/']" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+            Home
+        </span>
+        <span (click)="toggleSideNav()" *ngIf="isEnrolled('FEBC Intl. Leadership Academy')" [routerLink]="['/leadership-academy']" routerLinkActive="active-link">
+            FEBC Intl. Leadership Academy
+        </span>
+        <span (click)="toggleSideNav()" *ngIf="isEnrolled('The Forum')" [routerLink]="['/the-forum']" routerLinkActive="active-link">
+            The Forum
+        </span>
+        <span (click)="toggleSideNav()" *ngIf="isEnrolled('Pauline Leadership Training')" [routerLink]="['/pauline-leadership']" routerLinkActive="active-link">
+            Pauline Leadership Training
+        </span>
+        <span (click)="toggleSideNav()" *ngIf="authService.isLoggedIn && authService.currentUser?.programsEnrolled.length !== 3" (click)="modalService.openModal('Apply')">
+            Apply
+        </span>
+        <span (click)="toggleSideNav()" *ngIf="authService.isLoggedIn && authService.currentUser?.isAdmin" [routerLink]="['/admin/the-forum']" routerLinkActive="active-link">
+            Admin Panel
+        </span>
+        <button *ngIf="authService.isLoggedIn" class="btn" (click)="logout()">Logout</button>
+        <button *ngIf="!authService.isLoggedIn" class="btn" (click)="modalService.openModal('Login'); toggleSideNav()">Login</button>
+    </nav>
 </div>

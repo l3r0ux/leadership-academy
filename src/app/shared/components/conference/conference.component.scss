@@ -82,3 +82,23 @@ h4 {
         width: 100%;
     }
 }
+
+@media screen and (max-width: 752px) {
+    .inner-container {
+        padding: 0;
+
+        .details {
+            margin: 0 1rem;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gallery-container {
+        .image-container {
+            img {
+                max-width: 100% !important;
+            }
+        }
+    }
+}

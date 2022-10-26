@@ -15,6 +15,9 @@ export class TabsComponent implements OnInit {
 
   ngOnInit(): void {
     this.tabSelected = this.tabs[0]
+    window.matchMedia('(max-width: 430px)').addEventListener("change", () => {
+      this.setTabUnderline(this.tabSelected)
+    })
   }
 
   ngAfterViewInit(): void {

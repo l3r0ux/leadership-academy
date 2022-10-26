@@ -10,6 +10,7 @@ import { ModalService } from '../../services/modal.service';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('details') details!: ElementRef
+  @ViewChild('mobileSidenav') mobileSidenav!: ElementRef
   febaLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBA-logo_a8vtnj.jpg'
   febcLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBC-logo_crwz0h.jpg'
 
@@ -30,5 +31,9 @@ export class NavbarComponent implements OnInit {
 
   isEnrolled(program: string): boolean {
     return this.authService.currentUser?.programsEnrolled.includes(program)
+  }
+
+  toggleSideNav(): void {
+    this.mobileSidenav.nativeElement.classList.toggle('visible')
   }
 }
