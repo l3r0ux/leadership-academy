@@ -22,10 +22,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDetails(): void {
-    this.details.nativeElement.classList.toggle('visible')
-  }
-
   async logout(): Promise<void> {
     await this.authService.logout()
     this.router.navigate(['/'])

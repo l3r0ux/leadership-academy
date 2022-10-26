@@ -13,6 +13,7 @@
         font-size: 2rem;
         color: #EBEBEB;
         filter: drop-shadow(2px 4px 6px black);
+        text-align: center;
     }
 
     .training-tile-container {
@@ -26,7 +27,7 @@
 
         app-training-tile {
             width: 30%;
-            height: 14rem;
+            height: 15rem;
         }
     }
 }
@@ -65,6 +66,35 @@
             img {
                 object-fit: cover;
                 max-height: 18rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .training-tile-container {
+        flex-direction: column;
+        bottom: unset !important;
+        top: 70%;
+        align-items: center;
+
+        app-training-tile {
+            width: 100% !important;
+            max-width: 18rem;
+            height: 18rem;
+            margin-bottom: 0.6rem;
+        }
+    }
+
+    .pauline-section {
+        margin-top: 42rem;
+
+        .details {
+            flex-direction: column;
+
+            p {
+                padding: 0 !important;
+                margin-bottom: 1rem;
             }
         }
     }

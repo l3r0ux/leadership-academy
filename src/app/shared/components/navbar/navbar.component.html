@@ -27,11 +27,8 @@
             </nav>
             <button *ngIf="authService.isLoggedIn" class="btn" (click)="logout()">Logout</button>
             <button *ngIf="!authService.isLoggedIn" class="btn" (click)="modalService.openModal('Login')">Login</button>
-            <div *ngIf="authService.isLoggedIn" class="user-profile" (click)="openDetails()">
+            <div *ngIf="authService.isLoggedIn" class="user-profile">
                 <h3>{{ authService.currentUser?.email.slice(0, 1).toUpperCase() }}</h3>
-                <div #details class="details" (click)="modalService.openModal('Request password reset')">
-                    <span>Reset password</span>
-                </div>
             </div>
         </div>
     </div>
