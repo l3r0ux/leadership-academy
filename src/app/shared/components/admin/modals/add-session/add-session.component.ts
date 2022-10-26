@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Timestamp } from 'firebase/firestore';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -39,10 +40,10 @@ export class AddSessionComponent implements OnInit {
       this.addSessionForm.controls['name'].setErrors({ exists: true })
       return
     }
-    
+
     let session = {
       name: this.addSessionForm.value.name,
-      date: this.addSessionForm.value.date,
+      date: Timestamp.fromDate(new Date(this.addSessionForm.value.date)),
       videos: [],
       galleryURLs: [],
       teachingMaterials: []

@@ -7,7 +7,7 @@ import { Session } from '../../models/session';
   styleUrls: ['./session.component.scss']
 })
 export class SessionComponent implements OnInit {
-  @Input() sessions!: Array<Session>
+  @Input() sessions!: Array<any>
 
   constructor() { }
 

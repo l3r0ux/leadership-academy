@@ -4,7 +4,7 @@
       <h3>{{ country.country }}</h3>
       <ng-container *ngFor="let conference of country.conferences">
         <div class="details" *ngIf="conference.isLive">
-          <h3>{{ conference.date }}</h3>
+          <h3>{{ conference.date.toDate().toLocaleDateString() }}</h3>
           <h4>Videos</h4>
           <app-video-carousel [videos]="conference.videos"></app-video-carousel>
           <h4>Downloads</h4>

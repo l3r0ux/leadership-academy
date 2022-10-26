@@ -1,7 +1,7 @@
 <div class="inner-container">
   <ng-container *ngFor="let session of sessions">
     <div *ngIf="session.isLive">
-      <h3>{{ session.name }} - {{ session.date }}</h3>
+      <h3>{{ session.name }} - {{ session.date.toDate().toLocaleDateString() }}</h3>
       <div class="details">
         <h4>Videos</h4>
         <app-video-carousel [videos]="session.videos"></app-video-carousel>

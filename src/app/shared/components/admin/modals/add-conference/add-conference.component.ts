@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Timestamp } from 'firebase/firestore';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -37,7 +38,7 @@ export class AddConferenceComponent implements OnInit {
 
     country.conferences.push({
       isLive: false,
-      date: this.addConferenceForm.value.date,
+      date: Timestamp.fromDate(new Date(this.addConferenceForm.value.date)),
       videos: [],
       teachingMaterials: [],
       galleryURLs: []
