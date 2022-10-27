@@ -20,6 +20,16 @@
         .application-container {
             width: 30%;
 
+            .load-more {
+                margin: 0 auto;
+                background-color: transparent;
+                min-width: 7rem;
+
+                app-loading-spinner {
+                    padding: 0 !important;
+                }
+            }
+
             h2 {
                 margin-bottom: 1rem;
             }

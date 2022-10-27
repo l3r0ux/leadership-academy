@@ -49,12 +49,10 @@ export class AddCountryComponent implements OnInit {
     try {
       if (this.router.url.includes('leadership-academy')) {
         await this.firestoreService.addData(country, 'leadership-academy-countries')
-        this.modalService.leadershipCountryAddedSubject.next(country)
+        this.modalService.leadershipCountryChangedSubject.next(country)
       } else if (this.router.url.includes('the-forum')) {
         await this.firestoreService.addData(country, 'the-forum-countries')
-        this.modalService.forumCountryAddedSubject.next(country)
-      } else if (this.router.url.includes('pauline-leadership')) {
-        await this.firestoreService.addData(country, 'pauline-leadership-countries')
+        this.modalService.forumCountryChangedSubject.next(country)
       }
       this.snackbarService.showSnackbar({ text: 'Country succesfully added!', success: true })
     } catch (error) {

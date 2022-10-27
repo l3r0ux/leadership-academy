@@ -71,6 +71,39 @@ export class FirestoreService {
   }
 
   // Pagination
+  async loadMoreApplications(lastApplication: any): Promise<any> {
+    const applications: any = []
+
+    await this.afs
+      .collection('applications', ref => ref.orderBy('createdAt').startAfter(lastApplication).limit(5))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          const application = doc.data()
+          application['id'] = doc.id
+          applications.push(application)
+        });
+      })
+
+    return applications
+  }
+
+  async getLastApplication() {
+    let lastDoc
+
+    await this.afs
+      .collection('applications', ref => ref.orderBy('createdAt', 'desc').limit(1))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          lastDoc = doc.data()
+          lastDoc['id'] = doc.id
+        });
+      })
+
+    return lastDoc
+  }
+
   async loadMoreSessions(collection: string, lastSessionDate: any) {
     const sessions: any = []
 
@@ -84,7 +117,24 @@ export class FirestoreService {
           sessions.push(session)
         });
       })
-      return sessions
+     
+    return sessions
+  }
+
+  async getLastSession(collection: string) {
+    let lastDoc
+
+    await this.afs
+      .collection(collection, ref => ref.orderBy('date', 'desc').limit(1))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          lastDoc = doc.data()
+          lastDoc['id'] = doc.id
+        });
+      })
+
+    return lastDoc
   }
 
   // Conferences and sessions adding/updating/deleting
@@ -98,26 +148,11 @@ export class FirestoreService {
       .set(data)
   }
 
-  async getData(collection: string): Promise<any> {
-    if (collection.includes('sessions')) {
-      const sessions: any = []
+  async getCountryData(collection: string): Promise<any> {
+    const countries: any = []
 
       await this.afs
-        .collection(collection, ref => ref.orderBy('date').limit(5))
-        .get()
-        .forEach((querySnapshot: any) => {
-          querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
-            const session = doc.data()
-            session['id'] = doc.id
-            sessions.push(session)
-          });
-        })
-        return sessions
-    } else {
-      const countries: any = []
-
-      await this.afs
-      .collection(collection, ref => ref.orderBy('country').limit(5))
+      .collection(collection, ref => ref.orderBy('country'))
       .get()
       .forEach((querySnapshot: any) => {
         querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
@@ -127,6 +162,39 @@ export class FirestoreService {
         });
       })
       return countries
+  }
+
+  async getSessionData(collection: string, limit = 5, isClient = false): Promise<any> {
+    if (isClient) {
+      const sessions: any = []
+
+      await this.afs
+        .collection(collection, ref => ref.orderBy('date').where('isLive', '==', true).limit(limit))
+        .get()
+        .forEach((querySnapshot: any) => {
+          querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+            const session = doc.data()
+            session['id'] = doc.id
+            sessions.push(session)
+          });
+        })
+
+        return sessions
+    } else {
+      const sessions: any = []
+
+      await this.afs
+        .collection(collection, ref => ref.orderBy('date').limit(limit))
+        .get()
+        .forEach((querySnapshot: any) => {
+          querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+            const session = doc.data()
+            session['id'] = doc.id
+            sessions.push(session)
+          });
+        })
+
+      return sessions
     }
   }
 

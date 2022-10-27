@@ -48,7 +48,7 @@
         </div>
         <hr *ngIf="i !== sessions.length - 1">
     </div>
-    <button *ngIf="sessions.length >= 5" (click)="loadMore()" class="load-more" class="btn load-more">
+    <button *ngIf="this.sessions.length >= 5 && !this.isAllSessions" (click)="loadMore()" class="load-more" class="btn load-more">
         <app-loading-spinner *ngIf="isLoadingMore"></app-loading-spinner>
         <span *ngIf="!isLoadingMore">Load more</span>
     </button>

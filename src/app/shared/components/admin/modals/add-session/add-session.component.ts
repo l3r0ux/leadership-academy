@@ -54,13 +54,13 @@ export class AddSessionComponent implements OnInit {
     try {
       if (this.router.url.includes('leadership-academy')) {
         await this.firestoreService.addData(session, 'leadership-academy-sessions')
-        this.modalService.leadershipSessionAddedSubject.next(session)
+        this.modalService.leadershipSessionChangedSubject.next(session)
       } else if (this.router.url.includes('the-forum')) {
         await this.firestoreService.addData(session, 'the-forum-sessions')
-        this.modalService.forumSessionAddedSubject.next(session)
+        this.modalService.forumSessionChangedSubject.next(session)
       } else if (this.router.url.includes('pauline')) {
         await this.firestoreService.addData(session, 'pauline-leadership-sessions')
-        this.modalService.paulineSessionAddedSubject.next(session)
+        this.modalService.paulineSessionChangedSubject.next(session)
       }
       this.snackbarService.showSnackbar({ text: 'Session succesfully added!', success: true })
     } catch (error) {

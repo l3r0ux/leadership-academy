@@ -13,6 +13,10 @@
             </div>
             <app-expansion-panel *ngFor="let application of applications" [application]="application" [header]="application.email"></app-expansion-panel>
             <app-loading-spinner *ngIf="loadingApplications"></app-loading-spinner>
+            <button *ngIf="this.applications.length >= 5 && !this.isAllApplications" (click)="loadMore()" class="load-more" class="btn load-more">
+                <app-loading-spinner *ngIf="isLoadingMore"></app-loading-spinner>
+                <span *ngIf="!isLoadingMore">Load more</span>
+            </button>
         </div>
     </div>
 </div>

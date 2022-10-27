@@ -12,8 +12,11 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 export class SessionsAdminComponent implements OnInit {
   @Input() sessions!: Array<any>
   @Output() moreLoaded = new EventEmitter<Array<any>>();
+  @Output() sessionsLoaded = new EventEmitter<Array<any>>();
   loading = false
   isLoadingMore = false
+  limit = 5
+  isAllSessions = false
   
   constructor(public modalService: ModalService,
     private firestoreService: FirestoreService,
@@ -21,57 +24,82 @@ export class SessionsAdminComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.modalService.paulineSessionAddedSubject.subscribe((session: any) => {
-      this.sessions.push(session)
-    })
-    this.modalService.paulineSessionUpdatedSubject.subscribe((session: any) => {
-      let foundSessionIndex = this.sessions.findIndex((sessionI: any) => sessionI.id === session.id)
-      this.sessions[foundSessionIndex] = {...session}
-    })
-    this.modalService.paulineSessionDeletedSubject.subscribe((session: any) => {
-      this.sessions = this.sessions.filter((sessionI: any) => sessionI.id !== session.id)
+  async ngOnInit(): Promise<void> {
+    if (this.router.url.includes('leadership-academy')) {
+      await this.checkCanLoadMore('leadership-academy-sessions')
+    } else if (this.router.url.includes('the-forum')) {
+      await this.checkCanLoadMore('the-forum-sessions')
+    } else if (this.router.url.includes('pauline-leadership')) {
+      await this.checkCanLoadMore('pauline-leadership-sessions')
+    }
+
+    this.modalService.paulineSessionChangedSubject.subscribe(async () => {
+      await this.fetchNewPaulineSessions()
     })
 
-    this.modalService.leadershipSessionAddedSubject.subscribe((session: any) => {
-      this.sessions.push(session)
-    })
-    this.modalService.leadershipSessionUpdatedSubject.subscribe((session: any) => {
-      let foundSessionIndex = this.sessions.findIndex((sessionI: any) => sessionI.id === session.id)
-      this.sessions[foundSessionIndex] = {...session}
-    })
-    this.modalService.leadershipSessionDeletedSubject.subscribe((session: any) => {
-      this.sessions = this.sessions.filter((sessionI: any) => sessionI.id !== session.id)
+    this.modalService.leadershipSessionChangedSubject.subscribe(async () => {
+      await this.fetchNewAcademySessions()
     })
 
-    this.modalService.forumSessionAddedSubject.subscribe((session: any) => {
-      this.sessions.push(session)
-    })
-    this.modalService.forumSessionUpdatedSubject.subscribe((session: any) => {
-      let foundSessionIndex = this.sessions.findIndex((sessionI: any) => sessionI.id === session.id)
-      this.sessions[foundSessionIndex] = {...session}
-    })
-    this.modalService.forumSessionDeletedSubject.subscribe((session: any) => {
-      this.sessions = this.sessions.filter((sessionI: any) => sessionI.id !== session.id)
+    this.modalService.forumSessionChangedSubject.subscribe(async () => {
+      await this.fetchNewForumSessions()
     })
   }
 
   async loadMore(): Promise<void> {
     this.isLoadingMore = true
+    this.limit += 5
     try {
       if (this.router.url.includes('leadership-academy')) {
-        // await this.firestoreService.loadMoreSessions('leadership-academy-sessions', this.sessions[this.sessions.length - 1])
+        await this.loadNextSessions('leadership-academy-sessions')
       } else if (this.router.url.includes('the-forum')) {
-        // await this.firestoreService.loadMoreSessions('the-forum-sessions', this.sessions[this.sessions.length - 1])
+        await this.loadNextSessions('the-forum-sessions')
       } else if (this.router.url.includes('pauline-leadership')) {
-        const nextSessions = await this.firestoreService.loadMoreSessions('pauline-leadership-sessions', this.sessions[this.sessions.length - 1].date)
-        this.moreLoaded.emit(nextSessions)
+        await this.loadNextSessions('pauline-leadership-sessions')
       }
     } catch (error: any) {
       console.error(error)
       this.snackbarService.showSnackbar({ text: 'Something went wrong', success: false })
     }
     this.isLoadingMore = false
+  }
+
+  async loadNextSessions(collection: string): Promise<void> {
+    const nextSessions = await this.firestoreService.loadMoreSessions(collection, this.sessions[this.sessions.length - 1].date)
+    const lastDoc: any = await this.firestoreService.getLastSession(collection)
+
+    this.moreLoaded.emit(nextSessions)
+    if (nextSessions[nextSessions.length - 1].id === lastDoc.id) {
+      this.isAllSessions = true
+    }
+  }
+
+  async checkCanLoadMore(collection: string): Promise<void> {
+    const lastDoc: any = await this.firestoreService.getLastSession(collection)
+
+    if (this.sessions[this.sessions.length - 1]?.id === lastDoc?.id) {
+      this.isAllSessions = true
+    } else {
+      this.isAllSessions = false
+    }
+  }
+
+  async fetchNewPaulineSessions(): Promise<void> {
+    const sessions = await this.firestoreService.getSessionData('pauline-leadership-sessions', this.limit)
+    this.sessionsLoaded.emit(sessions)
+    await this.checkCanLoadMore('pauline-leadership-sessions')
+  }
+
+  async fetchNewAcademySessions(): Promise<void> {
+    const sessions = await this.firestoreService.getSessionData('leadership-academy-sessions', this.limit)
+    this.sessionsLoaded.emit(sessions)
+    await this.checkCanLoadMore('leadership-academy-sessions')
+  }
+
+  async fetchNewForumSessions(): Promise<void> {
+    const sessions = await this.firestoreService.getSessionData('the-forum-sessions', this.limit)
+    this.sessionsLoaded.emit(sessions)
+    await this.checkCanLoadMore('the-forum-sessions')
   }
 
   async toggleLive(event: any, session: any) {

@@ -8,6 +8,6 @@
         <app-conference [countries]="countries"></app-conference>
       </ng-container>
     <ng-container *ngIf="tabSelected.selector === 'sessions'">
-        <app-session [sessions]="sessions"></app-session>
+        <app-session [sessions]="sessions" (moreLoaded)="moreSessionsLoaded($event)"></app-session>
     </ng-container>
 </div>

@@ -25,4 +25,8 @@
       </div>
     </div>
   </ng-container>
+  <button *ngIf="this.sessions.length >= 5 && !this.isAllSessions" (click)="loadMore()" class="load-more" class="btn load-more">
+    <app-loading-spinner *ngIf="isLoadingMore"></app-loading-spinner>
+    <span *ngIf="!isLoadingMore">Load more</span>
+  </button>
 </div>

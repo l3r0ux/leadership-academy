@@ -5,23 +5,13 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ModalService {
-  paulineSessionAddedSubject: Subject<any> = new Subject()
-  paulineSessionUpdatedSubject: Subject<any> = new Subject()
-  paulineSessionDeletedSubject: Subject<any> = new Subject()
+  paulineSessionChangedSubject: Subject<any> = new Subject()
   
-  leadershipSessionAddedSubject: Subject<any> = new Subject()
-  leadershipSessionUpdatedSubject: Subject<any> = new Subject()
-  leadershipSessionDeletedSubject: Subject<any> = new Subject()
-  leadershipCountryAddedSubject: Subject<any> = new Subject()
-  leadershipCountryUpdatedSubject: Subject<any> = new Subject()
-  leadershipCountryDeletedSubject: Subject<any> = new Subject()
+  leadershipSessionChangedSubject: Subject<any> = new Subject()
+  leadershipCountryChangedSubject: Subject<any> = new Subject()
   
-  forumSessionAddedSubject: Subject<any> = new Subject()
-  forumSessionUpdatedSubject: Subject<any> = new Subject()
-  forumSessionDeletedSubject: Subject<any> = new Subject()
-  forumCountryAddedSubject: Subject<any> = new Subject()
-  forumCountryUpdatedSubject: Subject<any> = new Subject()
-  forumCountryDeletedSubject: Subject<any> = new Subject()
+  forumSessionChangedSubject: Subject<any> = new Subject()
+  forumCountryChangedSubject: Subject<any> = new Subject()
 
   applicationDeletedSubject: Subject<any> = new Subject()
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Conference } from '../../models/conference';
 
 @Component({
   selector: 'app-conference',
@@ -14,4 +13,7 @@ export class ConferenceComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showCountryHeading(country: any): boolean {
+    return country.conferences.length && country.conferences.some((el: any) => el.isLive)
+  }
 }

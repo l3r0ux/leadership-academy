@@ -32,7 +32,7 @@ export class PaulineLeadershipAdminComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loading = true
-    this.sessions = await this.firestoreService.getData('pauline-leadership-sessions')
+    this.sessions = await this.firestoreService.getSessionData('pauline-leadership-sessions')
     this.loading = false
   }
 
@@ -57,7 +57,11 @@ export class PaulineLeadershipAdminComponent implements OnInit {
     }
   }
 
-  addMoreLoaded(sessions: Array<any>): void {
+  sessionsLoaded(sessions: Array<any>): void {
+    this.sessions = [...sessions]
+  }
+
+  moreSessionsLoaded(sessions: Array<any>): void {
     sessions.forEach((session: any) => {
       this.sessions.push(session)
     })

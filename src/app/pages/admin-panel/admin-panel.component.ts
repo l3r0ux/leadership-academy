@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Application } from 'src/app/shared/models/application';
+import { Component, OnInit, Output } from '@angular/core';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -26,22 +26,63 @@ export class AdminPanelComponent implements OnInit {
       routerLink: 'pauline-leadership'
     }
   ]
-  applications!: Array<Application>;
+  applications: Array<any> = [];
   loadingApplications = false
+  isLoadingMore = false
+  limit = 5
+  isAllApplications = false
 
   constructor(
     private firestoreService: FirestoreService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private snackbarService: SnackbarService
   ) { }
 
   async ngOnInit(): Promise<void> {
     this.loadingApplications = true
-
     this.applications = await this.firestoreService.getApplications()
     this.loadingApplications = false
+
+    await this.checkCanLoadMore()
 
     this.modalService.applicationDeletedSubject.subscribe((application: any) => {
       this.applications = this.applications.filter((applicationI: any) => applicationI.id !== application.id)
     })
+  }
+
+  async loadMore(): Promise<void> {
+    this.isLoadingMore = true
+    this.limit += 5
+
+    try {
+      await this.loadNextApplications()
+    } catch (error: any) {
+      console.error(error)
+      this.snackbarService.showSnackbar({ text: 'Something went wrong', success: false })
+    }
+    this.isLoadingMore = false
+  }
+
+  async loadNextApplications(): Promise<void> {
+    const nextApplications = await this.firestoreService.loadMoreApplications(this.applications[this.applications.length - 1].createdAt)
+    const lastDoc: any = await this.firestoreService.getLastApplication()
+
+    console.log(nextApplications)
+
+    this.applications = this.applications.concat(nextApplications)
+
+    if (nextApplications[nextApplications.length - 1].id === lastDoc.id) {
+      this.isAllApplications = true
+    }
+  }
+
+  async checkCanLoadMore(): Promise<void> {
+    const lastDoc: any = await this.firestoreService.getLastApplication()
+
+    if (this.applications[this.applications.length - 1]?.id === lastDoc?.id) {
+      this.isAllApplications = true
+    } else {
+      this.isAllApplications = false
+    }
   }
 }

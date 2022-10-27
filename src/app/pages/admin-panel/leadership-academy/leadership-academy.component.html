@@ -5,5 +5,14 @@
 <div class="loading-spinner" *ngIf="loading">
     <app-loading-spinner ></app-loading-spinner>
 </div>
-<app-conferences *ngIf="tabSelected.selector === 'conferences'" [countries]="countries"></app-conferences>
-<app-sessions *ngIf="tabSelected.selector === 'sessions'" [sessions]="sessions"></app-sessions>
+<app-conferences
+    *ngIf="tabSelected.selector === 'conferences'"
+    [countries]="countries"
+    (countriesLoaded)="countriesLoaded($event)">
+</app-conferences>
+<app-sessions
+    *ngIf="tabSelected.selector === 'sessions'"
+    [sessions]="sessions"
+    (moreLoaded)="moreSessionsLoaded($event)"
+    (sessionsLoaded)="sessionsLoaded($event)">
+</app-sessions>

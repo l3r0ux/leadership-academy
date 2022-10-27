@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Session } from 'src/app/shared/models/conference';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 
@@ -15,7 +14,7 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     routerLink: undefined
   }
   countries: Array<any> = []
-  sessions: Array<Session> = []
+  sessions: Array<any> = []
 
   loading = false
 
@@ -39,7 +38,7 @@ export class LeadershipAcademyAdminComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loading = true
-    this.countries = await this.firestoreService.getData('leadership-academy-countries')
+    this.countries = await this.firestoreService.getCountryData('leadership-academy-countries')
     this.loading = false
   }
 
@@ -48,12 +47,12 @@ export class LeadershipAcademyAdminComponent implements OnInit {
     if (tab.selector === 'sessions') {
       this.sessions = []
       this.loading = true
-      this.sessions = await this.firestoreService.getData('leadership-academy-sessions')
+      this.sessions = await this.firestoreService.getSessionData('leadership-academy-sessions')
       this.loading = false
     } else if (tab.selector === 'conferences') {
       this.countries = []
       this.loading = true
-      this.countries = await this.firestoreService.getData('leadership-academy-countries')
+      this.countries = await this.firestoreService.getCountryData('leadership-academy-countries')
       this.loading = false
     }
   }
@@ -78,5 +77,19 @@ export class LeadershipAcademyAdminComponent implements OnInit {
         this.modalService.openModal('Add session', this.sessions)
         break
     }
+  }
+
+  sessionsLoaded(sessions: Array<any>): void {
+    this.sessions = [...sessions]
+  }
+
+  moreSessionsLoaded(sessions: Array<any>): void {
+    sessions.forEach((session: any) => {
+      this.sessions.push(session)
+    })
+  }
+
+  countriesLoaded(countries: Array<any>): void {
+    this.countries = [...countries]
   }
 }

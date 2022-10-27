@@ -34,7 +34,7 @@ export class LeadershipAcademyComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loading = true
-    this.countries = await this.firestoreService.getData('leadership-academy-countries')
+    this.countries = await this.firestoreService.getCountryData('leadership-academy-countries')
     this.loading = false
   }
 
@@ -43,12 +43,12 @@ export class LeadershipAcademyComponent implements OnInit {
     if (tab.selector === 'sessions') {
       this.sessions = []
       this.loading = true
-      this.sessions = await this.firestoreService.getData('leadership-academy-sessions')
+      this.sessions = await this.firestoreService.getSessionData('leadership-academy-sessions', 5, true)
       this.loading = false
     } else if (tab.selector === 'conferences') {
       this.countries = []
       this.loading = true
-      this.countries = await this.firestoreService.getData('leadership-academy-countries')
+      this.countries = await this.firestoreService.getCountryData('leadership-academy-countries')
       this.loading = false
     }
   }

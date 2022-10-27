@@ -74,10 +74,10 @@ export class AddVideoComponent implements OnInit {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
             foundConference.videos.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
-              this.modalService.leadershipCountryUpdatedSubject.next(country)
+              this.modalService.leadershipCountryChangedSubject.next(country)
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
             } else if (this.router.url.includes('the-forum')) {
-              this.modalService.forumCountryUpdatedSubject.next(country)
+              this.modalService.forumCountryChangedSubject.next(country)
               await this.firestoreService.updateData(country, 'the-forum-countries')
             } else if (this.router.url.includes('pauline')) {
               await this.firestoreService.updateData(country, 'pauline-leadership-countries')
@@ -117,13 +117,13 @@ export class AddVideoComponent implements OnInit {
           if (url) {
             session.videos.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
-              this.modalService.leadershipSessionUpdatedSubject.next(session)
+              this.modalService.leadershipSessionChangedSubject.next(session)
               await this.firestoreService.updateData(session, 'leadership-academy-sessions')
             } else if (this.router.url.includes('the-forum')) {
-              this.modalService.forumSessionUpdatedSubject.next(session)
+              this.modalService.forumSessionChangedSubject.next(session)
               await this.firestoreService.updateData(session, 'the-forum-sessions')
             } else if (this.router.url.includes('pauline')) {
-              this.modalService.paulineSessionUpdatedSubject.next(session)
+              this.modalService.paulineSessionChangedSubject.next(session)
               await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
             }
           }

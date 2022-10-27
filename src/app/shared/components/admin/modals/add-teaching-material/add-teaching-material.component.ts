@@ -73,13 +73,13 @@ export class AddTeachingMaterialComponent implements OnInit {
             session.teachingMaterials.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
               await this.firestoreService.updateData(session, 'leadership-academy-sessions')
-              this.modalService.leadershipSessionUpdatedSubject.next(session)
+              this.modalService.leadershipSessionChangedSubject.next(session)
             } else if (this.router.url.includes('the-forum')) {
               await this.firestoreService.updateData(session, 'the-forum-sessions')
-              this.modalService.forumSessionUpdatedSubject.next(session)
+              this.modalService.forumSessionChangedSubject.next(session)
             } else if (this.router.url.includes('pauline')) {
               await this.firestoreService.updateData(session, 'pauline-leadership-sessions')
-              this.modalService.paulineSessionUpdatedSubject.next(session)
+              this.modalService.paulineSessionChangedSubject.next(session)
             }
           }
         })
@@ -118,10 +118,10 @@ export class AddTeachingMaterialComponent implements OnInit {
             foundConference.teachingMaterials.push({ title, url })
             if (this.router.url.includes('leadership-academy')) {
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
-              this.modalService.leadershipCountryUpdatedSubject.next(country)
+              this.modalService.leadershipCountryChangedSubject.next(country)
             } else if (this.router.url.includes('the-forum')) {
               await this.firestoreService.updateData(country, 'the-forum-countries')
-              this.modalService.forumCountryUpdatedSubject.next(country)
+              this.modalService.forumCountryChangedSubject.next(country)
             } else if (this.router.url.includes('pauline')) {
               await this.firestoreService.updateData(country, 'pauline-leadership-countries')
             }

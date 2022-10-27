@@ -1,6 +1,6 @@
 <div class="inner-container">
   <ng-container *ngFor="let country of countries">
-    <div *ngIf="country.conferences.length">
+    <div *ngIf="showCountryHeading(country)">
       <h3>{{ country.country }}</h3>
       <ng-container *ngFor="let conference of country.conferences">
         <div class="details" *ngIf="conference.isLive">

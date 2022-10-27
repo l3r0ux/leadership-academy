@@ -39,7 +39,8 @@ export class TheForumAdminComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loading = true
-    this.countries = await this.firestoreService.getData('the-forum-countries')
+    this.countries = await this.firestoreService.getCountryData('the-forum-countries')
+    console.log(this.countries)
     this.loading = false
   }
 
@@ -48,12 +49,12 @@ export class TheForumAdminComponent implements OnInit {
     if (tab.selector === 'sessions') {
       this.sessions = []
       this.loading = true
-      this.sessions = await this.firestoreService.getData('the-forum-sessions')
+      this.sessions = await this.firestoreService.getSessionData('the-forum-sessions')
       this.loading = false
     } else if (tab.selector === 'conferences') {
       this.countries = []
       this.loading = true
-      this.countries = await this.firestoreService.getData('the-forum-countries')
+      this.countries = await this.firestoreService.getCountryData('the-forum-countries')
       this.loading = false
     }
   }
@@ -78,5 +79,19 @@ export class TheForumAdminComponent implements OnInit {
         this.modalService.openModal('Add session', this.sessions)
         break
     }
+  }
+
+  sessionsLoaded(sessions: Array<any>): void {
+    this.sessions = [...sessions]
+  }
+
+  moreSessionsLoaded(sessions: Array<any>): void {
+    sessions.forEach((session: any) => {
+      this.sessions.push(session)
+    })
+  }
+
+  countriesLoaded(countries: Array<any>): void {
+    this.countries = [...countries]
   }
 }

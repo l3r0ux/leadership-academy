@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
@@ -11,6 +11,7 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 })
 export class ConferencesAdminComponent implements OnInit {
   @Input() countries!: Array<any>
+  @Output() countriesLoaded = new EventEmitter<Array<any>>();
   loading = false
 
   constructor(
@@ -20,28 +21,24 @@ export class ConferencesAdminComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.modalService.leadershipCountryAddedSubject.subscribe((country: any) => {
-      this.countries.push(country)
-    })
-    this.modalService.leadershipCountryUpdatedSubject.subscribe((country: any) => {
-      let foundCountryIndex = this.countries.findIndex((countryI: any) => countryI.id === country.id)
-      this.countries[foundCountryIndex] = {...country}
-    })
-    this.modalService.leadershipCountryDeletedSubject.subscribe((country: any) => {
-      this.countries = this.countries.filter((countryI: any) => countryI.id !== country.id)
+  async ngOnInit(): Promise<void> {
+    this.modalService.leadershipCountryChangedSubject.subscribe(async () => {
+      await this.fetchNewAcademyCountries()
     })
 
-    this.modalService.forumCountryAddedSubject.subscribe((country: any) => {
-      this.countries.push(country)
+    this.modalService.forumCountryChangedSubject.subscribe(async () => {
+      await this.fetchNewforumCountries()
     })
-    this.modalService.forumCountryUpdatedSubject.subscribe((country: any) => {
-      let foundCountryIndex = this.countries.findIndex((countryI: any) => countryI.id === country.id)
-      this.countries[foundCountryIndex] = {...country}
-    })
-    this.modalService.forumCountryDeletedSubject.subscribe((country: any) => {
-      this.countries = this.countries.filter((countryI: any) => countryI.id !== country.id)
-    })
+  }
+
+  async fetchNewAcademyCountries(): Promise<void> {
+    const countries = await this.firestoreService.getCountryData('leadership-academy-countries')
+    this.countriesLoaded.emit(countries)
+  }
+
+  async fetchNewforumCountries(): Promise<void> {
+    const countries = await this.firestoreService.getCountryData('the-forum-countries')
+    this.countriesLoaded.emit(countries)
   }
 
   async toggleLive(event: any, country: any, conference: any) {
