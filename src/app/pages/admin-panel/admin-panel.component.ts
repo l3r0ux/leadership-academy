@@ -45,8 +45,9 @@ export class AdminPanelComponent implements OnInit {
 
     await this.checkCanLoadMore()
 
-    this.modalService.applicationDeletedSubject.subscribe((application: any) => {
-      this.applications = this.applications.filter((applicationI: any) => applicationI.id !== application.id)
+    this.modalService.applicationDeletedSubject.subscribe(async () => {
+      this.applications = await this.firestoreService.getApplications(this.limit)
+      await this.checkCanLoadMore()
     })
   }
 

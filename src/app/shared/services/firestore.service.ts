@@ -47,11 +47,11 @@ export class FirestoreService {
       .delete()
   }
 
-  async getApplications(): Promise<any> {
+  async getApplications(limit: number = 5): Promise<any> {
     const applications: any = []
 
     await this.afs
-      .collection('applications', ref => ref.orderBy('createdAt').limit(5))
+      .collection('applications', ref => ref.orderBy('createdAt').limit(limit))
       .get()
       .forEach((querySnapshot: any) => {
         querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
