@@ -36,10 +36,4 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  closeModal(event: any) : void {
-    if (event.target === this.overlay.nativeElement) {
-      this.modalService.modalVisible = false
-    }
-  }
 }

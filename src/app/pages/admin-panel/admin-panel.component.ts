@@ -68,8 +68,6 @@ export class AdminPanelComponent implements OnInit {
     const nextApplications = await this.firestoreService.loadMoreApplications(this.applications[this.applications.length - 1].createdAt)
     const lastDoc: any = await this.firestoreService.getLastApplication()
 
-    console.log(nextApplications)
-
     this.applications = this.applications.concat(nextApplications)
 
     if (nextApplications[nextApplications.length - 1].id === lastDoc.id) {

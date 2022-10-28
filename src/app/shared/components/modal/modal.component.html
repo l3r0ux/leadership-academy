@@ -1,4 +1,4 @@
-<div *ngIf="modalService.modalVisible" #overlay class="overlay" (click)="closeModal($event)" [@overlayFadeInOut]>
+<div *ngIf="modalService.modalVisible" #overlay class="overlay" [@overlayFadeInOut]>
     <div [ngSwitch]="modalService.title.toLocaleLowerCase()">
         <div [@modalFadeIn] *ngSwitchCase="'sign up'">
             <app-sign-up></app-sign-up>

@@ -52,7 +52,7 @@ export class SessionComponent implements OnInit {
   async checkCanLoadMore(collection: string): Promise<void> {
     const lastDoc: any = await this.firestoreService.getLastSession(collection)
 
-    if (this.sessions[this.sessions.length - 1].id === lastDoc.id) {
+    if (this.sessions[this.sessions.length - 1]?.id === lastDoc?.id) {
       this.isAllSessions = true
     } else {
       this.isAllSessions = false
