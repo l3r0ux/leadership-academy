@@ -9,6 +9,7 @@ h4 {
     .details {
         h3 {
             margin-bottom: 0.5rem;
+            font-family: 'Roboto', Arial !important;
         }
 
         max-width: 60rem;
@@ -37,6 +38,7 @@ h4 {
         margin-bottom: 2rem;
 
         .image-container {
+            display: flex;
             position: relative;
 
             .download-icon {

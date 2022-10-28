@@ -7,8 +7,8 @@
     &::after {
         content: "";
         background: no-repeat url(https://res.cloudinary.com/djkyfcfl1/image/upload/v1666942817/leadership_clarity/febalogo_p9wpsk.png);
-        background-size: 550px 500px;
-        background-position: 95% 50%;
+        background-size: 1150px 1000px;
+        background-position: right -10rem top 10rem;
         background-attachment: fixed;
         opacity: 0.2;
         top: 0;
@@ -31,10 +31,23 @@
     justify-content: center;
 }
 
+h1, h2, h3 {
+    font-family: engravers mt, Arial;
+}
+
 @media screen and (max-width: 430px) {
     .main-container {
         h1 {
             font-size: 1.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main-container {
+        &::after {
+            background-size: 700px 650px;
+            background-position: right -20rem top 5rem;
         }
     }
 }

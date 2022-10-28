@@ -70,10 +70,14 @@
 
             img {
                 object-fit: cover;
-                max-height: 18rem;
+                max-height: 28em;
             }
         }
     }
+}
+
+h1, h2, h3 {
+    font-family: engravers mt, Arial;
 }
 
 @media screen and (max-width: 720px) {
