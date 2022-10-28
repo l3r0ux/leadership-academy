@@ -40,7 +40,6 @@ export class TheForumAdminComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.loading = true
     this.countries = await this.firestoreService.getCountryData('the-forum-countries')
-    console.log(this.countries)
     this.loading = false
   }
 

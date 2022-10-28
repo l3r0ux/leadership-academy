@@ -1,4 +1,5 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { SnackbarService } from 'src/app/shared/services/snackbar.service';
@@ -26,9 +27,11 @@ export class AdminPanelComponent implements OnInit {
       routerLink: 'pauline-leadership'
     }
   ]
+  searchForm!: FormGroup
   applications: Array<any> = [];
   loadingApplications = false
   isLoadingMore = false
+  searchLoading = false
   limit = 5
   isAllApplications = false
 
@@ -39,6 +42,10 @@ export class AdminPanelComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.searchForm = new FormGroup({
+      'search': new FormControl(null, [Validators.required, Validators.email])
+    })
+
     this.loadingApplications = true
     this.applications = await this.firestoreService.getApplications()
     this.loadingApplications = false
@@ -49,6 +56,22 @@ export class AdminPanelComponent implements OnInit {
       this.applications = await this.firestoreService.getApplications(this.limit)
       await this.checkCanLoadMore()
     })
+  }
+
+  async onSearch(): Promise<void> {
+    this.searchForm.markAllAsTouched()
+    if (!this.searchForm.valid) return
+
+    const searchTerm = this.searchForm.value.search
+
+    this.searchLoading = true
+    try {
+      this.applications = await this.firestoreService.searchApplications(searchTerm)
+    } catch (error) {
+      this.snackbarService.showSnackbar({ text: 'Oops! Something went wrong', success: false })
+    }
+    this.searchLoading = false
+    this.limit = 5
   }
 
   async loadMore(): Promise<void> {

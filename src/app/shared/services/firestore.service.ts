@@ -70,6 +70,22 @@ export class FirestoreService {
       .set(application)
   }
 
+  async searchApplications(searchTerm: string): Promise<any> {
+    let applications: any = []
+
+    await this.afs
+      .collection('applications', ref => ref.where('email', '==', searchTerm))
+      .get()
+        .forEach((querySnapshot: any) => {
+          querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+            const searchedApplication = doc.data()
+            searchedApplication['id'] = doc.id
+            applications.push(searchedApplication)
+          });
+        })
+      return applications
+  }
+
   // Pagination
   async loadMoreApplications(lastApplication: any): Promise<any> {
     const applications: any = []

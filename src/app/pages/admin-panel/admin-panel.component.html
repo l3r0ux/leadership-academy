@@ -7,11 +7,29 @@
         </div>
         <div class="application-container">
             <h2>Applications</h2>
-            <div class="search-container">
-                <input type="text" class="text-input" placeholder="Search by email...">
-                <button class="btn">Search</button>
-            </div>
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-container">
+                <input formControlName="search" type="text" class="text-input" placeholder="Search by email...">
+                <ng-container *ngIf="searchForm.get('search')?.touched">
+                    <span
+                      class="validation-error"
+                      *ngIf="searchForm.get('search')?.hasError('required')"
+                    >
+                      A search term is required
+                    </span>
+                    <span
+                      class="validation-error"
+                      *ngIf="searchForm.get('search')?.hasError('email')"
+                    >
+                      Must be in email format
+                    </span>
+                </ng-container>
+                <button class="btn" type="submit">
+                    <app-loading-spinner *ngIf="searchLoading"></app-loading-spinner>
+                    <span *ngIf="!searchLoading">Search</span>
+                </button>
+            </form>
             <app-expansion-panel *ngFor="let application of applications" [application]="application" [header]="application.email"></app-expansion-panel>
+            <h4 *ngIf="!applications.length && !loadingApplications">No applications</h4>
             <app-loading-spinner *ngIf="loadingApplications"></app-loading-spinner>
             <button *ngIf="this.applications.length >= 5 && !this.isAllApplications" (click)="loadMore()" class="load-more" class="btn load-more">
                 <app-loading-spinner *ngIf="isLoadingMore"></app-loading-spinner>

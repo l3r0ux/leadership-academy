@@ -25,13 +25,13 @@
             width: 30%;
 
             .load-more {
-                margin: 0 auto;
-                background-color: transparent;
-                min-width: 7rem;
-
                 app-loading-spinner {
                     padding: 0 !important;
                 }
+
+                margin: 0 auto;
+                background-color: transparent;
+                min-width: 7rem;
             }
 
             h2 {
@@ -46,8 +46,21 @@
             }
 
             .search-container {
+                position: relative;
                 display: flex;
-                margin-bottom: 0.8rem;
+                margin-bottom: 1.2rem;
+
+                app-loading-spinner {
+                    padding: 0 !important;
+                }
+
+                .btn {
+                    min-width: 6rem;
+                }
+
+                .validation-error {
+                    bottom: -1rem;
+                }
 
                 input {
                     margin-right: 0.6rem;
