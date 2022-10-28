@@ -18,7 +18,13 @@ body {
 .master-container {
     position: relative;
     min-height: calc(100vh - 72px);
-    padding-bottom: 130px;
+    padding-bottom: 252px;
+}
+
+@media screen and (max-width: 727px) {
+    .master-container {
+        padding-bottom: 466px;
+    }
 }
 
 app-footer {
