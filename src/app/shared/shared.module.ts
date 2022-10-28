@@ -35,6 +35,7 @@ import { SnackbarComponent } from './components/admin/snackbar/snackbar.componen
 import { AddCountryComponent } from './components/admin/modals/add-country/add-country.component';
 import { PasswordResetRequestSuccessComponent } from './components/modals/password-reset-request-success/password-reset-request-success.component';
 import { PasswordResetRequestFailedComponent } from './components/modals/password-reset-request-failed/password-reset-request-failed.component';
+import { PaulineStudentsComponent } from './components/admin/pauline-students/pauline-students.component';
 
 const components = [
   TabsComponent,
@@ -68,7 +69,8 @@ const components = [
   SnackbarComponent,
   AddCountryComponent,
   PasswordResetRequestSuccessComponent,
-  PasswordResetRequestFailedComponent
+  PasswordResetRequestFailedComponent,
+  PaulineStudentsComponent
 ]
 
 @NgModule({

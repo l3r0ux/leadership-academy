@@ -1,12 +1,19 @@
 <div class="header">
     <app-tabs [tabs]="tabs" (tabChanged)="setTab($event)"></app-tabs>
-    <button class="btn" (click)="openAddResource()">{{ displayAddText() }}</button>
+    <button *ngIf="tabSelected.selector !== 'students'" class="btn" (click)="openAddResource()">{{ displayAddText() }}</button>
 </div>
 <div class="loading-spinner" *ngIf="loading">
     <app-loading-spinner ></app-loading-spinner>
 </div>
 <app-sessions
+    *ngIf="tabSelected.selector === 'sessions'"
     (moreLoaded)="moreSessionsLoaded($event)"
     (sessionsLoaded)="sessionsLoaded($event)"
     [sessions]="sessions">
 </app-sessions>
+<app-pauline-students
+    *ngIf="tabSelected.selector === 'students'"
+    (moreLoaded)="moreStudentsLoaded($event)"
+    (studentsLoaded)="studentsLoaded($event)"
+    [students]="students">
+</app-pauline-students>

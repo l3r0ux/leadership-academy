@@ -22,6 +22,13 @@ export class LoginComponent implements OnInit {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
     })
+
+    this.loginForm.valueChanges.subscribe((value: any) => {
+      if (this.loginForm.controls['password'].hasError('incorrectPassword')
+        || this.loginForm.controls['password'].hasError('somethingWrong')) {
+          this.loginForm.controls['password'].setErrors(null)
+        }
+    })
   }
 
   async login(): Promise<void> {
@@ -38,8 +45,9 @@ export class LoginComponent implements OnInit {
       console.error(error.code)
       if (error.code.includes('wrong-password') || error.code.includes('user-not-found')) {
         this.loginForm.controls['password'].setErrors({ incorrectPassword: true })
+      } else if (error) {
+        this.loginForm.controls['password'].setErrors({ somethingWrong: true })
       }
-      // TODO: open something went wrong modal
     }
     this.loading = false
   }

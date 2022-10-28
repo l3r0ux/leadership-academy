@@ -15,6 +15,8 @@ export class ModalService {
 
   applicationDeletedSubject: Subject<any> = new Subject()
 
+  studentUnenrolledSubject: Subject<any> = new Subject()
+
   modalVisible: boolean = false
   title: string = ''
   data: any = null

@@ -1,0 +1,10 @@
+<div class="student-container" *ngFor="let student of students">
+    <span><strong>{{ student.email }}</strong></span>
+    <button class="btn" (click)="unenroll(student)">
+        <span>Unenroll</span>
+    </button>
+</div>
+<button *ngIf="this.students.length >= 5 && !this.isAllStudents" (click)="loadMore()" class="load-more" class="btn load-more">
+    <app-loading-spinner *ngIf="isLoadingMore"></app-loading-spinner>
+    <span *ngIf="!isLoadingMore">Load more</span>
+</button>

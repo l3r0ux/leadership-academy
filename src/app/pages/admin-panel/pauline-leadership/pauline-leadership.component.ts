@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
+import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 
 @Component({
   selector: 'app-pauline-leadership',
@@ -14,6 +15,7 @@ export class PaulineLeadershipAdminComponent implements OnInit {
     routerLink: undefined
   }
   sessions: Array<any> = []
+  students: Array<any> = []
 
   loading = false
 
@@ -22,12 +24,18 @@ export class PaulineLeadershipAdminComponent implements OnInit {
       title: 'Virtual sessions',
       selector: 'sessions',
       routerLink: undefined
+    },
+    {
+      title: 'Pauline students',
+      selector: 'students',
+      routerLink: undefined
     }
   ]
 
   constructor(
     private modalService: ModalService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private snackbarService: SnackbarService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -36,8 +44,30 @@ export class PaulineLeadershipAdminComponent implements OnInit {
     this.loading = false
   }
 
-  setTab(tab: any): void {
+  async setTab(tab: any): Promise<void> {
     this.tabSelected = tab
+    
+    if (this.tabSelected.selector === 'sessions') {
+      this.sessions = []
+      this.loading = true
+      try {
+        this.sessions = await this.firestoreService.getSessionData('pauline-leadership-sessions')
+      } catch (error) {
+        console.error(error)
+        this.snackbarService.showSnackbar({ text: 'Oops! Something went wrong', success: false })
+      }
+      this.loading = false
+    } else if (this.tabSelected.selector === 'students') {
+      this.students = []
+      this.loading = true
+      try {
+        this.students = await this.firestoreService.getPaulineStudents()
+      } catch (error) {
+        console.error(error)
+        this.snackbarService.showSnackbar({ text: 'Oops! Something went wrong', success: false })
+      }
+      this.loading = false
+    }
   }
 
   displayAddText(): string {
@@ -64,6 +94,16 @@ export class PaulineLeadershipAdminComponent implements OnInit {
   moreSessionsLoaded(sessions: Array<any>): void {
     sessions.forEach((session: any) => {
       this.sessions.push(session)
+    })
+  }
+
+  studentsLoaded(students: Array<any>): void {
+    this.students = [...students]
+  }
+
+  moreStudentsLoaded(students: Array<any>): void {
+    students.forEach((student: any) => {
+      this.students.push(student)
     })
   }
 }

@@ -28,16 +28,48 @@ export class FirestoreService {
       .set({
         email,
         isAdmin: false,
+        isPaulineStudent: false,
         programsEnrolled: []
     })
   }
 
+  async getPaulineStudents(limit: number = 5): Promise<any> {
+    const students: any = []
+
+    await this.afs
+      .collection('users', ref => ref.where('isPaulineStudent', '==', true).orderBy('email').limit(limit))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          const student = doc.data()
+          student['id'] = doc.id
+          students.push(student)
+        });
+      })
+
+    return students
+  }
+
   // Applications
   async acceptApplication(application: any) {
+    let user: any = null
+
+    await this.afs
+      .collection('users')
+      .doc(application.userId)
+      .get()
+      .forEach((snapshot: any) => {
+        user = snapshot.data()
+        if (!user.programsEnrolled.includes(application.program)) {
+          user.programsEnrolled.push(application.program)
+        }
+        user.isPaulineStudent = user.programsEnrolled.includes('Pauline Leadership Training')
+      })
+
     return await this.afs
       .collection('users')
       .doc(application.userId)
-      .update({ programsEnrolled: arrayUnion(application.program) })
+      .set(user)
   }
 
   async removeApplication(application: any) {
@@ -76,13 +108,13 @@ export class FirestoreService {
     await this.afs
       .collection('applications', ref => ref.where('email', '==', searchTerm))
       .get()
-        .forEach((querySnapshot: any) => {
-          querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
-            const searchedApplication = doc.data()
-            searchedApplication['id'] = doc.id
-            applications.push(searchedApplication)
-          });
-        })
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          const searchedApplication = doc.data()
+          searchedApplication['id'] = doc.id
+          applications.push(searchedApplication)
+        });
+      })
       return applications
   }
 
@@ -153,7 +185,40 @@ export class FirestoreService {
     return lastDoc
   }
 
-  // Conferences and sessions adding/updating/deleting
+  async loadMoreStudents(lastStudent: any): Promise<any> {
+    const students: any = []
+
+    await this.afs
+      .collection('users', ref => ref.where('isPaulineStudent', '==', true).orderBy('email').startAfter(lastStudent).limit(5))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          const student = doc.data()
+          student['id'] = doc.id
+          students.push(student)
+        });
+      })
+
+    return students
+  }
+
+  async getLastStudent() {
+    let lastDoc
+
+    await this.afs
+      .collection('users', ref => ref.where('isPaulineStudent', '==', true).orderBy('email', 'desc').limit(1))
+      .get()
+      .forEach((querySnapshot: any) => {
+        querySnapshot.docs.forEach((doc: QueryDocumentSnapshot) => {
+          lastDoc = doc.data()
+          lastDoc['id'] = doc.id
+        });
+      })
+
+    return lastDoc
+  }
+
+  // Conferences, sessions and students adding/updating/deleting
   async addData(data: any, collection: string) {
     const id = uuidv4()
     data.id = id
@@ -226,5 +291,18 @@ export class FirestoreService {
       .collection(collection)
       .doc(data.id)
       .delete();
+  }
+
+  async unenrollPaulineStudent(student: any): Promise<any> {
+    const programIndex = student.programsEnrolled.indexOf('Pauline Leadership Training')
+    if (programIndex !== -1) {
+      student.programsEnrolled.splice(programIndex, 1)
+      student.isPaulineStudent = false
+    }
+
+    return this.afs
+      .collection('users')
+      .doc(student.id)
+      .set(student)
   }
 }

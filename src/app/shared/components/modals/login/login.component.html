@@ -40,6 +40,12 @@
             >
               Incorrect password or email
             </span>
+            <span
+              class="validation-error"
+              *ngIf="loginForm.get('password')?.hasError('somethingWrong')"
+            >
+              Oops! Something went wrong. Please try again later
+            </span>
           </ng-container>
         </div>
         <button class="btn login-btn" type="submit">

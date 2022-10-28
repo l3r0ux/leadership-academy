@@ -12,7 +12,6 @@ import { LeadershipAcademyComponent } from './pages/leadership-academy/leadershi
 import { PaulineLeadershipComponent } from './pages/pauline-leadership/pauline-leadership.component';
 import { TheForumComponent } from './pages/the-forum/the-forum.component';
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
-import { ApplicationsComponent } from './pages/admin-panel/applications/applications.component';
 import { TheForumAdminComponent } from './pages/admin-panel/the-forum/the-forum.component';
 import { LeadershipAcademyAdminComponent } from './pages/admin-panel/leadership-academy/leadership-academy.component';
 import { PaulineLeadershipAdminComponent } from './pages/admin-panel/pauline-leadership/pauline-leadership.component';
@@ -31,7 +30,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     PaulineLeadershipComponent,
     TheForumComponent,
     AdminPanelComponent,
-    ApplicationsComponent,
     TheForumAdminComponent,
     LeadershipAcademyAdminComponent,
     PaulineLeadershipAdminComponent

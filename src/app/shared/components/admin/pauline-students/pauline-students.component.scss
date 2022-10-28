@@ -1,0 +1,18 @@
+.student-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ebebeb;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.load-more {
+    margin: 0 auto;
+    background-color: transparent;
+}
+
+.btn {
+    min-width: 7rem;
+}
