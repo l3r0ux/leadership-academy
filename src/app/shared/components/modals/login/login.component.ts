@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       'password': new FormControl(null, [Validators.required])
     })
 
-    this.loginForm.valueChanges.subscribe((value: any) => {
+    this.loginForm.valueChanges.subscribe(() => {
       if (this.loginForm.controls['password'].hasError('incorrectPassword')
         || this.loginForm.controls['password'].hasError('somethingWrong')) {
           this.loginForm.controls['password'].setErrors(null)

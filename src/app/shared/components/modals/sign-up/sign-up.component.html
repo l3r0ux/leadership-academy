@@ -40,6 +40,12 @@
               >
                 Email already in use
               </span>
+              <span
+                class="validation-error"
+                *ngIf="signUpForm.get('password')?.hasError('weakPassword')"
+              >
+                Password should be more than 5 characters
+              </span>
             </ng-container>
           </div>
           <button class="btn submit-btn" type="submit">

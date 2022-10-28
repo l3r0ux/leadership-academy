@@ -22,6 +22,13 @@ export class SignUpComponent implements OnInit {
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'password': new FormControl(null, [Validators.required])
     })
+
+    this.signUpForm.valueChanges.subscribe(() => {
+      if (this.signUpForm.controls['password'].hasError('weakPassword')
+        || this.signUpForm.controls['password'].hasError('emailAlreadyInUse')) {
+          this.signUpForm.controls['password'].setErrors(null)
+        }
+    })
   }
 
   async submit(): Promise<void> {
@@ -40,6 +47,8 @@ export class SignUpComponent implements OnInit {
     } catch (error: any) {
       if (error.message.includes('email-already-in-use')) {
         this.signUpForm.controls['password'].setErrors({ emailAlreadyInUse: true })
+      } else if (error.message.includes('weak-password')) {
+        this.signUpForm.controls['password'].setErrors({ weakPassword: true })
       } else {
         this.modalService.openModal('Sign up failed');
         console.error(error)

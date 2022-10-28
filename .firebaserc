@@ -1,14 +1,14 @@
 {
   "targets": {
-    "leadership-academy-9cf40": {
+    "leadership-academy-eb6e1": {
       "hosting": {
         "leadership-academy": [
-          "leadership-academy-9cf40"
+          "leadership-academy-eb6e1"
         ]
       }
     }
   },
   "projects": {
-    "default": "leadership-academy-9cf40"
+    "default": "leadership-academy-eb6e1"
   }
 }
