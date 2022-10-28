@@ -37,7 +37,7 @@
     margin: 0 auto;
     position: relative;
     margin-top: 15rem;
-    padding: 0 4rem;
+    padding: 0 2rem;
 
     h2 {
         text-align: center;
@@ -46,13 +46,16 @@
 
     p {
         line-height: 1.4;
-        padding-right: 4rem;
     }
 
     .details {
         display: flex;
-        align-items: center;
         margin-bottom: 4rem;
+
+        h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
 
         p {
             flex: 1;
@@ -63,6 +66,7 @@
             align-items: center;
             justify-content: center;
             flex: 1;
+            margin-left: 4rem;
 
             img {
                 object-fit: cover;
@@ -96,7 +100,11 @@
 
             p {
                 padding: 0 !important;
-                margin-bottom: 1rem;
+                margin-bottom: 3rem;
+            }
+
+            .image {
+                margin-left: 0;
             }
         }
     }
