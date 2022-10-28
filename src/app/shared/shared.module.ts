@@ -33,6 +33,8 @@ import { SignUpSuccessComponent } from './components/modals/sign-up-success/sign
 import { SignUpFailComponent } from './components/modals/sign-up-fail/sign-up-fail.component';
 import { SnackbarComponent } from './components/admin/snackbar/snackbar.component';
 import { AddCountryComponent } from './components/admin/modals/add-country/add-country.component';
+import { PasswordResetRequestSuccessComponent } from './components/modals/password-reset-request-success/password-reset-request-success.component';
+import { PasswordResetRequestFailedComponent } from './components/modals/password-reset-request-failed/password-reset-request-failed.component';
 
 const components = [
   TabsComponent,
@@ -64,7 +66,9 @@ const components = [
   SignUpSuccessComponent,
   SignUpFailComponent,
   SnackbarComponent,
-  AddCountryComponent
+  AddCountryComponent,
+  PasswordResetRequestSuccessComponent,
+  PasswordResetRequestFailedComponent
 ]
 
 @NgModule({

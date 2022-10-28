@@ -6,19 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  backgroundImageURL = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705063/leadership_clarity/space_ydvfqk.jpg'
+  backgroundImageURL = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666945263/leadership_clarity/space_gexuvs.jpg'
   trainingTiles: Array<any> = [
     {
       program: 'leadership-academy',
       link: '/leadership-academy',
       text: 'FEBC Intl. Leadership Academy',
-      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/leadership-academy_zpvvi6.jpg'
+      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666945451/leadership_clarity/leadership-academy_b1yf72.jpg'
     },
     {
       program: 'the-forum',
       link: '/the-forum',
       text: 'The Forum',
-      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705062/leadership_clarity/the-forum_xmc8bd.jpg'
+      imageURL: 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666945376/leadership_clarity/the-forum_ug7g9p.jpg'
     },
     {
       program: 'pauline-leadership',

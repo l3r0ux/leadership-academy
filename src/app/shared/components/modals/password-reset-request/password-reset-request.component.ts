@@ -33,8 +33,9 @@ export class PasswordResetRequestComponent implements OnInit {
     try {
       await this.authService.requestPasswordReset(email)
       this.modalService.closeModal();
+      this.modalService.openModal('Password reset request sent')
     } catch (error) {
-      // TODO: open something went wrong modal
+      this.modalService.openModal('Password reset request failed')
     }
     this.loading = false
   }

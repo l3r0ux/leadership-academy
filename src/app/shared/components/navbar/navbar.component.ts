@@ -11,8 +11,8 @@ import { ModalService } from '../../services/modal.service';
 export class NavbarComponent implements OnInit {
   @ViewChild('details') details!: ElementRef
   @ViewChild('mobileSidenav') mobileSidenav!: ElementRef
-  febaLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBA-logo_a8vtnj.jpg'
-  febcLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666705060/leadership_clarity/FEBC-logo_crwz0h.jpg'
+  febaLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666945601/leadership_clarity/FEBA-logo_azy1cy.jpg'
+  febcLogo = 'https://res.cloudinary.com/djkyfcfl1/image/upload/v1666945601/leadership_clarity/FEBC-logo_p4xfsw.jpg'
 
   constructor(
     public modalService: ModalService,

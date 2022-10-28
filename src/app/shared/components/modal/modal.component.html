@@ -51,5 +51,11 @@
         <div [@modalFadeIn] *ngSwitchCase="'add conference'">
             <app-add-conference></app-add-conference>
         </div>
+        <div [@modalFadeIn] *ngSwitchCase="'password reset request sent'">
+            <app-password-reset-request-success></app-password-reset-request-success>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'password reset request failed'">
+            <app-password-reset-request-failed></app-password-reset-request-failed>
+        </div>
     </div>
 </div>
