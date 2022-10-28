@@ -11,6 +11,19 @@ body {
     padding-top: 4.5rem;
 }
 
+.master-container {
+    position: relative;
+    min-height: calc(100vh - 72px);
+    padding-bottom: 130px;
+}
+
+app-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
 .active-link {
     color: #CD2037;
 }
