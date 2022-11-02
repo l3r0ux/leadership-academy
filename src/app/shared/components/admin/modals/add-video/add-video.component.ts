@@ -54,11 +54,11 @@ export class AddVideoComponent implements OnInit {
 
     let filePath = ''
     if (this.router.url.includes('leadership-academy')) {
-      filePath = `video-leadership-${title}-${conference.date}`
+      filePath = `video-leadership-${title}-${conference.date}-${this.video.name}`
     } else if (this.router.url.includes('the-forum')) {
-      filePath = `video-forum-${title}-${conference.date}`
+      filePath = `video-forum-${title}-${conference.date}-${this.video.name}`
     } else if (this.router.url.includes('pauline')) {
-      filePath = `video-pauline-${title}-${conference.date}`
+      filePath = `video-pauline-${title}-${conference.date}-${this.video.name}`
     }
 
     const fileRef = this.storage.ref(filePath);
@@ -98,11 +98,11 @@ export class AddVideoComponent implements OnInit {
 
     let filePath = ''
     if (this.router.url.includes('leadership-academy')) {
-      filePath = `video-leadership-${title}-${session.name}`
+      filePath = `video-leadership-${title}-${session.name}-${this.video.name}`
     } else if (this.router.url.includes('the-forum')) {
-      filePath = `video-forum-${title}-${session.name}`
+      filePath = `video-forum-${title}-${session.name}-${this.video.name}`
     } else if (this.router.url.includes('pauline')) {
-      filePath = `video-pauline-${title}-${session.name}`
+      filePath = `video-pauline-${title}-${session.name}-${this.video.name}`
     }
 
     const fileRef = this.storage.ref(filePath);

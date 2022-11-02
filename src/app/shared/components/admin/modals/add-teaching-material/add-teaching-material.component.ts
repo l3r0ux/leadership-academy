@@ -50,14 +50,14 @@ export class AddTeachingMaterialComponent implements OnInit {
   addSessionMaterial(): void {
     const { title } = this.addTeachingMaterialForm.value
     const { session } = this.modalService.data
-
+  
     let filePath = ''
     if (this.router.url.includes('leadership-academy')) {
-      filePath = `material-leadership-${title}-${session.name}`
+      filePath = `material-leadership-${title}-${session.name}-${this.teachingMaterial.name}`
     } else if (this.router.url.includes('the-forum')) {
-      filePath = `material-forum-${title}-${session.name}`
+      filePath = `material-forum-${title}-${session.name}-${this.teachingMaterial.name}`
     } else if (this.router.url.includes('pauline')) {
-      filePath = `material-pauline-${title}-${session.name}`
+      filePath = `material-pauline-${title}-${session.name}-${this.teachingMaterial.name}`
     }
 
     const fileRef = this.storage.ref(filePath);
@@ -97,11 +97,11 @@ export class AddTeachingMaterialComponent implements OnInit {
 
     let filePath = ''
     if (this.router.url.includes('leadership-academy')) {
-      filePath = `material-leadership-${title}-${conference.date}`
+      filePath = `material-leadership-${title}-${conference.date}-${this.teachingMaterial.name}`
     } else if (this.router.url.includes('the-forum')) {
-      filePath = `material-forum-${title}-${conference.date}`
+      filePath = `material-forum-${title}-${conference.date}-${this.teachingMaterial.name}`
     } else if (this.router.url.includes('pauline')) {
-      filePath = `material-pauline-${title}-${conference.date}`
+      filePath = `material-pauline-${title}-${conference.date}-${this.teachingMaterial.name}`
     }
 
     const fileRef = this.storage.ref(filePath);
