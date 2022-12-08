@@ -28,7 +28,7 @@ export class TrainingTileComponent implements OnInit {
   }
 
   navigate(tile: any): void {
-    if (this.authService.isLoggedIn && this.isEnrolled(tile.program)) {
+    if (this.authService.isLoggedIn && this.isEnrolled(tile.program) || tile.program === 'leadership-academy') {
       this.router.navigate([tile.link])
     } else if (this.authService.isLoggedIn && !this.isEnrolled(tile.program)) {
       this.modalService.openModal('Apply')

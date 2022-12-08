@@ -12,7 +12,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component:  HomeComponent },
-  { path: 'leadership-academy', component:  LeadershipAcademyComponent, canActivate: [AuthGuard] },
+  { path: 'leadership-academy', component:  LeadershipAcademyComponent },
   { path: 'pauline-leadership', component:  PaulineLeadershipComponent, canActivate: [AuthGuard] },
   { path: 'the-forum', component:  TheForumComponent, canActivate: [AuthGuard] },
   { path: 'admin', component:  AdminPanelComponent, canActivate: [AuthGuard], children: [
