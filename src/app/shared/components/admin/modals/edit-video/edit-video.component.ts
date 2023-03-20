@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
@@ -12,6 +12,7 @@ import { SnackbarService } from 'src/app/shared/services/snackbar.service';
 })
 export class EditVideoComponent implements OnInit {
   editVideoForm!: FormGroup
+  @ViewChild('input', {static: true}) input!: ElementRef;
   loading = false
 
   constructor(
@@ -25,6 +26,8 @@ export class EditVideoComponent implements OnInit {
     this.editVideoForm = new FormGroup({
       'title': new FormControl(null, [Validators.required])
     })
+    this.editVideoForm.controls['title'].setValue(this.modalService.data?.data?.title)
+    this.input.nativeElement.focus()
   }
 
   onSubmit(): void {

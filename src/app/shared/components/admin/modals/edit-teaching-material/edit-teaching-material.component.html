@@ -9,7 +9,7 @@
       <div class="edit-teaching-material-container">
         <form [formGroup]="editTeachingMaterialForm" (ngSubmit)="onSubmit()">
           <div class="input-container">
-            <input formControlName="title" type="text" placeholder="Title" class="text-input">
+            <input formControlName="title" type="text" placeholder="Title" class="text-input" #input>
             <ng-container *ngIf="editTeachingMaterialForm.get('title')?.touched">
               <span
                 class="validation-error"
