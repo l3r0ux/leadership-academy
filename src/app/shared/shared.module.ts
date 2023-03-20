@@ -36,6 +36,8 @@ import { AddCountryComponent } from './components/admin/modals/add-country/add-c
 import { PasswordResetRequestSuccessComponent } from './components/modals/password-reset-request-success/password-reset-request-success.component';
 import { PasswordResetRequestFailedComponent } from './components/modals/password-reset-request-failed/password-reset-request-failed.component';
 import { PaulineStudentsComponent } from './components/admin/pauline-students/pauline-students.component';
+import { EditVideoComponent } from './components/admin/modals/edit-video/edit-video.component';
+import { EditTeachingMaterialComponent } from './components/admin/modals/edit-teaching-material/edit-teaching-material.component';
 
 const components = [
   TabsComponent,
@@ -70,7 +72,9 @@ const components = [
   AddCountryComponent,
   PasswordResetRequestSuccessComponent,
   PasswordResetRequestFailedComponent,
-  PaulineStudentsComponent
+  PaulineStudentsComponent,
+  EditVideoComponent,
+  EditTeachingMaterialComponent
 ]
 
 @NgModule({

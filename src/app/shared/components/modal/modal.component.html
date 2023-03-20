@@ -33,6 +33,12 @@
         <div [@modalFadeIn] *ngSwitchCase="'add video'">
             <app-add-video></app-add-video>
         </div>
+        <div [@modalFadeIn] *ngSwitchCase="'edit video'">
+            <app-edit-video></app-edit-video>
+        </div>
+        <div [@modalFadeIn] *ngSwitchCase="'edit teaching material'">
+            <app-edit-teaching-material></app-edit-teaching-material>
+        </div>
         <div [@modalFadeIn] *ngSwitchCase="'confirm delete'">
             <app-delete-confirmation></app-delete-confirmation>
         </div>

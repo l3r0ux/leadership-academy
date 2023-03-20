@@ -27,6 +27,16 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     this.toggleExpansion()
   }
 
+  openEditDialog(data: any): void {
+    this.modalService.openModal(this.header === 'Videos' ? 'Edit video' : 'Edit teaching material', {
+      country: this.country,
+      conference: this.conference,
+      session: this.session,
+      resource: this.header.toLocaleLowerCase(),
+      data
+    })
+  }
+
   openDeleteConfirmation(data: any): void {
     this.modalService.openModal('Confirm delete', {
       country: this.country,

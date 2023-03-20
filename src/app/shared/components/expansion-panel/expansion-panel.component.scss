@@ -73,8 +73,17 @@
                 transition: all 300ms ease;
             }
 
+            .edit,
             .delete {
                 cursor: pointer;
+            }
+
+            .edit {
+                margin-right: 4px;
+
+                path {
+                    fill: #ff7a00;
+                }
             }
 
             span {

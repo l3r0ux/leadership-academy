@@ -1,0 +1,14 @@
+.edit-video-container {
+    form {
+        display: flex;
+        flex-direction: column;
+    
+        input[type=file] {
+            margin-bottom: 1rem;
+        }
+
+        .edit-btn {
+            width: 100%;
+        }
+    }
+}
