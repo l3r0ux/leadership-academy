@@ -24,9 +24,11 @@ export class EditVideoComponent implements OnInit {
 
   ngOnInit(): void {
     this.editVideoForm = new FormGroup({
-      'title': new FormControl(null, [Validators.required])
+      'title': new FormControl(null, [Validators.required]),
+      'sortOrder': new FormControl(null, [Validators.required]),
     })
     this.editVideoForm.controls['title'].setValue(this.modalService.data?.data?.title)
+    this.editVideoForm.controls['sortOrder'].setValue(this.modalService.data?.data?.sortOrder)
     this.input.nativeElement.focus()
   }
 
@@ -44,11 +46,14 @@ export class EditVideoComponent implements OnInit {
   }
 
   async editConferenceVideo(): Promise<void> {
-    const { title } = this.editVideoForm.value
+    const { title, sortOrder } = this.editVideoForm.value
     const { country, conference, data } = this.modalService.data
 
-    const video = conference.videos[conference.videos.indexOf(data)]
+    const videoIndex = conference.videos.indexOf(data)
+    const video = conference.videos[videoIndex]
+
     video.title = title
+    video.sortOrder = sortOrder
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipCountryChangedSubject.next(country)
@@ -61,16 +66,19 @@ export class EditVideoComponent implements OnInit {
     }
 
     this.loading = false
-    this.snackbarService.showSnackbar({ text: 'Video title edited!', success: true })
+    this.snackbarService.showSnackbar({ text: 'Video edited!', success: true })
     this.modalService.closeModal()
   }
 
   async editSessionVideo(): Promise<void> {
-    const { title } = this.editVideoForm.value
+    const { title, sortOrder } = this.editVideoForm.value
     const { session, data } = this.modalService.data
 
-    const video = session.videos[session.videos.indexOf(data)]
+    const videoIndex = session.videos.indexOf(data)
+    const video = session.videos[videoIndex]
+
     video.title = title
+    video.sortOrder = sortOrder
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipSessionChangedSubject.next(session)
@@ -84,7 +92,7 @@ export class EditVideoComponent implements OnInit {
     }
 
     this.loading = false
-    this.snackbarService.showSnackbar({ text: 'Video title edited!', success: true })
+    this.snackbarService.showSnackbar({ text: 'Video edited!', success: true })
     this.modalService.closeModal()
   }
 }

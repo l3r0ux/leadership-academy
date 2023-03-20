@@ -72,7 +72,7 @@ export class AddVideoComponent implements OnInit {
         this.downloadURL.forEach(async (url: any) => {
           if (url) {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
-            foundConference.videos.push({ title, url })
+            foundConference.videos.push({ title, url, sortOrder: foundConference.videos.length + 1 })
             if (this.router.url.includes('leadership-academy')) {
               this.modalService.leadershipCountryChangedSubject.next(country)
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
@@ -115,7 +115,7 @@ export class AddVideoComponent implements OnInit {
         this.downloadURL = fileRef.getDownloadURL()
         this.downloadURL.forEach(async (url: any) => {
           if (url) {
-            session.videos.push({ title, url })
+            session.videos.push({ title, url, sortOrder: session.videos.length + 1 })
             if (this.router.url.includes('leadership-academy')) {
               this.modalService.leadershipSessionChangedSubject.next(session)
               await this.firestoreService.updateData(session, 'leadership-academy-sessions')

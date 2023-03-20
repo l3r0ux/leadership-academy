@@ -16,4 +16,8 @@ export class ConferenceComponent implements OnInit {
   showCountryHeading(country: any): boolean {
     return country.conferences.length && country.conferences.some((el: any) => el.isLive)
   }
+
+  sortedData(data: any): any {
+    return data.sort((a: any, b: any): any => a.sortOrder - b.sortOrder)
+  }
 }

@@ -12,10 +12,26 @@
             <input formControlName="title" type="text" placeholder="Title" class="text-input" #input>
             <ng-container *ngIf="editTeachingMaterialForm.get('title')?.touched">
               <span
-                class="validation-error"
-                *ngIf="editTeachingMaterialForm.get('title')?.hasError('required')"
+              class="validation-error"
+              *ngIf="editTeachingMaterialForm.get('title')?.hasError('required')"
               >
-                Title required
+              Title required
+            </span>
+            </ng-container>
+          </div>
+          <div class="input-container">
+            <input formControlName="sortOrder"
+              type="number"
+              placeholder="Sort order"
+              class="text-input"
+              min="1"
+              [max]="modalService.data.conference ? modalService.data.conference.teachingMaterials.length : modalService.data.session.teachingMaterials.length">
+            <ng-container *ngIf="editTeachingMaterialForm.get('sortOrder')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="editTeachingMaterialForm.get('sortOrder')?.hasError('required')"
+              >
+                Sort order required
               </span>
             </ng-container>
           </div>

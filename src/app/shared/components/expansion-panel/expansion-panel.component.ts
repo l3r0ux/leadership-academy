@@ -80,4 +80,8 @@ export class ExpansionPanelComponent implements OnInit, AfterViewInit {
     event.stopPropagation()
     this.modalService.openModal('Reject application', application)
   }
+
+  sortedData(data: any): any {
+    return data.sort((a: any, b: any): any => a.sortOrder - b.sortOrder)
+  }
 }

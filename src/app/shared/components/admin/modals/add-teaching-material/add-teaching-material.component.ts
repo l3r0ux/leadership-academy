@@ -70,7 +70,7 @@ export class AddTeachingMaterialComponent implements OnInit {
         this.downloadURL = fileRef.getDownloadURL()
         this.downloadURL.forEach(async (url: any) => {
           if (url) {
-            session.teachingMaterials.push({ title, url })
+            session.teachingMaterials.push({ title, url, sortOrder: session.teachingMaterials.length + 1 })
             if (this.router.url.includes('leadership-academy')) {
               await this.firestoreService.updateData(session, 'leadership-academy-sessions')
               this.modalService.leadershipSessionChangedSubject.next(session)
@@ -115,7 +115,7 @@ export class AddTeachingMaterialComponent implements OnInit {
         this.downloadURL.forEach(async (url: any) => {
           if (url) {
             const foundConference = country.conferences[country.conferences.findIndex((countryConference: any) => countryConference.date === conference.date)]
-            foundConference.teachingMaterials.push({ title, url })
+            foundConference.teachingMaterials.push({ title, url, sortOrder: foundConference.teachingMaterials.length + 1 })
             if (this.router.url.includes('leadership-academy')) {
               await this.firestoreService.updateData(country, 'leadership-academy-countries')
               this.modalService.leadershipCountryChangedSubject.next(country)

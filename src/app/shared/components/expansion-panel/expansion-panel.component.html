@@ -22,8 +22,8 @@
     </div>
     <div #panelBody class="body">
         <ng-container *ngIf="data">
-            <div class="item" *ngFor="let row of data">
-                <span>{{ row.title }}</span>
+            <div class="item" *ngFor="let row of sortedData(data)">
+                <span>{{ row.sortOrder }} - {{ row.title }}</span>
                 <a *ngIf="!isAdmin" href="{{ row.url }}" target="_blank">
                     <svg class="download" width="16px" height="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 490">
                         <g>

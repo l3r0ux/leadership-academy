@@ -24,9 +24,11 @@ export class EditTeachingMaterialComponent implements OnInit {
 
   ngOnInit(): void {
     this.editTeachingMaterialForm = new FormGroup({
-      'title': new FormControl(null, [Validators.required])
+      'title': new FormControl(null, [Validators.required]),
+      'sortOrder': new FormControl(null, [Validators.required]),
     })
     this.editTeachingMaterialForm.controls['title'].setValue(this.modalService.data?.data?.title)
+    this.editTeachingMaterialForm.controls['sortOrder'].setValue(this.modalService.data?.data?.sortOrder)
     this.input.nativeElement.focus()
   }
 
@@ -44,13 +46,14 @@ export class EditTeachingMaterialComponent implements OnInit {
   }
 
   async editConferenceTeachingMaterial(): Promise<void> {
-    const { title } = this.editTeachingMaterialForm.value
+    const { title, sortOrder } = this.editTeachingMaterialForm.value
     const { country, conference, data } = this.modalService.data
 
-    console.log(this.modalService.data)
+    const teachingMaterialIndex = conference.teachingMaterials.indexOf(data)
+    const teachingMaterial = conference.teachingMaterials[teachingMaterialIndex]
 
-    const teachingMaterial = conference.teachingMaterials[conference.teachingMaterials.indexOf(data)]
     teachingMaterial.title = title
+    teachingMaterial.sortOrder = sortOrder
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipCountryChangedSubject.next(country)
@@ -63,16 +66,19 @@ export class EditTeachingMaterialComponent implements OnInit {
     }
 
     this.loading = false
-    this.snackbarService.showSnackbar({ text: 'Material title edited!', success: true })
+    this.snackbarService.showSnackbar({ text: 'Material edited!', success: true })
     this.modalService.closeModal()
   }
 
   async editSessionTeachingMaterial(): Promise<void> {
-    const { title } = this.editTeachingMaterialForm.value
+    const { title, sortOrder } = this.editTeachingMaterialForm.value
     const { session, data } = this.modalService.data
 
-    const teachingMaterial = session.teachingMaterials[session.teachingMaterials.indexOf(data)]
+    const teachingMaterialIndex = session.teachingMaterials.indexOf(data)
+    const teachingMaterial = session.teachingMaterials[teachingMaterialIndex]
+
     teachingMaterial.title = title
+    teachingMaterial.sortOrder = sortOrder
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipSessionChangedSubject.next(session)
@@ -86,7 +92,7 @@ export class EditTeachingMaterialComponent implements OnInit {
     }
 
     this.loading = false
-    this.snackbarService.showSnackbar({ text: 'Material title edited!', success: true })
+    this.snackbarService.showSnackbar({ text: 'Material edited!', success: true })
     this.modalService.closeModal()
   }
 }

@@ -68,4 +68,8 @@ export class SessionComponent implements OnInit {
       this.isAllSessions = true
     }
   }
+
+  sortedData(data: any): any {
+    return data.sort((a: any, b: any): any => a.sortOrder - b.sortOrder)
+  }
 }

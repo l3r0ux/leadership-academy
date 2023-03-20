@@ -19,6 +19,22 @@
               </span>
             </ng-container>
           </div>
+          <div class="input-container">
+            <input formControlName="sortOrder"
+              type="number"
+              placeholder="Sort order"
+              class="text-input"
+              min="1"
+              [max]="modalService.data.conference ? modalService.data.conference.videos.length : modalService.data.session.videos.length">
+            <ng-container *ngIf="editVideoForm.get('sortOrder')?.touched">
+              <span
+                class="validation-error"
+                *ngIf="editVideoForm.get('sortOrder')?.hasError('required')"
+              >
+                Sort order required
+              </span>
+            </ng-container>
+          </div>
           <button class="btn edit-btn" type="submit">
             <app-loading-spinner *ngIf="loading"></app-loading-spinner>
             <span *ngIf="!loading">Save</span>
