@@ -47,13 +47,18 @@ export class EditVideoComponent implements OnInit {
 
   async editConferenceVideo(): Promise<void> {
     const { title, sortOrder } = this.editVideoForm.value
-    const { country, conference, data } = this.modalService.data
-
-    const videoIndex = conference.videos.indexOf(data)
-    const video = conference.videos[videoIndex]
-
-    video.title = title
-    video.sortOrder = sortOrder
+    const country = { ...this.modalService.data.country }
+    const conference = { ...this.modalService.data.conference }
+    const video = { ...this.modalService.data.data }
+    const videos = [...conference.videos]
+    const toRemoveIndex = videos.findIndex((m) => m.title === video.title)
+    const toMove = videos.splice(toRemoveIndex, 1)
+    videos.splice(sortOrder - 1, 0, toMove[0])
+    videos.forEach((m: any, i: number): void => {
+      m.sortOrder = i + 1
+    })
+    toMove[0].title = title
+    conference.videos = [...videos]
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipCountryChangedSubject.next(country)
@@ -72,13 +77,17 @@ export class EditVideoComponent implements OnInit {
 
   async editSessionVideo(): Promise<void> {
     const { title, sortOrder } = this.editVideoForm.value
-    const { session, data } = this.modalService.data
-
-    const videoIndex = session.videos.indexOf(data)
-    const video = session.videos[videoIndex]
-
-    video.title = title
-    video.sortOrder = sortOrder
+    const session = { ...this.modalService.data.session }
+    const video = { ...this.modalService.data.data }
+    const videos = [...session.videos]
+    const toRemoveIndex = videos.findIndex((m) => m.title === video.title)
+    const toMove = videos.splice(toRemoveIndex, 1)
+    videos.splice(sortOrder - 1, 0, toMove[0])
+    videos.forEach((m: any, i: number): void => {
+      m.sortOrder = i + 1
+    })
+    toMove[0].title = title
+    session.videos = [...videos]
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipSessionChangedSubject.next(session)

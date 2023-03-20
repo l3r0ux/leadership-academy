@@ -47,13 +47,19 @@ export class EditTeachingMaterialComponent implements OnInit {
 
   async editConferenceTeachingMaterial(): Promise<void> {
     const { title, sortOrder } = this.editTeachingMaterialForm.value
-    const { country, conference, data } = this.modalService.data
+    const country = { ...this.modalService.data.country }
+    const conference = { ...this.modalService.data.conference }
+    const teachingMaterial = { ...this.modalService.data.data }
 
-    const teachingMaterialIndex = conference.teachingMaterials.indexOf(data)
-    const teachingMaterial = conference.teachingMaterials[teachingMaterialIndex]
-
-    teachingMaterial.title = title
-    teachingMaterial.sortOrder = sortOrder
+    const materials = [...conference.teachingMaterials]
+    const toRemoveIndex = materials.findIndex((m) => m.title === teachingMaterial.title)
+    const toMove = materials.splice(toRemoveIndex, 1)
+    materials.splice(sortOrder - 1, 0, toMove[0])
+    materials.forEach((m: any, i: number): void => {
+      m.sortOrder = i + 1
+    })
+    toMove[0].title = title
+    conference.teachingMaterials = [...materials]
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipCountryChangedSubject.next(country)
@@ -72,13 +78,18 @@ export class EditTeachingMaterialComponent implements OnInit {
 
   async editSessionTeachingMaterial(): Promise<void> {
     const { title, sortOrder } = this.editTeachingMaterialForm.value
-    const { session, data } = this.modalService.data
+    const session = { ...this.modalService.data.session }
+    const teachingMaterial = { ...this.modalService.data.data }
 
-    const teachingMaterialIndex = session.teachingMaterials.indexOf(data)
-    const teachingMaterial = session.teachingMaterials[teachingMaterialIndex]
-
-    teachingMaterial.title = title
-    teachingMaterial.sortOrder = sortOrder
+    const materials = [...session.teachingMaterials]
+    const toRemoveIndex = materials.findIndex((m) => m.title === teachingMaterial.title)
+    const toMove = materials.splice(toRemoveIndex, 1)
+    materials.splice(sortOrder - 1, 0, toMove[0])
+    materials.forEach((m: any, i: number): void => {
+      m.sortOrder = i + 1
+    })
+    toMove[0].title = title
+    session.teachingMaterials = [...materials]
 
     if (this.router.url.includes('leadership-academy')) {
       this.modalService.leadershipSessionChangedSubject.next(session)
