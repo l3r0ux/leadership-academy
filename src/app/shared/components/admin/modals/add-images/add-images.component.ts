@@ -53,11 +53,11 @@ export class AddImagesComponent implements OnInit {
     for (const image of this.images) {
       let filePath = ''
       if (this.router.url.includes('leadership-academy')) {
-        filePath = `image-leadership-${image.name}-${session.name}`
+        filePath = `${session.name}-image-leadership-${image.name}`
       } else if (this.router.url.includes('the-forum')) {
-        filePath = `image-forum-${image.name}-${session.name}`
+        filePath = `${session.name}-image-forum-${image.name}`
       } else if (this.router.url.includes('pauline')) {
-        filePath = `image-pauline-${image.name}-${session.name}`
+        filePath = `${session.name}-image-pauline-${image.name}`
       }
 
       const fileRef = this.storage.ref(filePath);
@@ -100,11 +100,11 @@ export class AddImagesComponent implements OnInit {
     for (const image of this.images) {
       let filePath = ''
       if (this.router.url.includes('leadership-academy')) {
-        filePath = `image-leadership-${image.name}-${conference.date}`
+        filePath = `${conference.date.seconds}-image-leadership-${image.name}`
       } else if (this.router.url.includes('the-forum')) {
-        filePath = `image-forum-${image.name}-${conference.date}`
+        filePath = `${conference.date.seconds}-image-forum-${image.name}`
       } else if (this.router.url.includes('pauline')) {
-        filePath = `image-pauline-${image.name}-${conference.date}`
+        filePath = `${conference.date.seconds}-image-pauline-${image.name}`
       }
 
       const fileRef = this.storage.ref(filePath);
