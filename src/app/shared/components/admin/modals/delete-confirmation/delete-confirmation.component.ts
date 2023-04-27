@@ -161,7 +161,8 @@ export class DeleteConfirmationComponent implements OnInit {
           conference.teachingMaterials.splice(foundConference.teachingMaterials.findIndex(((material: any) => material.title === data.title)), 1)
           break;
         case 'image':
-          conference.galleryURLs.splice(foundConference.galleryURLs.findIndex(((url: any) => url === data)), 1)
+          const { url } = data
+          conference.galleryURLs.splice(foundConference.galleryURLs.indexOf(url), 1)
           break;
       }
     }
