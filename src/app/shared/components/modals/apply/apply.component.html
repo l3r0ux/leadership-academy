@@ -7,12 +7,7 @@
   </div>
   <div class="body">
     <div class="apply-container">
-      <h3>Choose your program</h3>
       <form [formGroup]="applyForm" (ngSubmit)="onSubmit()">
-          <div class="radio-container">
-              <label class="training-type" for="forum">The Forum</label>
-              <input type="radio" id="forum" value="The Forum" formControlName="program">
-          </div>
           <div class="radio-container">
               <label class="training-type" for="pauline">Pauline Leadership Training</label>
               <input type="radio" id="pauline" value="Pauline Leadership Training" formControlName="program">

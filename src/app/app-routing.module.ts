@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', component:  HomeComponent },
   { path: 'leadership-academy', component:  LeadershipAcademyComponent },
   { path: 'pauline-leadership', component:  PaulineLeadershipComponent, canActivate: [AuthGuard] },
-  { path: 'the-forum', component:  TheForumComponent, canActivate: [AuthGuard] },
+  { path: 'the-forum', component:  TheForumComponent },
   { path: 'admin', component:  AdminPanelComponent, canActivate: [AuthGuard], children: [
     { path: 'the-forum', component:  TheForumAdminComponent },
     { path: 'leadership-academy', component:  LeadershipAcademyAdminComponent },
