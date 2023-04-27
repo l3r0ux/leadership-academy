@@ -33,12 +33,12 @@ h4 {
     }
 
     .gallery-container {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr 1fr;
         margin-bottom: 2rem;
 
         .image-container {
-            display: flex;
             position: relative;
 
             .download-icon {
@@ -67,11 +67,10 @@ h4 {
             }
 
             img {
-                margin: 0.1rem;
                 object-fit: cover;
                 border-radius: 0.4rem;
-                max-width: 15rem;
-                max-height: 15rem;
+                width: 100%;
+                height: 100%;
             }
         }
 
@@ -92,14 +91,22 @@ h4 {
         .details {
             margin: 0 1rem;
         }
+
+        .gallery-container {
+            grid-template-columns: 1fr 1fr;
+        }
     }
 }
 
 @media screen and (max-width: 480px) {
-    .gallery-container {
-        .image-container {
-            img {
-                max-width: 100% !important;
+    .inner-container {
+        .gallery-container {
+            grid-template-columns: 1fr;
+    
+            .image-container {
+                img {
+                    max-width: 100% !important;
+                }
             }
         }
     }
