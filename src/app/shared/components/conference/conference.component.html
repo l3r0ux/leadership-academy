@@ -7,7 +7,7 @@
           <h3>{{ conference.date.toDate().toLocaleDateString() }}</h3>
           <ng-container *ngIf="conference.videos.length">
             <h4>Videos</h4>
-            <app-video-carousel [videos]="sortedData(conference.videos)"></app-video-carousel>
+            <app-video [videos]="sortedData(conference.videos)"></app-video>
           </ng-container>
           <ng-container *ngIf="conference.teachingMaterials.length">
             <h4>Downloads</h4>

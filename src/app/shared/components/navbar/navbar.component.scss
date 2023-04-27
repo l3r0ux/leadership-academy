@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 100;
     padding: 0.8rem;
     background-color: #EBEBEB;
     width: 100%;
@@ -44,7 +44,7 @@
                 padding: 0 0.5rem;
 
                 &:hover {
-                    color: #CD2037;
+                    color: #4c5faa;
                 }
             }
 
@@ -132,7 +132,7 @@
     border-radius: 50%;
     min-width: 2rem;
     min-height: 2rem;
-    background-color: #cd2037;
+    background-color: #4c5faa;
     color: #EBEBEB;
 
     h3 {

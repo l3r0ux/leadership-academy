@@ -5,7 +5,7 @@
       <div class="details">
         <ng-container *ngIf="session.videos.length">
           <h4>Videos</h4>
-          <app-video-carousel [videos]="sortedData(session.videos)"></app-video-carousel>
+          <app-video [videos]="sortedData(session.videos)"></app-video>
         </ng-container>
         <ng-container *ngIf="session.teachingMaterials.length">
           <h4>Downloads</h4>

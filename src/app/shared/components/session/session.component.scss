@@ -58,7 +58,7 @@ h4 {
 
                 svg {
                     &:hover {
-                        fill: #CD2037;
+                        fill: #4c5faa;
                     }
 
                     transition: fill 300ms ease;
@@ -87,6 +87,16 @@ h4 {
         margin: 0 auto;
         background-color: transparent;
         min-width: 7rem;
+    }
+}
+
+@media screen and (max-width: 752px) {
+    .inner-container {
+        padding: 0;
+
+        .details {
+            margin: 0 1rem;
+        }
     }
 }
 
